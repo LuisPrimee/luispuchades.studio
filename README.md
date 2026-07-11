@@ -9,12 +9,11 @@ Un espacio donde diseño, desarrollo y experimento con ideas visuales y digitale
 
 ## 🎨 Paleta de colores
 
-Estos son los colores principales utilizados en el proyecto:
+Estos son los colores principales utilizados en el proyecto (haz clic en ellos para verlos o editarlos):
 
-![color](https://singlecolorimage.com/get/222222/20x20) `#222222`
-![color](https://singlecolorimage.com/get/1a1a1a/20x20) `#1a1a1a`
-![color](https://singlecolorimage.com/get/bb8844/20x20) `#bb8844`
-
+[![#222222](https://shields.io)](https://htmlcolorcodes.com)
+[![#1a1a1a](https://shields.io)](https://htmlcolorcodes.com)
+[![#bb8844](https://shields.io)](https://htmlcolorcodes.com)
 
 ---
 
@@ -43,6 +42,7 @@ Crear una experiencia visual minimalista, elegante y funcional, basada en una pa
 ## 📬 Contacto
 
 Si quieres saber más sobre mi trabajo:
+
 
 - Web: https://luispuchades.studio  
 - Email: puchadesluis@gmail.com

@@ -4118,3 +4118,38 @@ body #wrapper #footer * {
 .intro-overlay {
     display: none !important; /* Si quieres ver el video crudo, oculta esto */
 }
+
+.work-slide {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.work-slide__content {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    color: #ffffff;
+}
+
+.work-slide__label {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #B8935A;
+    margin-bottom: 0.5rem;
+}
+
+.work-slide__cta {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+}
+

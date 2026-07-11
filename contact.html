@@ -5,16 +5,17 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	<style>
 
 		/* ── VARIABLES ──────────────────────────────────────────────── */
 		:root {
-			--bg:        #1e252d;
-			--bg-panel:  #171d24;
-			--accent:    #18bfef;
+			--bg:        #222222;
+			--bg-panel:  #1a1a1a;
+			--accent:    #bb8844;
 			--border:    #eeeeee;
-			--muted:     #717981;
+			--muted:     #8a928a;
 			--font-body: "Merriweather", Georgia, serif;
 			--font-head: "Source Sans Pro", Helvetica, sans-serif;
 
@@ -23,10 +24,9 @@
 				1) Copia tu foto a assets/images/contact-bg.jpg
 				2) Cambia la línea de abajo por:
 				   --hero-image: url("assets/images/contact-bg.jpg");
-				Recomendado: imagen vertical u orientación libre, mínimo 1200px de alto,
-				algo con contraste medio/bajo — la viñeta oscura ya se encarga del resto.
+				El vectorscopio se queda encima como capa, funciona con o sin foto.
 			*/
-			--hero-image: linear-gradient(160deg, #2a3541 0%, #1a2129 45%, #10151b 100%);
+			--hero-image: linear-gradient(160deg, #3a3a3a 0%, #262626 45%, #161616 100%);
 		}
 
 		/* ── BASE ───────────────────────────────────────────────────── */
@@ -43,10 +43,10 @@
 			color: var(--muted);
 		}
 
-		html { font-size: 16pt; }
-		@media screen and (max-width: 1680px) { html { font-size: 12pt; } }
-		@media screen and (max-width: 1280px) { html { font-size: 11pt; } }
-		@media screen and (max-width:  360px) { html { font-size: 10pt; } }
+		html { font-size: 17pt; }
+		@media screen and (max-width: 1680px) { html { font-size: 13pt; } }
+		@media screen and (max-width: 1280px) { html { font-size: 12pt; } }
+		@media screen and (max-width:  360px) { html { font-size: 11pt; } }
 
 		h1, h2, h3 {
 			font-family: var(--font-head);
@@ -91,7 +91,7 @@
 			display: block;
 			font-family: var(--font-head);
 			font-weight: 900;
-			font-size: 0.7rem;
+			font-size: 0.75rem;
 			letter-spacing: 0.075em;
 			text-transform: uppercase;
 			color: #ffffff;
@@ -114,19 +114,20 @@
 			min-height: calc(100vh - 4rem);
 		}
 
-		/* Panel imagen */
+		/* Panel imagen + vectorscopio */
 		#visual-panel {
 			position: relative;
 			background-image:
-				linear-gradient(180deg, rgba(16,21,27,0.15) 0%, rgba(16,21,27,0.85) 100%),
+				linear-gradient(180deg, rgba(20,20,20,0.2) 0%, rgba(20,20,20,0.9) 100%),
 				var(--hero-image);
 			background-size: cover;
 			background-position: center;
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-end;
-			padding: 3rem;
-			min-height: 420px;
+			padding: 3.5rem;
+			min-height: 480px;
+			overflow: hidden;
 		}
 
 		#visual-panel::before {
@@ -143,31 +144,70 @@
 			pointer-events: none;
 		}
 
+		/* Vectorscopio: SVG de fondo, esquina superior derecha */
+		.vectorscope {
+			position: absolute;
+			top: 2.5rem;
+			right: 2.5rem;
+			width: 220px;
+			height: 220px;
+			opacity: 0.9;
+		}
+
+		.vectorscope circle.ring {
+			fill: none;
+			stroke: rgba(255,255,255,0.12);
+			stroke-width: 1;
+		}
+
+		.vectorscope line.axis {
+			stroke: rgba(255,255,255,0.08);
+			stroke-width: 1;
+		}
+
+		.vectorscope .target {
+			fill-opacity: 0.85;
+		}
+
+		.vectorscope .target-label {
+			font-family: 'Source Sans Pro', Helvetica, sans-serif;
+			font-size: 8px;
+			font-weight: 900;
+			letter-spacing: 0.05em;
+			fill: rgba(255,255,255,0.55);
+		}
+
 		.visual-eyebrow {
 			font-family: var(--font-head);
 			font-weight: 900;
-			font-size: 0.6rem;
+			font-size: 0.65rem;
 			letter-spacing: 0.15em;
 			text-transform: uppercase;
 			color: var(--accent);
 			margin-bottom: 1rem;
+			position: relative;
+			z-index: 1;
 			opacity: 0;
 			animation: fadeUp 0.6s ease 0.1s forwards;
 		}
 
 		#visual-panel h1 {
-			font-size: 3rem;
+			font-size: 3.2rem;
 			line-height: 1.05;
 			margin-bottom: 1rem;
+			position: relative;
+			z-index: 1;
 			opacity: 0;
 			animation: fadeUp 0.6s ease 0.25s forwards;
 		}
 
 		#visual-panel .subtitle {
-			max-width: 380px;
-			font-size: 0.9rem;
+			max-width: 400px;
+			font-size: 1rem;
 			line-height: 1.9;
-			color: rgba(255,255,255,0.6);
+			color: rgba(255,255,255,0.65);
+			position: relative;
+			z-index: 1;
 			opacity: 0;
 			animation: fadeUp 0.6s ease 0.4s forwards;
 		}
@@ -182,31 +222,10 @@
 
 		#contact-section {
 			width: 100%;
-			max-width: 460px;
+			max-width: 480px;
 			margin: 0 auto;
 			opacity: 0;
 			animation: fadeUp 0.7s ease 0.55s forwards;
-		}
-
-		.form-intro {
-			display: flex;
-			align-items: baseline;
-			gap: 0.85rem;
-			margin-bottom: 2rem;
-		}
-
-		.form-intro .index {
-			font-family: var(--font-head);
-			font-weight: 900;
-			font-size: 0.65rem;
-			letter-spacing: 0.075em;
-			color: var(--accent);
-		}
-
-		.form-intro p {
-			font-size: 0.8rem;
-			color: var(--muted);
-			line-height: 1.7;
 		}
 
 		.form-row {
@@ -219,13 +238,13 @@
 		.form-group {
 			display: flex;
 			flex-direction: column;
-			margin-bottom: 1rem;
+			margin-bottom: 1.1rem;
 		}
 
 		.form-group label {
 			font-family: var(--font-head);
 			font-weight: 900;
-			font-size: 0.58rem;
+			font-size: 0.65rem;
 			letter-spacing: 0.075em;
 			text-transform: uppercase;
 			color: var(--muted);
@@ -239,12 +258,12 @@
 		.form-group textarea {
 			background: transparent;
 			border: none;
-			border-bottom: solid 2px var(--border);
+			border-bottom: solid 1px rgba(255,255,255,0.28);
 			color: #ffffff;
 			font-family: var(--font-body);
-			font-size: 0.85rem;
+			font-size: 0.95rem;
 			font-weight: 300;
-			padding: 0.6rem 0.1rem;
+			padding: 0.65rem 0.1rem;
 			outline: none;
 			transition: border-color 0.2s ease-in-out;
 			-webkit-appearance: none;
@@ -253,7 +272,7 @@
 
 		.form-group input::placeholder,
 		.form-group textarea::placeholder {
-			color: rgba(113,121,129,0.5);
+			color: rgba(138,146,154,0.55);
 		}
 
 		.form-group input:focus,
@@ -263,7 +282,7 @@
 
 		.form-group textarea {
 			resize: vertical;
-			min-height: 120px;
+			min-height: 130px;
 			line-height: 1.7;
 		}
 
@@ -273,25 +292,23 @@
 			gap: 0.6rem;
 			font-family: var(--font-head);
 			font-weight: 900;
-			font-size: 0.6rem;
+			font-size: 0.68rem;
 			letter-spacing: 0.075em;
 			text-transform: uppercase;
-			color: #ffffff;
-			background: transparent;
-			border: solid 2px var(--border);
-			padding: 0.75rem 2rem;
+			color: #171717;
+			background: var(--accent);
+			border: solid 2px var(--accent);
+			padding: 0.8rem 2.1rem;
 			cursor: pointer;
 			transition: background-color 0.2s ease-in-out,
 			            border-color 0.2s ease-in-out,
-			            color 0.2s ease-in-out;
-			margin-top: 0.75rem;
+			            filter 0.2s ease-in-out;
+			margin-top: 1.25rem;
 		}
 
 		.btn-submit:hover,
 		.btn-submit:focus-visible {
-			background-color: var(--accent);
-			border-color: var(--accent);
-			color: #ffffff;
+			filter: brightness(1.15);
 		}
 
 		.btn-submit:focus-visible {
@@ -308,34 +325,35 @@
 		.footer-inner {
 			max-width: 100%;
 			margin: 0 auto;
-			padding: 1.25rem 3.5rem;
+			padding: 1.5rem 3.5rem;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			gap: 12px;
+			gap: 16px;
 			flex-wrap: wrap;
 		}
 
 		.footer-left h3 {
-			font-size: 0.65rem;
-			margin-bottom: 0.3rem;
+			font-size: 0.7rem;
+			margin-bottom: 0.4rem;
 		}
 
 		.footer-left p {
 			margin: 0;
-			font-size: 0.78rem;
-			color: var(--muted);
+			font-size: 1.05rem;
+			font-weight: 300;
+			color: #ffffff;
 		}
 
 		.footer-left p a {
-			color: var(--muted);
-			border-bottom: dotted 1px rgba(113,121,129,0.4);
+			color: #ffffff;
+			border-bottom: dotted 1px rgba(255,255,255,0.35);
 		}
 		.footer-left p a:hover { color: var(--accent); border-color: transparent; }
 
 		.footer-icons {
 			display: flex;
-			gap: 10px;
+			gap: 12px;
 			list-style: none;
 		}
 
@@ -343,14 +361,20 @@
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			width: 2rem;
-			height: 2rem;
-			color: var(--muted);
-			border: solid 2px var(--border);
-			font-size: 0.85rem;
-			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+			width: 2.4rem;
+			height: 2.4rem;
+			color: #ffffff;
+			border: solid 2px rgba(255,255,255,0.7);
+			border-radius: 50%;
+			font-size: 1.05rem;
+			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 		}
-		.footer-icons a:hover { color: var(--accent); border-color: var(--accent); }
+		.footer-icons a:hover {
+			color: #171717;
+			border-color: var(--accent);
+			background-color: var(--accent);
+		}
+		.footer-icons svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
 
 		/* ── ANIMACIONES ────────────────────────────────────────────── */
 		@keyframes fadeUp {
@@ -368,14 +392,16 @@
 		/* ── RESPONSIVE ─────────────────────────────────────────────── */
 		@media screen and (max-width: 900px) {
 			#split { grid-template-columns: 1fr; }
-			#visual-panel { min-height: 280px; padding: 2rem; }
-			#visual-panel h1 { font-size: 2.2rem; }
+			#visual-panel { min-height: 320px; padding: 2.25rem; }
+			#visual-panel h1 { font-size: 2.4rem; }
+			.vectorscope { width: 150px; height: 150px; top: 1.5rem; right: 1.5rem; }
 			#form-panel { padding: 3rem 1.75rem; }
 		}
 
 		@media screen and (max-width: 480px) {
 			.form-row { grid-template-columns: 1fr; }
-			.footer-inner { flex-direction: column; align-items: flex-start; gap: 14px; padding: 1.25rem 1.75rem; }
+			.footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; padding: 1.5rem 1.75rem; }
+			.footer-left p { font-size: 0.95rem; }
 		}
 
 	</style>
@@ -392,8 +418,37 @@
 
 	<div id="split">
 
-		<!-- PANEL IMAGEN -->
+		<!-- PANEL IMAGEN + VECTORSCOPIO -->
 		<div id="visual-panel">
+
+			<!-- Vectorscopio: círculo con los 6 puntos de crominancia estándar (R/Mg/B/Cy/G/Yl) -->
+			<svg class="vectorscope" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+				<circle class="ring" cx="110" cy="110" r="100" />
+				<circle class="ring" cx="110" cy="110" r="66" />
+				<circle class="ring" cx="110" cy="110" r="33" />
+				<line class="axis" x1="10" y1="110" x2="210" y2="110" />
+				<line class="axis" x1="110" y1="10" x2="110" y2="210" />
+
+				<!-- R -->
+				<circle class="target" cx="188" cy="70" r="5" fill="#ff4d4d" />
+				<text class="target-label" x="196" y="73">R</text>
+				<!-- Mg -->
+				<circle class="target" cx="168" cy="188" r="5" fill="#ff4dd8" />
+				<text class="target-label" x="176" y="192">MG</text>
+				<!-- B -->
+				<circle class="target" cx="52" cy="188" r="5" fill="#4d6bff" />
+				<text class="target-label" x="30" y="200" text-anchor="end">B</text>
+				<!-- Cy -->
+				<circle class="target" cx="32" cy="70" r="5" fill="#4de0ff" />
+				<text class="target-label" x="8" y="66" text-anchor="end">CY</text>
+				<!-- G -->
+				<circle class="target" cx="52" cy="32" r="5" fill="#4dff88" />
+				<text class="target-label" x="30" y="24" text-anchor="end">G</text>
+				<!-- Yl -->
+				<circle class="target" cx="168" cy="32" r="5" fill="#f5e642" />
+				<text class="target-label" x="176" y="24">YL</text>
+			</svg>
+
 			<span class="visual-eyebrow">Open for projects</span>
 			<h1>Let's grade<br />something.</h1>
 			<p class="subtitle">Spots, short films, and looks you can't quite describe yet — send over the details.</p>
@@ -402,11 +457,6 @@
 		<!-- PANEL FORMULARIO -->
 		<div id="form-panel">
 			<section id="contact-section">
-
-				<div class="form-intro">
-					<span class="index">01</span>
-					<p>Format, timeline, and any reference material you're working from.</p>
-				</div>
 
 				<!--
 					Para recibir los mensajes en tu email sin backend, usa Formspree:
@@ -452,9 +502,21 @@
 				<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a> &nbsp;·&nbsp; <a href="tel:+31625861333">+31 625 861 333</a></p>
 			</div>
 			<ul class="footer-icons">
-				<li><a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="icon brands fa-linkedin"></i></a></li>
-				<li><a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" aria-label="Vimeo"><i class="icon brands fa-vimeo"></i></a></li>
-				<li><a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" aria-label="YouTube"><i class="icon brands fa-youtube"></i></a></li>
+				<li>
+					<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" aria-label="LinkedIn">
+						<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+					</a>
+				</li>
+				<li>
+					<a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" aria-label="Vimeo">
+						<svg viewBox="0 0 24 24"><path d="M22 7.35c-.1 2.1-1.56 4.98-4.4 8.62C14.28 20.8 11.53 23 9.27 23c-1.4 0-2.58-1.3-3.55-3.9L4 12.4C3.3 9.8 2.55 8.5 1.75 8.5c-.17 0-.77.36-1.8 1.08L0 8.4c1.13-1 2.24-2 3.34-3C4.82 4.1 5.93 3.4 6.66 3.33c1.66-.16 2.68.98 3.06 3.4.4 2.62.68 4.25.85 4.87.47 2.14.99 3.2 1.56 3.2.44 0 1.11-.7 2-2.08.88-1.39 1.36-2.45 1.42-3.18.13-1.2-.34-1.8-1.42-1.8-.5 0-1.03.12-1.57.35C13.6 4.55 15.65 2.7 18.72 2.8c2.24.07 3.3 1.52 3.28 4.55z"/></svg>
+					</a>
+				</li>
+				<li>
+					<a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" aria-label="YouTube">
+						<svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</footer>

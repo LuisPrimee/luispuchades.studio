@@ -11,9 +11,10 @@ Un espacio donde diseño, desarrollo y experimento con ideas visuales y digitale
 
 Estos son los colores principales utilizados en el proyecto:
 
-![color](https://singlecolorimage.com/get/222222/20x20) `#222222`  
-![color](https://singlecolorimage.com/get/1a1a1a/20x20) `#1a1a1a`  
+![color](https://singlecolorimage.com/get/222222/20x20) `#222222`
+![color](https://singlecolorimage.com/get/1a1a1a/20x20) `#1a1a1a`
 ![color](https://singlecolorimage.com/get/bb8844/20x20) `#bb8844`
+
 
 ---
 

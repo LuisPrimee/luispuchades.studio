@@ -1,1 +1,387 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Work — Luis Puchades - Colorist</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
 
+		<style>
+
+			:root {
+				--bg:        #222222;
+				--bg-panel:  #1a1a1a;
+				--accent:    #bb8844;
+				--border:    #eeeeee;
+				--muted:     #8a928a;
+				--font-body: "Merriweather", Georgia, serif;
+				--font-head: "Source Sans Pro", Helvetica, sans-serif;
+			}
+
+			*, *::before, *::after { box-sizing: border-box; }
+
+			html, body { height: 100%; overflow-x: hidden; }
+			body { background-color: var(--bg) !important; }
+
+			/* ── MENÚ FLOTANTE (con submenú Work) ──────────────────── */
+			#menu-toggle {
+				position: fixed;
+				top: 1.5rem;
+				right: 1.5rem;
+				z-index: 10000;
+				width: 3rem;
+				height: 3rem;
+				border-radius: 50%;
+				border: solid 2px rgba(255,255,255,0.55);
+				background: rgba(20,20,20,0.55);
+				backdrop-filter: blur(8px);
+				-webkit-backdrop-filter: blur(8px);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				padding: 0;
+				transition: border-color 0.2s ease-in-out;
+			}
+
+			#menu-toggle:hover,
+			#menu-toggle[aria-expanded="true"] { border-color: var(--accent); }
+
+			#menu-toggle img { width: 1.6rem; height: 1.6rem; border-radius: 50%; display: block; }
+
+			#dropdown-menu {
+				position: fixed;
+				top: 4.75rem;
+				right: 1.5rem;
+				z-index: 9999;
+				min-width: 13rem;
+				background: rgba(20,20,20,0.92);
+				backdrop-filter: blur(10px);
+				-webkit-backdrop-filter: blur(10px);
+				border: solid 2px rgba(255,255,255,0.15);
+				padding: 0.5rem;
+				opacity: 0;
+				transform: translateY(-8px);
+				pointer-events: none;
+				transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+			}
+
+			#dropdown-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+			.menu-label {
+				display: block;
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.6rem;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: var(--muted);
+				padding: 0.6rem 1rem 0.3rem;
+			}
+
+			#dropdown-menu a {
+				display: block;
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.7rem;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: #ffffff;
+				text-decoration: none;
+				border-bottom: none;
+				padding: 0.75rem 1rem;
+				transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+			}
+
+			#dropdown-menu a.sub { padding-left: 1.5rem; font-size: 0.65rem; color: rgba(255,255,255,0.75); }
+
+			#dropdown-menu a:hover { color: var(--accent); background: rgba(255,255,255,0.04); }
+
+			#dropdown-menu .menu-divider {
+				border-top: solid 1px rgba(255,255,255,0.1);
+				margin: 0.4rem 0.25rem;
+			}
+
+			/* ── CARRUSEL HORIZONTAL ────────────────────────────────── */
+			#work-carousel {
+				display: flex;
+				height: 100vh;
+				overflow-x: auto;
+				overflow-y: hidden;
+				scroll-snap-type: x mandatory;
+				scroll-behavior: smooth;
+				-webkit-overflow-scrolling: touch;
+			}
+
+			#work-carousel::-webkit-scrollbar { display: none; }
+
+			.work-panel {
+				flex: 0 0 100vw;
+				scroll-snap-align: start;
+				position: relative;
+				display: flex;
+				align-items: flex-end;
+				padding: 5rem;
+				overflow: hidden;
+				background-size: cover;
+				background-position: center;
+			}
+
+			.work-panel::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(180deg, rgba(20,20,20,0.25) 0%, rgba(20,20,20,0.92) 100%);
+				z-index: 0;
+			}
+
+			.work-panel__content { position: relative; z-index: 1; max-width: 640px; }
+
+			.work-panel__index {
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.65rem;
+				letter-spacing: 0.25em;
+				text-transform: uppercase;
+				color: var(--accent);
+				margin-bottom: 1rem;
+				display: block;
+			}
+
+			.work-panel__content h1 {
+				font-family: var(--font-head) !important;
+				font-weight: 900 !important;
+				font-size: clamp(2.2rem, 5vw, 3.6rem) !important;
+				line-height: 1.05 !important;
+				letter-spacing: 0.03em !important;
+				text-transform: uppercase !important;
+				color: #ffffff !important;
+				margin: 0 0 1rem 0 !important;
+			}
+
+			.work-panel__content p {
+				font-family: var(--font-body);
+				font-size: 0.95rem;
+				line-height: 1.9;
+				color: rgba(255,255,255,0.65);
+				text-align: left;
+				max-width: 480px;
+				margin: 0 0 1.75rem 0;
+			}
+
+			.work-panel__cta {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.6rem;
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.65rem;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: #171717;
+				background: var(--accent);
+				border: solid 2px var(--accent);
+				padding: 0.8rem 1.8rem;
+				text-decoration: none;
+				transition: filter 0.2s ease-in-out;
+			}
+
+			.work-panel__cta:hover { filter: brightness(1.15); border-bottom: solid 2px var(--accent) !important; }
+
+			/* ── FLECHAS PREV / NEXT ────────────────────────────────── */
+			.carousel-arrow {
+				position: fixed;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 500;
+				width: 3rem;
+				height: 3rem;
+				border-radius: 50%;
+				border: solid 2px rgba(255,255,255,0.4);
+				background: rgba(20,20,20,0.45);
+				backdrop-filter: blur(6px);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				transition: border-color 0.2s ease-in-out;
+			}
+			.carousel-arrow:hover { border-color: var(--accent); }
+			.carousel-arrow svg { width: 1.1rem; height: 1.1rem; stroke: #ffffff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+			#arrow-prev { left: 1.5rem; }
+			#arrow-next { right: 1.5rem; }
+
+			/* ── DOTS ────────────────────────────────────────────────── */
+			#carousel-dots {
+				position: fixed;
+				bottom: 2rem;
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: 500;
+				display: flex;
+				gap: 0.6rem;
+			}
+			#carousel-dots button {
+				width: 0.55rem;
+				height: 0.55rem;
+				border-radius: 50%;
+				border: solid 2px rgba(255,255,255,0.55);
+				background: transparent;
+				padding: 0;
+				cursor: pointer;
+				transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+			}
+			#carousel-dots button.active { background: var(--accent); border-color: var(--accent); }
+
+			@media screen and (max-width: 736px) {
+				.work-panel { padding: 2.25rem; align-items: flex-end; }
+				#menu-toggle { top: 1rem; right: 1rem; }
+				#dropdown-menu { top: 4.25rem; right: 1rem; }
+				.carousel-arrow { display: none; }
+			}
+
+		</style>
+	</head>
+
+	<body class="is-preload">
+		<div id="wrapper" class="fade-in">
+
+			<!-- MENÚ FLOTANTE -->
+			<button id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="dropdown-menu">
+				<img src="/favicon.ico" alt="" />
+			</button>
+			<nav id="dropdown-menu" aria-label="Menú principal">
+				<span class="menu-label">Work</span>
+				<a href="#color-grading" class="sub">Color Grading</a>
+				<a href="#spec-ads" class="sub">Spec Ads</a>
+				<a href="#shortfilms" class="sub">Shortfilms</a>
+				<div class="menu-divider"></div>
+				<a href="/contact.html">Contact</a>
+			</nav>
+
+			<!-- FLECHAS -->
+			<button class="carousel-arrow" id="arrow-prev" aria-label="Sección anterior">
+				<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+			</button>
+			<button class="carousel-arrow" id="arrow-next" aria-label="Siguiente sección">
+				<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+			</button>
+
+			<!-- CARRUSEL -->
+			<div id="work-carousel">
+
+				<section class="work-panel" id="color-grading" style="background-image:url('/foto 2 cuadro lospe.jpg');">
+					<div class="work-panel__content">
+						<span class="work-panel__index">01 — Selected Work</span>
+						<h1>Color Grading</h1>
+						<p>Narrative grading work across shorts and features — tone, contrast and color built to serve the story, not the other way around.</p>
+						<a href="/projects/pro1adolf.html" class="work-panel__cta">View project</a>
+					</div>
+				</section>
+
+				<section class="work-panel" id="spec-ads" style="background-image:url('/images/pic03.jpg');">
+					<div class="work-panel__content">
+						<span class="work-panel__index">02 — Selected Work</span>
+						<h1>Spec Ads</h1>
+						<p>Commercial-style grading built as speculative brand pieces — clean, consistent tone designed for storytelling at brand level.</p>
+						<a href="#" class="work-panel__cta">View project</a>
+					</div>
+				</section>
+
+				<section class="work-panel" id="shortfilms" style="background-image:url('/images/pic04.jpg');">
+					<div class="work-panel__content">
+						<span class="work-panel__index">03 — Selected Work</span>
+						<h1>Shortfilms</h1>
+						<p>Full-length grading passes on short-form narrative work, focused on mood continuity from scene to scene.</p>
+						<a href="#" class="work-panel__cta">View project</a>
+					</div>
+				</section>
+
+			</div>
+
+			<div id="carousel-dots">
+				<button data-target="color-grading" aria-label="Ir a Color Grading"></button>
+				<button data-target="spec-ads" aria-label="Ir a Spec Ads"></button>
+				<button data-target="shortfilms" aria-label="Ir a Shortfilms"></button>
+			</div>
+
+		</div>
+
+		<script src="/assets/js/jquery.min.js"></script>
+		<script src="/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/assets/js/jquery.scrolly.min.js"></script>
+		<script src="/assets/js/browser.min.js"></script>
+		<script src="/assets/js/breakpoints.min.js"></script>
+		<script src="/assets/js/util.js"></script>
+		<script src="/assets/js/main.js"></script>
+
+		<script>
+			(function () {
+				var toggle = document.getElementById('menu-toggle');
+				var menu = document.getElementById('dropdown-menu');
+				function closeMenu() { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+				function openMenu() { menu.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); }
+				toggle.addEventListener('click', function (e) {
+					e.stopPropagation();
+					menu.classList.contains('open') ? closeMenu() : openMenu();
+				});
+				document.addEventListener('click', function (e) {
+					if (!menu.contains(e.target) && e.target !== toggle) closeMenu();
+				});
+				document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+				menu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
+			})();
+
+			(function () {
+				var carousel = document.getElementById('work-carousel');
+				var panels = Array.prototype.slice.call(document.querySelectorAll('.work-panel'));
+				var dots = Array.prototype.slice.call(document.querySelectorAll('#carousel-dots button'));
+				var prevBtn = document.getElementById('arrow-prev');
+				var nextBtn = document.getElementById('arrow-next');
+
+				function currentIndex() {
+					var scrollLeft = carousel.scrollLeft;
+					var width = carousel.clientWidth;
+					return Math.round(scrollLeft / width);
+				}
+
+				function goTo(index) {
+					index = Math.max(0, Math.min(panels.length - 1, index));
+					carousel.scrollTo({ left: index * carousel.clientWidth, behavior: 'smooth' });
+				}
+
+				function updateDots() {
+					var idx = currentIndex();
+					dots.forEach(function (dot, i) { dot.classList.toggle('active', i === idx); });
+				}
+
+				dots.forEach(function (dot, i) {
+					dot.addEventListener('click', function () { goTo(i); });
+				});
+
+				prevBtn.addEventListener('click', function () { goTo(currentIndex() - 1); });
+				nextBtn.addEventListener('click', function () { goTo(currentIndex() + 1); });
+
+				carousel.addEventListener('scroll', function () {
+					window.clearTimeout(carousel._t);
+					carousel._t = window.setTimeout(updateDots, 80);
+				});
+
+				window.addEventListener('resize', updateDots);
+
+				/* Si se llega con un ancla (#spec-ads, etc.) desde el menú */
+				window.addEventListener('load', function () {
+					var hash = window.location.hash.replace('#', '');
+					var idx = panels.findIndex(function (p) { return p.id === hash; });
+					if (idx > -1) {
+						carousel.scrollLeft = idx * carousel.clientWidth;
+					}
+					updateDots();
+				});
+			})();
+		</script>
+
+	</body>
+</html>

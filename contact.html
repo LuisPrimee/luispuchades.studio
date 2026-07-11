@@ -11,22 +11,35 @@
 		/* ── VARIABLES ──────────────────────────────────────────────── */
 		:root {
 			--bg:        #1e252d;
+			--bg-panel:  #171d24;
 			--accent:    #18bfef;
 			--border:    #eeeeee;
 			--muted:     #717981;
 			--font-body: "Merriweather", Georgia, serif;
 			--font-head: "Source Sans Pro", Helvetica, sans-serif;
+
+			/*
+				── CÓMO PONER TU PROPIA IMAGEN ──
+				1) Copia tu foto a assets/images/contact-bg.jpg
+				2) Cambia la línea de abajo por:
+				   --hero-image: url("assets/images/contact-bg.jpg");
+				Recomendado: imagen vertical u orientación libre, mínimo 1200px de alto,
+				algo con contraste medio/bajo — la viñeta oscura ya se encarga del resto.
+			*/
+			--hero-image: linear-gradient(160deg, #2a3541 0%, #1a2129 45%, #10151b 100%);
 		}
 
 		/* ── BASE ───────────────────────────────────────────────────── */
 		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+		html, body { height: 100%; }
 
 		body {
 			background-color: var(--bg);
 			font-family: var(--font-body);
 			font-weight: 300;
 			font-size: 1rem;
-			line-height: 2.375;
+			line-height: 2.1;
 			color: var(--muted);
 		}
 
@@ -42,7 +55,6 @@
 			text-transform: uppercase;
 			color: #ffffff;
 		}
-		h1 { font-size: 4rem; line-height: 1.1; margin: 0 0 2rem 0; }
 
 		a {
 			color: var(--accent);
@@ -55,19 +67,16 @@
 		/* ── NAV ────────────────────────────────────────────────────── */
 		#nav {
 			display: flex;
-			background: transparent;
+			background: rgba(23,29,36,0.7);
+			backdrop-filter: blur(6px);
 			border-bottom: solid 2px rgba(255,255,255,0.1);
 			height: 4rem;
 			line-height: 4rem;
-			margin: 0 auto;
-			overflow: hidden;
-			padding: 0;
+			padding: 0 2rem;
 			position: sticky;
 			top: 0;
-			width: calc(100% - 4rem);
-			max-width: 72rem;
+			width: 100%;
 			z-index: 999;
-			transition: transform 1s ease, opacity 1s ease;
 		}
 
 		#nav ul.links {
@@ -98,61 +107,106 @@
 		#nav ul.links li.active { box-shadow: inset 0 -2px 0 0 var(--accent); }
 		#nav ul.links li.active a { color: #ffffff; }
 
-		/* ── HERO ───────────────────────────────────────────────────── */
-		#hero {
-			padding: 6rem 2.5rem 4rem;
-			max-width: 860px;
-			margin: 0 auto;
-			text-align: center;
+		/* ── LAYOUT SPLIT ───────────────────────────────────────────── */
+		#split {
+			display: grid;
+			grid-template-columns: 1.1fr 1fr;
+			min-height: calc(100vh - 4rem);
 		}
 
-		.page-label {
-			display: inline-block;
+		/* Panel imagen */
+		#visual-panel {
+			position: relative;
+			background-image:
+				linear-gradient(180deg, rgba(16,21,27,0.15) 0%, rgba(16,21,27,0.85) 100%),
+				var(--hero-image);
+			background-size: cover;
+			background-position: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			padding: 3rem;
+			min-height: 420px;
+		}
+
+		#visual-panel::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: repeating-linear-gradient(
+				0deg,
+				rgba(255,255,255,0.015) 0px,
+				rgba(255,255,255,0.015) 1px,
+				transparent 1px,
+				transparent 3px
+			);
+			pointer-events: none;
+		}
+
+		.visual-eyebrow {
 			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.6rem;
-			letter-spacing: 0.075em;
+			letter-spacing: 0.15em;
 			text-transform: uppercase;
-			color: var(--muted);
-			border: solid 2px var(--border);
-			padding: 0.35rem 0.85rem;
-			margin-bottom: 2rem;
+			color: var(--accent);
+			margin-bottom: 1rem;
 			opacity: 0;
 			animation: fadeUp 0.6s ease 0.1s forwards;
 		}
 
-		#hero h1 {
+		#visual-panel h1 {
+			font-size: 3rem;
+			line-height: 1.05;
+			margin-bottom: 1rem;
 			opacity: 0;
 			animation: fadeUp 0.6s ease 0.25s forwards;
 		}
 
-		#hero .subtitle {
-			font-size: 1rem;
-			line-height: 2.375;
-			color: var(--muted);
-			max-width: 500px;
-			margin: 0 auto;
-			text-align: center;
+		#visual-panel .subtitle {
+			max-width: 380px;
+			font-size: 0.9rem;
+			line-height: 1.9;
+			color: rgba(255,255,255,0.6);
 			opacity: 0;
 			animation: fadeUp 0.6s ease 0.4s forwards;
 		}
 
-		/* ── SEPARADOR ──────────────────────────────────────────────── */
-		.section-rule {
-			border: 0;
-			border-bottom: solid 2px var(--border);
-			margin: 0 auto;
-			max-width: 72rem;
-			padding: 0 2rem;
+		/* Panel formulario */
+		#form-panel {
+			background: var(--bg-panel);
+			display: flex;
+			align-items: center;
+			padding: 4rem 3.5rem;
 		}
 
-		/* ── FORMULARIO ─────────────────────────────────────────────── */
 		#contact-section {
-			max-width: 680px;
+			width: 100%;
+			max-width: 460px;
 			margin: 0 auto;
-			padding: 5rem 2rem 6rem;
 			opacity: 0;
 			animation: fadeUp 0.7s ease 0.55s forwards;
+		}
+
+		.form-intro {
+			display: flex;
+			align-items: baseline;
+			gap: 0.85rem;
+			margin-bottom: 2rem;
+		}
+
+		.form-intro .index {
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.65rem;
+			letter-spacing: 0.075em;
+			color: var(--accent);
+		}
+
+		.form-intro p {
+			font-size: 0.8rem;
+			color: var(--muted);
+			line-height: 1.7;
 		}
 
 		.form-row {
@@ -171,22 +225,26 @@
 		.form-group label {
 			font-family: var(--font-head);
 			font-weight: 900;
-			font-size: 0.6rem;
+			font-size: 0.58rem;
 			letter-spacing: 0.075em;
 			text-transform: uppercase;
 			color: var(--muted);
 			margin-bottom: 0.5rem;
+			transition: color 0.2s ease-in-out;
 		}
+
+		.form-group:focus-within label { color: var(--accent); }
 
 		.form-group input,
 		.form-group textarea {
 			background: transparent;
-			border: solid 2px var(--border);
+			border: none;
+			border-bottom: solid 2px var(--border);
 			color: #ffffff;
 			font-family: var(--font-body);
 			font-size: 0.85rem;
 			font-weight: 300;
-			padding: 0.75rem 1rem;
+			padding: 0.6rem 0.1rem;
 			outline: none;
 			transition: border-color 0.2s ease-in-out;
 			-webkit-appearance: none;
@@ -205,11 +263,10 @@
 
 		.form-group textarea {
 			resize: vertical;
-			min-height: 160px;
-			line-height: 1.8;
+			min-height: 120px;
+			line-height: 1.7;
 		}
 
-		/* Botón — igual que .button del tema */
 		.btn-submit {
 			display: inline-flex;
 			align-items: center;
@@ -227,34 +284,54 @@
 			transition: background-color 0.2s ease-in-out,
 			            border-color 0.2s ease-in-out,
 			            color 0.2s ease-in-out;
-			margin-top: 0.5rem;
+			margin-top: 0.75rem;
 		}
 
-		.btn-submit:hover {
+		.btn-submit:hover,
+		.btn-submit:focus-visible {
 			background-color: var(--accent);
 			border-color: var(--accent);
 			color: #ffffff;
 		}
 
+		.btn-submit:focus-visible {
+			outline: 2px solid #ffffff;
+			outline-offset: 3px;
+		}
+
 		/* ── FOOTER ─────────────────────────────────────────────────── */
-		#footer { border-top: solid 2px var(--border); }
+		#footer {
+			background: var(--bg-panel);
+			border-top: solid 2px var(--border);
+		}
 
 		.footer-inner {
-			max-width: 60rem;
+			max-width: 100%;
 			margin: 0 auto;
-			padding: 1rem 4rem;
+			padding: 1.25rem 3.5rem;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			gap: 12px;
+			flex-wrap: wrap;
 		}
 
-		.footer-left h3,
+		.footer-left h3 {
+			font-size: 0.65rem;
+			margin-bottom: 0.3rem;
+		}
+
 		.footer-left p {
 			margin: 0;
-			font-size: 0.8rem;
+			font-size: 0.78rem;
 			color: var(--muted);
 		}
+
+		.footer-left p a {
+			color: var(--muted);
+			border-bottom: dotted 1px rgba(113,121,129,0.4);
+		}
+		.footer-left p a:hover { color: var(--accent); border-color: transparent; }
 
 		.footer-icons {
 			display: flex;
@@ -263,12 +340,17 @@
 		}
 
 		.footer-icons a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 2rem;
+			height: 2rem;
 			color: var(--muted);
-			border-bottom: none;
-			font-size: 1rem;
-			transition: color 0.2s ease-in-out;
+			border: solid 2px var(--border);
+			font-size: 0.85rem;
+			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		}
-		.footer-icons a:hover { color: var(--accent); }
+		.footer-icons a:hover { color: var(--accent); border-color: var(--accent); }
 
 		/* ── ANIMACIONES ────────────────────────────────────────────── */
 		@keyframes fadeUp {
@@ -276,18 +358,24 @@
 			to   { opacity: 1; transform: translateY(0); }
 		}
 
+		@media (prefers-reduced-motion: reduce) {
+			.visual-eyebrow, #visual-panel h1, #visual-panel .subtitle, #contact-section {
+				animation: none;
+				opacity: 1;
+			}
+		}
+
 		/* ── RESPONSIVE ─────────────────────────────────────────────── */
-		@media screen and (max-width: 736px) {
-			#nav { width: calc(100% - 2rem); }
-			#hero { padding: 5rem 1.5rem 3rem; }
-			h1 { font-size: 2.5rem; }
-			#contact-section { padding: 3rem 1.5rem 4rem; }
-			.form-row { grid-template-columns: 1fr; }
-			.footer-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+		@media screen and (max-width: 900px) {
+			#split { grid-template-columns: 1fr; }
+			#visual-panel { min-height: 280px; padding: 2rem; }
+			#visual-panel h1 { font-size: 2.2rem; }
+			#form-panel { padding: 3rem 1.75rem; }
 		}
 
 		@media screen and (max-width: 480px) {
-			h1 { font-size: 2rem; }
+			.form-row { grid-template-columns: 1fr; }
+			.footer-inner { flex-direction: column; align-items: flex-start; gap: 14px; padding: 1.25rem 1.75rem; }
 		}
 
 	</style>
@@ -302,77 +390,82 @@
 		</ul>
 	</nav>
 
-	<!-- HERO -->
-	<section id="hero">
-		<h1>Contact</h1>
-		<p class="subtitle">
-			Available for freelance projects and collaborations. Let's talk about your next piece.
-		</p>
-	</section>
+	<div id="split">
 
-	<hr class="section-rule" />
-
-	<!-- FORMULARIO -->
-	<section id="contact-section">
-		<!--
-			Para recibir los mensajes en tu email sin backend, usa Formspree:
-			1. Regístrate en formspree.io
-			2. Crea un form y copia el ID
-			3. Sustituye TU_ID por ese ID
-		-->
-		<form action="https://formspree.io/f/TU_ID" method="POST">
-
-			<div class="form-row">
-				<div class="form-group">
-					<label for="name">Name</label>
-					<input type="text" id="name" name="name" placeholder="Your name" required />
-				</div>
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" id="email" name="email" placeholder="your@email.com" required />
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="subject">Subject</label>
-				<input type="text" id="subject" name="subject" placeholder="Project type, collaboration..." />
-			</div>
-
-			<div class="form-group">
-				<label for="message">Message</label>
-				<textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
-			</div>
-
-			<button type="submit" class="btn-submit">Send message</button>
-
-		</form>
-	</section>
-
-			<footer id="footer">
-				<div class="footer-row">
-					<div class="footer-left">
-						<h3>Contact</h3>
-						<p>puchadesluis@gmail.com                                   +31 625861333</p>
-					</div>
-					<div class="footer-right">
-						<ul class="icons alt">
-							<li><a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							<li><a href="https://vimeo.com/user234213642" target="_blank" class="icon brands alt fa-vimeo"><span class="label">Vimeo</span></a></li>
-							<li><a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" class="icon brands alt fa-youtube"><span class="label">YouTube</span></a></li>
-						</ul>
-					</div>
-				</div>
-			</footer>
-
+		<!-- PANEL IMAGEN -->
+		<div id="visual-panel">
+			<span class="visual-eyebrow">Open for projects</span>
+			<h1>Let's grade<br />something.</h1>
+			<p class="subtitle">Spots, short films, and looks you can't quite describe yet — send over the details.</p>
 		</div>
 
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+		<!-- PANEL FORMULARIO -->
+		<div id="form-panel">
+			<section id="contact-section">
 
-	</body>
+				<div class="form-intro">
+					<span class="index">01</span>
+					<p>Format, timeline, and any reference material you're working from.</p>
+				</div>
+
+				<!--
+					Para recibir los mensajes en tu email sin backend, usa Formspree:
+					1. Regístrate en formspree.io
+					2. Crea un form y copia el ID
+					3. Sustituye TU_ID por ese ID
+				-->
+				<form action="https://formspree.io/f/TU_ID" method="POST">
+
+					<div class="form-row">
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" id="name" name="name" placeholder="Your name" required />
+						</div>
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input type="email" id="email" name="email" placeholder="your@email.com" required />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="subject">Subject</label>
+						<input type="text" id="subject" name="subject" placeholder="Project type, collaboration..." />
+					</div>
+
+					<div class="form-group">
+						<label for="message">Message</label>
+						<textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+					</div>
+
+					<button type="submit" class="btn-submit">Send message</button>
+
+				</form>
+			</section>
+		</div>
+
+	</div>
+
+	<footer id="footer">
+		<div class="footer-inner">
+			<div class="footer-left">
+				<h3>Contact</h3>
+				<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a> &nbsp;·&nbsp; <a href="tel:+31625861333">+31 625 861 333</a></p>
+			</div>
+			<ul class="footer-icons">
+				<li><a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="icon brands fa-linkedin"></i></a></li>
+				<li><a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" aria-label="Vimeo"><i class="icon brands fa-vimeo"></i></a></li>
+				<li><a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" aria-label="YouTube"><i class="icon brands fa-youtube"></i></a></li>
+			</ul>
+		</div>
+	</footer>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
 </html>

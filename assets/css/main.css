@@ -3354,14 +3354,14 @@ body:not(.is-preload) #nav {
 }
 
 #intro p{
-    margin-top: 7rem;
-    font-family: "Cormorant Garamond", serif;
+    margin-top: 2.8rem;
+    font-family: "Cormorant Garamond", serif !important;
     font-size: 1.45rem;
     font-weight: 300;
     font-style: normal;
-    letter-spacing: .06em;
+    letter-spacing: .03em;
     text-transform: none;
-    opacity: .85;
+    color: rgba(255,255,255,.82);
 }
 
 /* BOTÓN / FLECHA: Centrado absoluto */

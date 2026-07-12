@@ -4170,3 +4170,18 @@ body #wrapper #footer * {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
+
+.hero-title{
+    text-align:center;
+}
+
+.hero-title span{
+    display:block !important;
+}
+
+.hero-separator{
+    margin:.2rem 0;
+    color:#bb8844;
+    font-size:.55em;
+}

@@ -3353,10 +3353,14 @@ body:not(.is-preload) #nav {
     max-width: 90%;
 }
 
-#intro p {
-    font-size: 1.25rem;
-    max-width: 40rem;
-    opacity: 0.9;
+#intro p{
+    margin-top: 2.8rem;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    opacity: .75;
 }
 
 /* BOTÓN / FLECHA: Centrado absoluto */

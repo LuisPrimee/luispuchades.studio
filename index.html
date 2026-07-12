@@ -1,3 +1,5 @@
+mkdir -p /home/claude/site2
+cat > /home/claude/site2/index.html << 'INDEXEOF'
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -74,8 +76,8 @@
 				top: 4.75rem;
 				right: 1.5rem;
 				z-index: 9999;
-				min-width: 11rem;
-				background: rgba(20,20,20,0.9);
+				min-width: 13rem;
+				background: rgba(20,20,20,0.92);
 				backdrop-filter: blur(10px);
 				-webkit-backdrop-filter: blur(10px);
 				border: solid 2px rgba(255,255,255,0.15);
@@ -92,6 +94,17 @@
 				pointer-events: auto;
 			}
 
+			.menu-label {
+				display: block;
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.6rem;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: var(--muted);
+				padding: 0.6rem 1rem 0.3rem;
+			}
+
 			#dropdown-menu a {
 				display: block;
 				font-family: var(--font-head);
@@ -106,9 +119,20 @@
 				transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 			}
 
+			#dropdown-menu a.sub {
+				padding-left: 1.5rem;
+				font-size: 0.65rem;
+				color: rgba(255,255,255,0.75);
+			}
+
 			#dropdown-menu a:hover {
 				color: var(--accent);
 				background: rgba(255,255,255,0.04);
+			}
+
+			#dropdown-menu .menu-divider {
+				border-top: solid 1px rgba(255,255,255,0.1);
+				margin: 0.4rem 0.25rem;
 			}
 
 			/* ── GALERÍA A PANTALLA COMPLETA CON SCROLL-SNAP ───────────
@@ -319,7 +343,11 @@
 				<img src="favicon-32x32.png" alt="" />
 			</button>
 			<nav id="dropdown-menu" aria-label="Menú principal">
-				<a href="#main" id="work.html">Work</a>
+				<span class="menu-label">Work</span>
+				<a href="work.html#color-grading" class="sub">Color Grading</a>
+				<a href="work.html#spec-ads" class="sub">Spec Ads</a>
+				<a href="work.html#shortfilms" class="sub">Shortfilms</a>
+				<div class="menu-divider"></div>
 				<a href="contact.html">Contact</a>
 			</nav>
 
@@ -339,7 +367,7 @@
 
 				<article class="work-slide" style="background-image:url('images/examparalysisportada.jpg');">
 					<div class="work-slide__content">
-						<span class="work/shortfilms">Selected Work</span>
+						<span class="work-slide__label">Selected Work</span>
 						<h2><a href="#">EXAM PARALYSIS</a></h2>
 						<p>As a result of the insomnia caused by the stress of exams, our protagonist will begin to witness the consequences.</p>
 						<a href="#" class="work-slide__cta">View</a>

@@ -1,78 +1,135 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Adolfo Dominguez Spec ad — Cinematic Color Grading</title>
+	<title>Adolfo Dominguez Spec Ad — Cinematic Color Grading</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="../assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="icon" type="image/png" href="/favicon-32x32.png" />
+	<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
 	<style>
 
-	<link rel="icon" type="image/ico" href="favicon.ico" />
+		:root {
+			--bg:        #222222;
+			--bg-panel:  #1a1a1a;
+			--accent:    #bb8844;
+			--border:    #eeeeee;
+			--muted:     #8a928a;
+			--font-body: "Merriweather", Georgia, serif;
+			--font-head: "Source Sans Pro", Helvetica, sans-serif;
+		}
 
 		/* ── RESET & BASE ───────────────────────────── */
 		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 		body {
-			background-color: #1e252d;
-			font-family: "Merriweather", Georgia, serif;
+			background-color: var(--bg);
+			font-family: var(--font-body);
 			font-weight: 300;
 			color: #cccccc;
 		}
 
-		/* ── NAV ────────────────────────────────────── */
-		#project-nav {
+		/* ── MENÚ FLOTANTE (idéntico al resto del sitio) ──────────── */
+		#menu-toggle {
 			position: fixed;
-			top: 0;
-			left: 0;
-			right: 0;
-			z-index: 1000;
+			top: 1.5rem;
+			right: 1.5rem;
+			z-index: 10000;
+			width: 3rem;
+			height: 3rem;
+			border-radius: 50%;
+			border: solid 2px rgba(255,255,255,0.55);
+			background: rgba(20,20,20,0.55);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
-			padding: 1rem 2.5rem;
-			background: rgba(30, 37, 45, 0.85);
-			backdrop-filter: blur(10px);
-			-webkit-backdrop-filter: blur(10px);
-			border-bottom: 1px solid rgba(255,255,255,0.06);
-			transition: background 0.3s ease;
+			justify-content: center;
+			cursor: pointer;
+			padding: 0;
+			transition: border-color 0.2s ease-in-out;
 		}
 
+		#menu-toggle:hover,
+		#menu-toggle[aria-expanded="true"] { border-color: var(--accent); }
+
+		#menu-toggle img { width: 1.6rem; height: 1.6rem; border-radius: 50%; display: block; }
+
+		#dropdown-menu {
+			position: fixed;
+			top: 4.75rem;
+			right: 1.5rem;
+			z-index: 9999;
+			min-width: 13rem;
+			background: rgba(20,20,20,0.92);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			border: solid 2px rgba(255,255,255,0.15);
+			padding: 0.5rem;
+			opacity: 0;
+			transform: translateY(-8px);
+			pointer-events: none;
+			transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+		}
+
+		#dropdown-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+		.menu-label {
+			display: block;
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.6rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: var(--muted);
+			padding: 0.6rem 1rem 0.3rem;
+		}
+
+		#dropdown-menu a {
+			display: block;
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.7rem;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: #ffffff;
+			text-decoration: none;
+			border-bottom: none;
+			padding: 0.75rem 1rem;
+			transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+		}
+
+		#dropdown-menu a.sub { padding-left: 1.5rem; font-size: 0.65rem; color: rgba(255,255,255,0.75); }
+		#dropdown-menu a:hover { color: var(--accent); background: rgba(255,255,255,0.04); }
+		#dropdown-menu .menu-divider { border-top: solid 1px rgba(255,255,255,0.1); margin: 0.4rem 0.25rem; }
+
+		/* ── BACK (arriba a la izquierda, discreto) ──────────────── */
 		.nav-back {
+			position: fixed;
+			top: 1.9rem;
+			left: 1.5rem;
+			z-index: 10000;
 			display: inline-flex;
 			align-items: center;
 			gap: 0.5rem;
-			color: #aaaaaa;
+			color: rgba(255,255,255,0.7);
 			text-decoration: none;
-			font-family: "Source Sans Pro", Helvetica, sans-serif;
+			font-family: var(--font-head);
 			font-weight: 900;
-			font-size: 0.75rem;
+			font-size: 0.7rem;
 			letter-spacing: 0.15em;
 			text-transform: uppercase;
 			border-bottom: none;
 			transition: color 0.2s ease;
 		}
 
-		.nav-back:hover { color: #18bfef; border-bottom: none; }
+		.nav-back:hover { color: var(--accent); border-bottom: none; }
 
 		.nav-back svg {
-			width: 14px;
-			height: 14px;
-			stroke: currentColor;
-			fill: none;
-			stroke-width: 2.5;
-			stroke-linecap: round;
-			stroke-linejoin: round;
+			width: 14px; height: 14px;
+			stroke: currentColor; fill: none;
+			stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
 			flex-shrink: 0;
-		}
-
-		.nav-title {
-			font-family: "Source Sans Pro", Helvetica, sans-serif;
-			font-weight: 900;
-			font-size: 0.7rem;
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
-			color: rgba(255,255,255,0.25);
 		}
 
 		/* ── HERO ───────────────────────────────────── */
@@ -85,19 +142,19 @@
 
 		.project-label {
 			display: inline-block;
-			font-family: "Source Sans Pro", Helvetica, sans-serif;
+			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.65rem;
 			letter-spacing: 0.3em;
 			text-transform: uppercase;
-			color: #18bfef;
+			color: var(--accent);
 			margin-bottom: 1.5rem;
 			opacity: 0;
 			animation: fadeUp 0.6s ease 0.2s forwards;
 		}
 
 		#hero h1 {
-			font-family: "Source Sans Pro", Helvetica, sans-serif;
+			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: clamp(2rem, 6vw, 4rem);
 			line-height: 1.1;
@@ -134,7 +191,7 @@
 			padding-bottom: 56.25%; /* 16:9 */
 			height: 0;
 			overflow: hidden;
-			background: #0d1117;
+			background: #0d0d0d;
 			border: 1px solid rgba(255,255,255,0.07);
 		}
 
@@ -161,19 +218,15 @@
 			margin-top: 3rem;
 		}
 
-		.content-block:first-child {
-			border-top: none;
-			padding-top: 0;
-			margin-top: 0;
-		}
+		.content-block:first-child { border-top: none; padding-top: 0; margin-top: 0; }
 
 		.content-block h2 {
-			font-family: "Source Sans Pro", Helvetica, sans-serif;
+			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.65rem;
 			letter-spacing: 0.3em;
 			text-transform: uppercase;
-			color: #18bfef;
+			color: var(--accent);
 			margin-bottom: 1rem;
 		}
 
@@ -187,7 +240,7 @@
 
 		.content-block p:last-child { margin-bottom: 0; }
 
-		/* Meta grid (tools, role, year) */
+		/* Meta grid (tools, role, año) */
 		.meta-grid {
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
@@ -200,12 +253,12 @@
 
 		.meta-item span {
 			display: block;
-			font-family: "Source Sans Pro", Helvetica, sans-serif;
+			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.6rem;
 			letter-spacing: 0.25em;
 			text-transform: uppercase;
-			color: #18bfef;
+			color: var(--accent);
 			margin-bottom: 0.4rem;
 		}
 
@@ -229,150 +282,62 @@
 			display: inline-flex;
 			align-items: center;
 			gap: 0.6rem;
-			font-family: "Source Sans Pro", Helvetica, sans-serif;
+			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.7rem;
 			letter-spacing: 0.2em;
 			text-transform: uppercase;
-			color: #ffffff;
+			color: #171717;
 			text-decoration: none;
-			border: 2px solid rgba(255,255,255,0.2);
+			background: var(--accent);
+			border: 2px solid var(--accent);
 			padding: 0.9rem 2.2rem;
-			transition: border-color 0.2s ease, color 0.2s ease;
+			transition: filter 0.2s ease;
 		}
 
-		.btn-back:hover {
-			border-color: #18bfef;
-			color: #18bfef;
-		}
+		.btn-back:hover { filter: brightness(1.15); }
 
 		.btn-back svg {
-			width: 13px;
-			height: 13px;
-			stroke: currentColor;
-			fill: none;
-			stroke-width: 2.5;
-			stroke-linecap: round;
-			stroke-linejoin: round;
+			width: 13px; height: 13px;
+			stroke: currentColor; fill: none;
+			stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
 		}
 
-		/* ── FOOTER ─────────────────────────────────── */
-		
-/* =========================
-   FOOTER COMPACTO (FORZADO)
-========================= */
+		/* ── FOOTER (idéntico al resto del sitio) ──────────────────── */
+		#footer {
+			background: var(--bg-panel) !important;
+			border-top: solid 2px var(--border);
+		}
 
-body #wrapper #footer {
-	padding: 1rem 2rem !important;
-	margin: 0 auto;
-	max-width: 72rem;
-}
+		.footer-row {
+			max-width: 72rem;
+			margin: 0 auto;
+			padding: 1.5rem 2rem !important;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 16px;
+			flex-wrap: wrap;
+		}
 
-/* CONTENEDOR */
-body #wrapper #footer .footer-row {
-	display: flex !important;
-	justify-content: space-between !important;
-	align-items: center !important;
-	gap: 12px !important;
-	padding: 0 !important;
-	margin: 0 !important;
-}
+		.footer-left h3 { font-size: 0.7rem; margin-bottom: 0.4rem; color: #ffffff; }
+		.footer-left p { margin: 0; font-size: 1.05rem; font-weight: 300; color: #ffffff !important; }
+		.footer-left p a { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.35) !important; }
+		.footer-left p a:hover { color: var(--accent) !important; }
 
-/* TEXTO */
-body #wrapper #footer .footer-left h3,
-body #wrapper #footer .footer-left p {
-	margin: 0 !important;
-	font-size: 0.8rem;
-	color: #717981 !important;
-}
+		.footer-right ul.icons.alt { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+		.footer-right ul.icons.alt li .icon:before { display: none; }
+		.footer-right ul.icons.alt li a {
+			display: inline-flex; align-items: center; justify-content: center;
+			width: 2.4rem; height: 2.4rem;
+			border: solid 2px rgba(255,255,255,0.7);
+			border-radius: 50%;
+			color: #ffffff;
+			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+		}
+		.footer-right ul.icons.alt li a:hover { color: #171717; border-color: var(--accent); background-color: var(--accent); }
+		.footer-right ul.icons.alt li a svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
 
-/* ICONOS */
-body #wrapper #footer .footer-right ul {
-	display: flex !important;
-	gap: 10px !important;
-	list-style: none !important;
-	margin: 0 !important;
-	padding: 0 !important;
-}
-
-/* LINKS */
-body #wrapper #footer a {
-	color: #717981 !important;
-	text-decoration: none !important;
-}
-
-body #wrapper #footer a:hover {
-	color: #18bfef !important;
-}
-
-/* LIMPIEZA DE LA PLANTILLA (CLAVE) */
-body #wrapper #footer > section,
-body #wrapper #footer .split,
-body #wrapper #footer .contact {
-	display: none !important;
-}
-
-/* ELIMINAR ESPACIOS HEREDADOS */
-body #wrapper #footer * {
-	margin-top: 0 !important;
-	margin-bottom: 0 !important;
-}
-
-/* RESPONSIVE */
-@media screen and (max-width: 736px) {
-	body #wrapper #footer .footer-row {
-		flex-direction: column !important;
-		align-items: flex-start !important;
-		gap: 8px !important;
-	}
-}
-
-/* CONTENEDOR */
-.footer-row {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 20px;
-}
-
-/* TEXTO */
-.footer-left h3,
-.footer-left p {
-	margin: 0;
-	font-size: 0.8rem;
-	color: #717981;
-}
-
-/* ICONOS */
-.footer-right ul {
-	display: flex;
-	gap: 10px;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-/* LINKS */
-#footer a {
-	color: #717981;
-	text-decoration: none;
-}
-
-#footer a:hover {
-	color: #18bfef;
-}
-
-/* RESPONSIVE */
-@media screen and (max-width: 736px) {
-	.footer-row {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 10px;
-	}
-}
-
-
-		
 		/* ── ANIMATIONS ─────────────────────────────── */
 		@keyframes fadeUp {
 			from { opacity: 0; transform: translateY(18px); }
@@ -381,75 +346,78 @@ body #wrapper #footer * {
 
 		/* ── RESPONSIVE ─────────────────────────────── */
 		@media screen and (max-width: 736px) {
-			#project-nav { padding: 0.85rem 1.25rem; }
 			#hero { padding: 7rem 1.5rem 3.5rem; }
 			#video-section { padding: 0 1.25rem 3.5rem; }
 			#content-section { padding: 0 1.5rem 4rem; }
 			#bottom-back { padding: 0 1.5rem 4rem; }
 			.meta-grid { grid-template-columns: 1fr 1fr; }
-			.footer-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+			#menu-toggle { top: 1rem; right: 1rem; }
+			#dropdown-menu { top: 4.25rem; right: 1rem; }
+			.nav-back { top: 1.35rem; }
+			.nav-back span { display: none; }
 		}
 
 		@media screen and (max-width: 480px) {
 			.meta-grid { grid-template-columns: 1fr; }
-			.nav-title { display: none; }
 		}
 
 	</style>
 </head>
 <body>
 
-	<!-- NAV -->
-	<nav id="project-nav">
-		<a href="../index.html" class="nav-back">
-			<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-			Back to portfolio
-		</a>
-		<span class="nav-title">LUIS PUCHADES</span>
+	<!-- BACK -->
+	<a href="/index.html" class="nav-back">
+		<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+		<span>Back to portfolio</span>
+	</a>
+
+	<!-- MENÚ FLOTANTE -->
+	<button id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="dropdown-menu">
+		<img src="/favicon-32x32.png" alt="" />
+	</button>
+	<nav id="dropdown-menu" aria-label="Menú principal">
+		<span class="menu-label">Work</span>
+		<a href="/work.html#color-grading" class="sub">Color Grading</a>
+		<a href="/work.html#spec-ads" class="sub">Spec Ads</a>
+		<a href="/work.html#shortfilms" class="sub">Shortfilms</a>
+		<div class="menu-divider"></div>
+		<a href="/contact.html">Contact</a>
 	</nav>
 
 	<!-- HERO -->
 	<section id="hero">
-		<span class="project-label">Work</span>
-		<h1>ADOLFO DOMINGUEZ SPEC AD</h1>
+		<span class="project-label">Spec Ad</span>
+		<h1>Adolfo Dominguez Spec Ad</h1>
 		<p class="description">
 			A Spec Ad for Adolfo Domínguez that seeks to convey the timelessness and organic connection between the garment and nature.
 		</p>
 	</section>
 
 	<!-- VIDEO (Vimeo embed) -->
-    <section id="video-section">
-        <div class="video-wrapper">
-            <!--
-                Reemplaza el ID de Vimeo (el número en la URL).
-                Ejemplo: si tu vídeo es https://vimeo.com/123456789
-                pon src="https://player.vimeo.com/video/123456789"
-            -->
-           <iframe
-    src="https://player.vimeo.com/video/1178640753?title=0&byline=0&portrait=0&color=18bfef"
-    allow="autoplay; fullscreen; picture-in-picture"
-    allowfullscreen>
-</iframe>
-    </section>
+	<section id="video-section">
+		<div class="video-wrapper">
+			<!--
+				Reemplaza el ID de Vimeo (el número en la URL).
+				Ejemplo: si tu vídeo es https://vimeo.com/123456789
+				pon src="https://player.vimeo.com/video/123456789"
+			-->
+			<iframe
+				src="https://player.vimeo.com/video/1178640753?title=0&byline=0&portrait=0&color=bb8844"
+				allow="autoplay; fullscreen; picture-in-picture"
+				allowfullscreen>
+			</iframe>
+		</div>
+	</section>
 
 	<!-- CONTENT -->
 	<section id="content-section">
 
 		<div class="content-block">
 			<h2>About the project</h2>
-			<p>
-				Concept & Production & Postproduction :  @luispuchades  
-				Actor: Denis Sabbatino
-			</p>
-			<p>
-			Gear used:
-			Camera: Sony ZV 1f
-			Audio: RODE VideoMic Go
-			</p>
-			<p>
-			Song: The Ecstasy of Gold  (by Ennio Morricone)
-			Music rights belong to the respective owners. Used for creative purpose only.
-			</p>
+			<p>Concept, production &amp; postproduction: @luispuchades<br />Actor: Denis Sabbatino</p>
+			<p>Gear used:<br />Camera: Sony ZV-1F<br />Audio: RODE VideoMic Go</p>
+			<p>Song: "The Ecstasy of Gold" (by Ennio Morricone).<br />Music rights belong to the respective owners. Used for creative purposes only.</p>
 		</div>
 
 		<!-- Meta: rol, herramientas, año -->
@@ -474,27 +442,65 @@ body #wrapper #footer * {
 
 	<!-- BACK BUTTON (bottom) -->
 	<div id="bottom-back">
-		<a href="../index.html" class="btn-back">
+		<a href="/index.html" class="btn-back">
 			<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
 			Back to portfolio
 		</a>
-	</div
+	</div>
 
-<footer id="footer">
-				<div class="footer-row">
-					<div class="footer-left">
-						<h3>Contact</h3>
-						<p>puchadesluis@gmail.com</p>
-					</div>
-					<div class="footer-right">
-						<ul class="icons alt">
-							<li><a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							<li><a href="https://vimeo.com/user234213642" target="_blank" class="icon brands alt fa-vimeo"><span class="label">Vimeo</span></a></li>
-							<li><a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" class="icon brands alt fa-youtube"><span class="label">YouTube</span></a></li>
-						</ul>
-					</div>
-				</div>
-			</footer>
-
+	<footer id="footer">
+		<div class="footer-row">
+			<div class="footer-left">
+				<h3>Contact</h3>
+				<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a></p>
+			</div>
+			<div class="footer-right">
+				<ul class="icons alt">
+					<li>
+						<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" class="icon brands alt fa-linkedin" aria-label="LinkedIn">
+							<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" class="icon brands alt fa-vimeo" aria-label="Vimeo">
+							<svg viewBox="0 0 24 24"><path d="M22 7.35c-.1 2.1-1.56 4.98-4.4 8.62C14.28 20.8 11.53 23 9.27 23c-1.4 0-2.58-1.3-3.55-3.9L4 12.4C3.3 9.8 2.55 8.5 1.75 8.5c-.17 0-.77.36-1.8 1.08L0 8.4c1.13-1 2.24-2 3.34-3C4.82 4.1 5.93 3.4 6.66 3.33c1.66-.16 2.68.98 3.06 3.4.4 2.62.68 4.25.85 4.87.47 2.14.99 3.2 1.56 3.2.44 0 1.11-.7 2-2.08.88-1.39 1.36-2.45 1.42-3.18.13-1.2-.34-1.8-1.42-1.8-.5 0-1.03.12-1.57.35C13.6 4.55 15.65 2.7 18.72 2.8c2.24.07 3.3 1.52 3.28 4.55z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" class="icon brands alt fa-youtube" aria-label="YouTube">
+							<svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
-	
+	</footer>
+
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+
+	<script>
+		(function () {
+			var toggle = document.getElementById('menu-toggle');
+			var menu = document.getElementById('dropdown-menu');
+			function closeMenu() { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+			function openMenu() { menu.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); }
+			toggle.addEventListener('click', function (e) {
+				e.stopPropagation();
+				menu.classList.contains('open') ? closeMenu() : openMenu();
+			});
+			document.addEventListener('click', function (e) {
+				if (!menu.contains(e.target) && e.target !== toggle) closeMenu();
+			});
+			document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+			menu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
+		})();
+	</script>
+
+</body>
+</html>

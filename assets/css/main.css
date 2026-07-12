@@ -4153,3 +4153,11 @@ body #wrapper #footer * {
     text-decoration: none;
 }
 
+#navPanelToggle {
+    display: none !important;
+}
+
+#navPanel {
+    display: none !important;
+}
+

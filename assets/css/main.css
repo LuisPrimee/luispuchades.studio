@@ -3354,18 +3354,19 @@ body:not(.is-preload) #nav {
 }
 
 #intro p{
-    margin-top: 4rem;
-    font-family: "Source Sans Pro", sans-serif;
-    font-size: 0.95rem;
-    font-weight: 400;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    opacity: .75;
+    margin-top: 7rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.45rem;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: .06em;
+    text-transform: none;
+    opacity: .85;
 }
 
 /* BOTÓN / FLECHA: Centrado absoluto */
 #intro .actions {
-    margin-top: 8rem;
+    margin-top: 9rem;
     display: flex !important;
     justify-content: center !important;
     list-style: none !important;

@@ -4161,3 +4161,12 @@ body #wrapper #footer * {
     display: none !important;
 }
 
+#intro h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    background: linear-gradient(90deg, #ffffff 0%, #B8935A 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}

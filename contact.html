@@ -409,13 +409,20 @@
 </head>
 <body>
 
-	<!-- NAV -->
-	<nav id="nav">
-		<ul class="links">
-			<li><a href="index.html">Work</a></li>
-			<li class="active"><a href="contact.html">Contact</a></li>
-		</ul>
-	</nav>
+<!-- ══════════════════════════════════════════════════════
+			     MENÚ FLOTANTE — sustituye al nav estático
+			════════════════════════════════════════════════════════ -->
+			<button id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="dropdown-menu">
+				<img src="favicon-32x32.png" alt="" />
+			</button>
+			<nav id="dropdown-menu" aria-label="Menú principal">
+				<span class="menu-label">Work</span>
+				<a href="work.html#color-grading" class="sub">Color Grading</a>
+				<a href="work.html#spec-ads" class="sub">Spec Ads</a>
+				<a href="work.html#shortfilms" class="sub">Shortfilms</a>
+				<div class="menu-divider"></div>
+				<a href="contact.html">Contact</a>
+			</nav>
 
 	<div id="split">
 

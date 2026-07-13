@@ -243,22 +243,7 @@
 			animation: fadeUp 0.6s ease 0.4s forwards;
 		}
 
-#form-panel{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4rem;
-    min-height: 100vh;
 
-    background:
-        linear-gradient(rgba(15,15,15,.78), rgba(15,15,15,.78)),
-        url("images/thanks-bg.jpg");
-
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-}
 
 #thanks-section{
     max-width: 560px;
@@ -267,6 +252,19 @@
     animation: fadeUp .7s ease forwards;
 }
 
+	#thanks-section{
+    max-width:560px;
+    text-align:center;
+    z-index:2;
+    animation:fadeUp .7s ease forwards;
+
+    background:rgba(20,20,20,.35);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.08);
+    padding:4rem;
+}
+		
 #thanks-section h1{
     font-size:3.4rem;
     margin-bottom:.8rem;

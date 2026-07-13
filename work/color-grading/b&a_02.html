@@ -1,0 +1,508 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Project Title | Luis Puchades</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="icon" type="image/png" href="/favicon-32x32.png" />
+	<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+	<style>
+
+		:root {
+			--bg:        #222222;
+			--bg-panel:  #1a1a1a;
+			--accent:    #bb8844;
+			--border:    #eeeeee;
+			--muted:     #8a928a;
+			--font-body: "Merriweather", Georgia, serif;
+			--font-head: "Source Sans Pro", Helvetica, sans-serif;
+		}
+
+		/* ── RESET & BASE ───────────────────────────── */
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+		body {
+			background-color: var(--bg);
+			font-family: var(--font-body);
+			font-weight: 300;
+			color: #cccccc;
+		}
+
+		/* ── MENÚ FLOTANTE (idéntico al resto del sitio) ──────────── */
+		#menu-toggle {
+			position: fixed;
+			top: 1.5rem;
+			right: 1.5rem;
+			z-index: 10000;
+			width: 3rem;
+			height: 3rem;
+			border-radius: 50%;
+			border: solid 2px rgba(255,255,255,0.55);
+			background: rgba(20,20,20,0.55);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			padding: 0;
+			transition: border-color 0.2s ease-in-out;
+		}
+
+		#menu-toggle:hover,
+		#menu-toggle[aria-expanded="true"] { border-color: var(--accent); }
+
+		#menu-toggle img { width: 1.6rem; height: 1.6rem; border-radius: 50%; display: block; }
+
+		#dropdown-menu {
+			position: fixed;
+			top: 4.75rem;
+			right: 1.5rem;
+			z-index: 9999;
+			min-width: 13rem;
+			background: rgba(20,20,20,0.92);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			border: solid 2px rgba(255,255,255,0.15);
+			padding: 0.5rem;
+			opacity: 0;
+			transform: translateY(-8px);
+			pointer-events: none;
+			transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+		}
+
+		#dropdown-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+		.menu-label {
+			display: block;
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.6rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: var(--muted);
+			padding: 0.6rem 1rem 0.3rem;
+		}
+
+		#dropdown-menu a {
+			display: block;
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.7rem;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: #ffffff;
+			text-decoration: none;
+			border-bottom: none;
+			padding: 0.75rem 1rem;
+			transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+		}
+
+		#dropdown-menu a.sub { padding-left: 1.5rem; font-size: 0.65rem; color: rgba(255,255,255,0.75); }
+		#dropdown-menu a:hover { color: var(--accent); background: rgba(255,255,255,0.04); }
+		#dropdown-menu .menu-divider { border-top: solid 1px rgba(255,255,255,0.1); margin: 0.4rem 0.25rem; }
+
+		/* ── BACK (arriba a la izquierda, discreto) ──────────────── */
+		.nav-back {
+			position: fixed;
+			top: 1.9rem;
+			left: 1.5rem;
+			z-index: 10000;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			color: rgba(255,255,255,0.7);
+			text-decoration: none;
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.7rem;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
+			border-bottom: none;
+			transition: color 0.2s ease;
+		}
+
+		.nav-back:hover { color: var(--accent); border-bottom: none; }
+
+		.nav-back svg {
+			width: 14px; height: 14px;
+			stroke: currentColor; fill: none;
+			stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+			flex-shrink: 0;
+		}
+
+		/* ── HERO ───────────────────────────────────── */
+		#hero {
+			padding: 9rem 2.5rem 5rem;
+			max-width: 860px;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.project-label {
+			display: inline-block;
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.65rem;
+			letter-spacing: 0.3em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin-bottom: 1.5rem;
+			opacity: 0;
+			animation: fadeUp 0.6s ease 0.2s forwards;
+		}
+
+		#hero h1 {
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: clamp(2rem, 6vw, 4rem);
+			line-height: 1.1;
+			letter-spacing: 0.075em;
+			text-transform: uppercase;
+			color: #ffffff;
+			margin-bottom: 1.5rem;
+			opacity: 0;
+			animation: fadeUp 0.6s ease 0.35s forwards;
+		}
+
+		#hero .description {
+			font-size: 1rem;
+			line-height: 2;
+			color: #8a9099;
+			max-width: 600px;
+			margin: 0 auto;
+			text-align: center;
+			opacity: 0;
+			animation: fadeUp 0.6s ease 0.5s forwards;
+		}
+
+		/* ── VIDEO ──────────────────────────────────── */
+		#video-section {
+			max-width: 1000px;
+			margin: 0 auto;
+			padding: 0 2rem 5rem;
+			opacity: 0;
+			animation: fadeUp 0.7s ease 0.65s forwards;
+		}
+
+		.video-wrapper {
+			position: relative;
+			padding-bottom: 56.25%; /* 16:9 */
+			height: 0;
+			overflow: hidden;
+			background: #0d0d0d;
+			border: 1px solid rgba(255,255,255,0.07);
+		}
+
+		.video-wrapper iframe {
+			position: absolute;
+			top: 0; left: 0;
+			width: 100%;
+			height: 100%;
+			border: 0;
+		}
+
+		/* ── CONTENT ────────────────────────────────── */
+		#content-section {
+			max-width: 720px;
+			margin: 0 auto;
+			padding: 0 2rem 6rem;
+			opacity: 0;
+			animation: fadeUp 0.7s ease 0.8s forwards;
+		}
+
+		.content-block {
+			border-top: 1px solid rgba(255,255,255,0.08);
+			padding-top: 3rem;
+			margin-top: 3rem;
+		}
+
+		.content-block:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+
+		.content-block h2 {
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.65rem;
+			letter-spacing: 0.3em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin-bottom: 1rem;
+		}
+
+		.content-block p {
+			font-size: 0.95rem;
+			line-height: 2.2;
+			color: #8a9099;
+			text-align: left;
+			margin-bottom: 1.2rem;
+		}
+
+		.content-block p:last-child { margin-bottom: 0; }
+
+		/* Meta grid (tools, role, año) */
+		.meta-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.5rem;
+			margin-top: 3rem;
+			padding: 2rem;
+			border: 1px solid rgba(255,255,255,0.07);
+			background: rgba(255,255,255,0.02);
+		}
+
+		.meta-item span {
+			display: block;
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.6rem;
+			letter-spacing: 0.25em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin-bottom: 0.4rem;
+		}
+
+		.meta-item p {
+			font-size: 0.85rem;
+			color: #aaaaaa;
+			line-height: 1.6;
+			margin: 0;
+		}
+
+		/* ── BACK BUTTON (bottom) ───────────────────── */
+		#bottom-back {
+			max-width: 720px;
+			margin: 0 auto;
+			padding: 0 2rem 5rem;
+			display: flex;
+			justify-content: center;
+		}
+
+		.btn-back {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.6rem;
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.7rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: #171717;
+			text-decoration: none;
+			background: var(--accent);
+			border: 2px solid var(--accent);
+			padding: 0.9rem 2.2rem;
+			transition: filter 0.2s ease;
+		}
+
+		.btn-back:hover { filter: brightness(1.15); }
+
+		.btn-back svg {
+			width: 13px; height: 13px;
+			stroke: currentColor; fill: none;
+			stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+		}
+
+		/* ── FOOTER (idéntico al resto del sitio) ──────────────────── */
+		#footer {
+			background: var(--bg-panel) !important;
+			border-top: solid 2px var(--border);
+		}
+
+		.footer-row {
+			max-width: 72rem;
+			margin: 0 auto;
+			padding: 1.5rem 2rem !important;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 16px;
+			flex-wrap: wrap;
+		}
+
+		.footer-left h3 { font-size: 0.7rem; margin-bottom: 0.4rem; color: #ffffff; }
+		.footer-left p { margin: 0; font-size: 1.05rem; font-weight: 300; color: #ffffff !important; }
+		.footer-left p a { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.35) !important; }
+		.footer-left p a:hover { color: var(--accent) !important; }
+
+		.footer-right ul.icons.alt { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+		.footer-right ul.icons.alt li .icon:before { display: none; }
+		.footer-right ul.icons.alt li a {
+			display: inline-flex; align-items: center; justify-content: center;
+			width: 2.4rem; height: 2.4rem;
+			border: solid 2px rgba(255,255,255,0.7);
+			border-radius: 50%;
+			color: #ffffff;
+			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+		}
+		.footer-right ul.icons.alt li a:hover { color: #171717; border-color: var(--accent); background-color: var(--accent); }
+		.footer-right ul.icons.alt li a svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
+
+		/* ── ANIMATIONS ─────────────────────────────── */
+		@keyframes fadeUp {
+			from { opacity: 0; transform: translateY(18px); }
+			to   { opacity: 1; transform: translateY(0); }
+		}
+
+		/* ── RESPONSIVE ─────────────────────────────── */
+		@media screen and (max-width: 736px) {
+			#hero { padding: 7rem 1.5rem 3.5rem; }
+			#video-section { padding: 0 1.25rem 3.5rem; }
+			#content-section { padding: 0 1.5rem 4rem; }
+			#bottom-back { padding: 0 1.5rem 4rem; }
+			.meta-grid { grid-template-columns: 1fr 1fr; }
+			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+			#menu-toggle { top: 1rem; right: 1rem; }
+			#dropdown-menu { top: 4.25rem; right: 1rem; }
+			.nav-back { top: 1.35rem; }
+			.nav-back span { display: none; }
+		}
+
+		@media screen and (max-width: 480px) {
+			.meta-grid { grid-template-columns: 1fr; }
+		}
+
+	</style>
+</head>
+<body>
+
+	<!-- BACK -->
+	<a href="/index.html" class="nav-back">
+		<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+		<span>Back to portfolio</span>
+	</a>
+
+	<!-- MENÚ FLOTANTE -->
+	<button id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="dropdown-menu">
+		<img src="/favicon-32x32.png" alt="" />
+	</button>
+	<nav id="dropdown-menu" aria-label="Menú principal">
+		<span class="menu-label">Work</span>
+		<a href="/work.html#color-grading" class="sub">Color Grading</a>
+		<a href="/work.html#spec-ads" class="sub">Spec Ads</a>
+		<a href="/work.html#shortfilms" class="sub">Shortfilms</a>
+		<div class="menu-divider"></div>
+		<a href="/contact.html">Contact</a>
+	</nav>
+
+	<!-- HERO -->
+	<section id="hero">
+		<span class="project-label">Color grading</span>
+		<h1>Project Title Here</h1>
+		<p class="description">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Short one or two line summary of what this project is and what the brief or intent was.
+		</p>
+	</section>
+
+	<!-- VIDEO (Vimeo embed) -->
+	<section id="video-section">
+		<div class="video-wrapper">
+			<!--
+				Reemplaza el ID de Vimeo (el número en la URL).
+				Ejemplo: si tu vídeo es https://vimeo.com/123456789
+				pon src="https://player.vimeo.com/video/123456789"
+			-->
+			<iframe
+				src="https://player.vimeo.com/video/VIMEO_ID_AQUI?title=0&byline=0&portrait=0&color=bb8844"
+				allow="autoplay; fullscreen; picture-in-picture"
+				allowfullscreen>
+			</iframe>
+		</div>
+	</section>
+
+	<!-- CONTENT -->
+	<section id="content-section">
+
+		<div class="content-block">
+			<h2>About the project</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Explica aquí el contexto, el cliente o la pieza.</p>
+			<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Añade tantos párrafos como necesites.</p>
+		</div>
+
+		<div class="content-block">
+			<h2>Color approach</h2>
+			<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Describe aquí tu enfoque de color, referencias y decisiones creativas.</p>
+		</div>
+
+		<!-- Meta: rol, herramientas, año -->
+		<div class="meta-grid">
+			<div class="meta-item">
+				<span>Role</span>
+				<p>Colorist</p>
+			</div>
+			<div class="meta-item">
+				<span>Tools</span>
+				<p>DaVinci Resolve</p>
+			</div>
+			<div class="meta-item">
+				<span>Year</span>
+				<p>2026</p>
+			</div>
+		</div>
+
+	</section>
+
+	<!-- BACK BUTTON (bottom) -->
+	<div id="bottom-back">
+		<a href="/work.html" class="btn-back">
+			<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+			See more
+		</a>
+	</div>
+
+	<footer id="footer">
+		<div class="footer-row">
+			<div class="footer-left">
+				<h3>Contact</h3>
+				<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a></p>
+			</div>
+			<div class="footer-right">
+				<ul class="icons alt">
+					<li>
+						<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" class="icon brands alt fa-linkedin" aria-label="LinkedIn">
+							<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" class="icon brands alt fa-vimeo" aria-label="Vimeo">
+							<svg viewBox="0 0 24 24"><path d="M22 7.35c-.1 2.1-1.56 4.98-4.4 8.62C14.28 20.8 11.53 23 9.27 23c-1.4 0-2.58-1.3-3.55-3.9L4 12.4C3.3 9.8 2.55 8.5 1.75 8.5c-.17 0-.77.36-1.8 1.08L0 8.4c1.13-1 2.24-2 3.34-3C4.82 4.1 5.93 3.4 6.66 3.33c1.66-.16 2.68.98 3.06 3.4.4 2.62.68 4.25.85 4.87.47 2.14.99 3.2 1.56 3.2.44 0 1.11-.7 2-2.08.88-1.39 1.36-2.45 1.42-3.18.13-1.2-.34-1.8-1.42-1.8-.5 0-1.03.12-1.57.35C13.6 4.55 15.65 2.7 18.72 2.8c2.24.07 3.3 1.52 3.28 4.55z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" class="icon brands alt fa-youtube" aria-label="YouTube">
+							<svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+
+	<script>
+		(function () {
+			var toggle = document.getElementById('menu-toggle');
+			var menu = document.getElementById('dropdown-menu');
+			function closeMenu() { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+			function openMenu() { menu.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); }
+			toggle.addEventListener('click', function (e) {
+				e.stopPropagation();
+				menu.classList.contains('open') ? closeMenu() : openMenu();
+			});
+			document.addEventListener('click', function (e) {
+				if (!menu.contains(e.target) && e.target !== toggle) closeMenu();
+			});
+			document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+			menu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
+		})();
+	</script>
+
+</body>
+</html>

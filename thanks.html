@@ -243,61 +243,40 @@
 			animation: fadeUp 0.6s ease 0.4s forwards;
 		}
 
-	#form-panel{
-    background: var(--bg-panel);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:4rem;
+#form-panel{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+    min-height: 100vh;
+
+    background:
+        linear-gradient(rgba(15,15,15,.78), rgba(15,15,15,.78)),
+        url("images/thanks-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
 }
 
 #thanks-section{
-    max-width:520px;
-    text-align:center;
-    animation:fadeUp .7s ease forwards;
-}
-
-#thanks-section .eyebrow{
-    display:block;
-    margin-bottom:1rem;
-    font-family:var(--font-head);
-    font-size:.65rem;
-    font-weight:900;
-    letter-spacing:.15em;
-    text-transform:uppercase;
-    color:var(--accent);
+    max-width: 560px;
+    text-align: center;
+    z-index: 2;
+    animation: fadeUp .7s ease forwards;
 }
 
 #thanks-section h1{
-    color:#fff;
-    font-size:3rem;
-    line-height:1.1;
-    margin-bottom:1rem;
+    font-size:3.4rem;
+    margin-bottom:.8rem;
 }
 
 #thanks-section p{
-    color:rgba(255,255,255,.7);
+    font-size:1rem;
     line-height:2;
     margin-bottom:2.5rem;
-}
-
-.btn-back{
-    display:inline-block;
-    padding:.9rem 2.5rem;
-    border:2px solid var(--accent);
-    background:var(--accent);
-    color:#171717;
-    font-family:var(--font-head);
-    font-size:.7rem;
-    font-weight:900;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    text-decoration:none;
-    transition:.2s;
-}
-
-.btn-back:hover{
-    filter:brightness(1.12);
+    color:rgba(255,255,255,.75);
 }
 
 		/* ── FOOTER ─────────────────────────────────────────────────── */

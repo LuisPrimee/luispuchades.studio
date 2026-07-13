@@ -243,38 +243,73 @@
 			animation: fadeUp 0.6s ease 0.4s forwards;
 		}
 
-
+#form-panel{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:4rem;
+    background:var(--bg-panel);
+}
 
 #thanks-section{
-    max-width: 560px;
-    text-align: center;
-    z-index: 2;
-    animation: fadeUp .7s ease forwards;
-}
-
-	#thanks-section{
     max-width:560px;
+    width:100%;
     text-align:center;
-    z-index:2;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
     animation:fadeUp .7s ease forwards;
-
-    background:rgba(20,20,20,.35);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,.08);
-    padding:4rem;
 }
-		
-#thanks-section h1{
-    font-size:3.4rem;
+
+#thanks-section .check{
+    font-size:5rem;
+    line-height:1;
+    margin-bottom:1.5rem;
+}
+
+#thanks-section .eyebrow{
+    display:block;
+    font-family:var(--font-head);
+    font-size:.65rem;
+    font-weight:900;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
     margin-bottom:.8rem;
 }
 
+#thanks-section h1{
+    color:#fff;
+    font-size:3.5rem;
+    line-height:1.1;
+    margin-bottom:1rem;
+}
+
 #thanks-section p{
-    font-size:1rem;
+    max-width:460px;
+    color:rgba(255,255,255,.68);
     line-height:2;
     margin-bottom:2.5rem;
-    color:rgba(255,255,255,.75);
+}
+
+.btn-back{
+    display:inline-block;
+    padding:.9rem 2.8rem;
+    background:var(--accent);
+    color:#171717;
+    border:2px solid var(--accent);
+    text-decoration:none;
+    text-transform:uppercase;
+    font-family:var(--font-head);
+    font-weight:900;
+    letter-spacing:.08em;
+    transition:.2s;
+}
+
+.btn-back:hover{
+    filter:brightness(1.1);
 }
 
 		/* ── FOOTER ─────────────────────────────────────────────────── */
@@ -422,21 +457,19 @@
 			<h1>Let's grade<br />something.</h1>
 			<p class="subtitle">Spots, short films, and looks you can't quite describe yet — send over the details.</p>
 		</div>
+		
+<section id="thanks-section">
 
-	<section id="thanks-section">
+	 <div class="check">✅</div>
 
-    <span class="eyebrow">Message sent</span>
-
-    <h1>Thank you.</h1>
+    <h1>Thank you!</h1>
 
     <p>
         Your message has been successfully sent.
-        I'll review it and get back to you as soon as possible.
+        I'll get back to you as soon as possible.
     </p>
 
-    <a href="work.html" class="btn-back">
-        See more
-    </a>
+    <a href="work.html" class="btn-back">See more</a>
 
 </section>
 	

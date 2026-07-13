@@ -238,6 +238,26 @@
 
 		.content-block p:last-child { margin-bottom: 0; }
 
+		/* CSS PARA LAS CITAS O QUOTES */
+
+		.content-block blockquote {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    font-style: italic;
+    color: #dddddd;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+}
+
+.content-block blockquote cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-style: normal;
+    color: #8a9099;
+}
+
 		/* Meta grid (tools, role, año) */
 		.meta-grid {
 			display: grid;
@@ -423,8 +443,13 @@
 		</div>
 
 		<h2>Assesments</h2>
-			<p>Insert quote here</p>
+		<blockquote>
+    "Luis transformed the image exactly as we had envisioned. The grade elevated the entire campaign."
+
+    <cite>— Client Name, Creative Director</cite>
+</blockquote>
 		</div>
+		
 
 		<!-- Meta: rol, herramientas, año -->
 		<div class="meta-grid">

@@ -25,104 +25,76 @@
 			body {
 				background-color: var(--bg) !important;
 			}
-
-			/* ── MENÚ FLOTANTE (favicon arriba a la derecha) ───────────
-		   No toca #intro ni la flecha .scrolly — vive por encima de
-		   todo, fijo, independiente del scroll.
-		*/
-		#menu-toggle {
+	/* ── IDENTIDAD arriba a la izquierda — vuelve al inicio ──── */
+		.hero-topleft {
 			position: fixed;
-			top: 1.5rem;
-			right: 1.5rem;
+			top: 1.75rem;
+			left: 2.5rem;
 			z-index: 10000;
-			width: 3rem;
-			height: 3rem;
-			border-radius: 50%;
-			background: rgba(20,20,20,0.55);
-			backdrop-filter: blur(8px);
-			-webkit-backdrop-filter: blur(8px);
+			display: flex;
+			align-items: baseline;
+			gap: 0.9rem;
+			line-height: 1;
+			text-decoration: none;
+		}
+
+		.hero-topleft .hero-name {
+			font-family: var(--font-body);
+			font-weight: 400;
+			font-size: 1.4rem;
+			letter-spacing: 0.02em;
+			text-transform: uppercase;
+			color: #ffffff;
+			transition: color 0.2s ease-in-out;
+		}
+
+		.hero-topleft .hero-role {
+			font-family: var(--font-body);
+			font-weight: 400;
+			font-size: 0.85rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: rgba(255,255,255,0.6);
+			transition: color 0.2s ease-in-out;
+		}
+
+		.hero-topleft:hover .hero-name,
+		.hero-topleft:hover .hero-role { color: var(--accent); }
+
+		/* ── NAV — texto directo arriba a la derecha ───────────────── */
+		#top-nav {
+			position: fixed;
+			top: 0;
+			right: 0;
+			z-index: 10000;
 			display: flex;
 			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			padding: 0;
-			transition: border-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+			gap: 1.75rem;
+			padding: 1.75rem 2.5rem;
 		}
 
-		#menu-toggle:hover,
-		#menu-toggle[aria-expanded="true"] {
-			border-color: var(--accent);
-		}
-
-		#menu-toggle img {
-			width: 1.6rem;
-			height: 1.6rem;
-			border-radius: 50%;
-			display: block;
-		}
-
-		#dropdown-menu {
-			position: fixed;
-			top: 4.75rem;
-			right: 1.5rem;
-			z-index: 9999;
-			min-width: 13rem;
-			background: rgba(20,20,20,0.92);
-			backdrop-filter: blur(10px);
-			-webkit-backdrop-filter: blur(10px);
-			border: solid 2px rgba(255,255,255,0.15);
-			padding: 0.5rem;
-			opacity: 0;
-			transform: translateY(-8px);
-			pointer-events: none;
-			transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-		}
-
-		#dropdown-menu.open {
-			opacity: 1;
-			transform: translateY(0);
-			pointer-events: auto;
-		}
-
-		.menu-label {
-			display: block;
-			font-family: var(--font-head);
-			font-weight: 900;
-			font-size: 0.6rem;
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
-			color: var(--muted);
-			padding: 0.6rem 1rem 0.3rem;
-		}
-
-		#dropdown-menu a {
-			display: block;
+		#top-nav a {
 			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.7rem;
-			letter-spacing: 0.15em;
+			letter-spacing: 0.2em;
 			text-transform: uppercase;
 			color: #ffffff;
 			text-decoration: none;
 			border-bottom: none;
-			padding: 0.85rem 1rem;
-			transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+			transition: color 0.2s ease-in-out;
 		}
 
-		#dropdown-menu a.sub {
-			padding-left: 1.5rem;
-			font-size: 0.65rem;
-			color: rgba(255,255,255,0.75);
-		}
+		#top-nav a .glyph { color: var(--accent); margin-right: 0.4rem; }
+		#top-nav a:hover { color: var(--accent); }
+		#top-nav a:hover .glyph { color: var(--accent); }
 
-		#dropdown-menu a:hover {
-			color: var(--accent);
-			background: rgba(255,255,255,0.04);
-		}
-
-		#dropdown-menu .menu-divider {
-			border-top: solid 1px rgba(255,255,255,0.1);
-			margin: 0.4rem 0.25rem;
+		@media screen and (max-width: 736px) {
+			.hero-topleft { top: 1.25rem; left: 1.25rem; gap: 0.6rem; }
+			.hero-topleft .hero-name { font-size: 1.05rem; }
+			.hero-topleft .hero-role { font-size: 0.65rem; }
+			#top-nav { padding: 1.25rem 1.25rem; gap: 1.1rem; }
+			#top-nav a { font-size: 0.6rem; letter-spacing: 0.12em; }
 		}
 
 			/* ── ZONA CENTRAL 404 ───────────────────────────────────── */
@@ -214,51 +186,60 @@
 				to   { opacity: 1; transform: translateY(0); }
 			}
 
-			/* ── FOOTER (idéntico a contact.html) ──────────────────── */
-			#footer {
-				background: var(--bg-panel) !important;
-				border-top: solid 2px var(--border);
-			}
+			/* ── FOOTER (idéntico a work.html) ─────────────────────────── */
+		#footer {
+			background: var(--bg-panel) !important;
+			border-top: none;
+			width: 100%;
+		}
 
-			.footer-row {
-				max-width: 72rem;
-				margin: 0 auto;
-				padding: 1.5rem 2rem !important;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				gap: 16px;
-				flex-wrap: wrap;
-			}
+		.footer-row {
+			width: 100%;
+			max-width: none;
+			margin: 0;
+			padding: 0.9rem 2.5rem !important;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 16px;
+			flex-wrap: wrap;
+		}
 
-			.footer-left h3 { font-size: 0.7rem; margin-bottom: 0.4rem; color: #ffffff; }
-			.footer-left p { margin: 0; font-size: 1.05rem; font-weight: 300; color: #ffffff !important; }
-			.footer-left p a { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.35) !important; }
-			.footer-left p a:hover { color: var(--accent) !important; }
+		.footer-left p {
+			margin: 0;
+			font-family: var(--font-body);
+			font-size: 1.4rem;
+			font-weight: 400;
+			color: #ffffff !important;
+		}
+		.footer-left p a { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.35) !important; }
+		.footer-left p a:hover { color: var(--accent) !important; }
 
-			.footer-right ul.icons.alt {
-				display: flex; gap: 12px; list-style: none; margin: 0; padding: 0;
-			}
-			.footer-right ul.icons.alt li .icon:before { display: none; }
-			.footer-right ul.icons.alt li a {
-				display: inline-flex; align-items: center; justify-content: center;
-				width: 2.4rem; height: 2.4rem;
-				border: solid 2px rgba(255,255,255,0.7);
-				border-radius: 50%;
-				color: #ffffff;
-				transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-			}
-			.footer-right ul.icons.alt li a:hover {
-				color: #171717; border-color: var(--accent); background-color: var(--accent);
-			}
-			.footer-right ul.icons.alt li a svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
+		.footer-right ul.icons.alt { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+		.footer-right ul.icons.alt li .icon:before { display: none; }
+		.footer-right ul.icons.alt li a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 2rem;
+			height: 2rem;
+			border: none;
+			background: none;
+			border-radius: 0;
+			color: #ffffff;
+			transition: color 0.2s ease-in-out, filter 0.2s ease-in-out;
+		}
+		.footer-right ul.icons.alt li a:hover {
+			color: var(--accent);
+			filter: drop-shadow(0 0 6px rgba(187,136,68,0.65));
+		}
+		.footer-right ul.icons.alt li a svg { width: 1.3rem; height: 1.3rem; fill: currentColor; }
 
-			@media screen and (max-width: 736px) {
-				.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
-				#menu-toggle { top: 1rem; right: 1rem; }
-				#dropdown-menu { top: 4.25rem; right: 1rem; }
-				.vectorscope { width: 110px; height: 110px; top: 1.25rem; right: 1.25rem; }
-			}
+		@media screen and (max-width: 736px) {
+			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; padding: 1.25rem 1.5rem !important; }
+			.bio-meta { flex-direction: column; gap: 1.25rem; }
+		}
+
 
 		</style>
 	</head>
@@ -267,19 +248,18 @@
 		<div id="wrapper" class="fade-in">
 
 	
-			<!-- MENÚ FLOTANTE -->
-			<button id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="dropdown-menu">
-				<img src="/favicon-32x32.png" alt="" />
-			</button>
-			<nav id="dropdown-menu" aria-label="Menú principal">
-				<span class="menu-label">Work</span>
-				<a href="/work.html" class="sub">Color Grading</a>
-				<a href="/work.html" class="sub">Spec Ads</a>
-				<a href="/work.html" class="sub">Shortfilms</a>
-				<div class="menu-divider"></div>
-				<a href="/bio.html">Bio</a>
-				<a href="/contact.html">Contact</a>
-			</nav>
+			<!-- IDENTIDAD — vuelve al inicio -->
+	<a href="index.html" class="hero-topleft">
+		<span class="hero-name">Luis Puchades</span>
+		<span class="hero-role">Colorist</span>
+	</a>
+
+	<!-- NAV -->
+	<nav id="top-nav" aria-label="Menú principal">
+		<a href="work.html"><span class="glyph">►</span>Work</a>
+		<a href="bio.html"><span class="glyph">·</span>Bio</a>
+		<a href="contact.html"><span class="glyph">◇</span>Contact</a>
+	</nav>
 
 			<!-- 404 -->
 			<section id="error-hero">
@@ -305,35 +285,32 @@
 
 			</section>
 
-			<!-- FOOTER -->
 			<footer id="footer">
-				<div class="footer-row">
-					<div class="footer-left">
-						<h3>Contact</h3>
-						<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a></p>
-					</div>
-					<div class="footer-right">
-						<ul class="icons alt">
-							<li>
-								<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" class="icon brands alt fa-linkedin" aria-label="LinkedIn">
-									<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-								</a>
-							</li>
-							<li>
-								<a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" class="icon brands alt fa-vimeo" aria-label="Vimeo">
-									<svg viewBox="0 0 24 24"><path d="M22 7.35c-.1 2.1-1.56 4.98-4.4 8.62C14.28 20.8 11.53 23 9.27 23c-1.4 0-2.58-1.3-3.55-3.9L4 12.4C3.3 9.8 2.55 8.5 1.75 8.5c-.17 0-.77.36-1.8 1.08L0 8.4c1.13-1 2.24-2 3.34-3C4.82 4.1 5.93 3.4 6.66 3.33c1.66-.16 2.68.98 3.06 3.4.4 2.62.68 4.25.85 4.87.47 2.14.99 3.2 1.56 3.2.44 0 1.11-.7 2-2.08.88-1.39 1.36-2.45 1.42-3.18.13-1.2-.34-1.8-1.42-1.8-.5 0-1.03.12-1.57.35C13.6 4.55 15.65 2.7 18.72 2.8c2.24.07 3.3 1.52 3.28 4.55z"/></svg>
-								</a>
-							</li>
-							<li>
-								<a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" class="icon brands alt fa-youtube" aria-label="YouTube">
-									<svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</footer>
+		<div class="footer-row">
+			<div class="footer-left">
+				<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a></p>
+			</div>
+			<div class="footer-right">
+				<ul class="icons alt">
+					<li>
+						<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" class="icon brands alt fa-linkedin" aria-label="LinkedIn">
+							<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" class="icon brands alt fa-vimeo" aria-label="Vimeo">
+							<svg viewBox="0 0 24 24"><path d="M22 7.35c-.1 2.1-1.56 4.98-4.4 8.62C14.28 20.8 11.53 23 9.27 23c-1.4 0-2.58-1.3-3.55-3.9L4 12.4C3.3 9.8 2.55 8.5 1.75 8.5c-.17 0-.77.36-1.8 1.08L0 8.4c1.13-1 2.24-2 3.34-3C4.82 4.1 5.93 3.4 6.66 3.33c1.66-.16 2.68.98 3.06 3.4.4 2.62.68 4.25.85 4.87.47 2.14.99 3.2 1.56 3.2.44 0 1.11-.7 2-2.08.88-1.39 1.36-2.45 1.42-3.18.13-1.2-.34-1.8-1.42-1.8-.5 0-1.03.12-1.57.35C13.6 4.55 15.65 2.7 18.72 2.8c2.24.07 3.3 1.52 3.28 4.55z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" class="icon brands alt fa-youtube" aria-label="YouTube">
+							<svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
+	</footer>
 
 		<script src="/assets/js/jquery.min.js"></script>
 		<script src="/assets/js/jquery.scrollex.min.js"></script>

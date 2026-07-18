@@ -151,9 +151,9 @@
 				font-family: var(--font-head);
 				font-weight: 900;
 				font-size: 0.7rem;
-				letter-spacing: 0.2em;
+				letter-spacing: 0.08em;
 				text-transform: uppercase;
-				color: #ffffff !important;
+				color: var(--muted) !important;
 				border-bottom: solid 2px transparent;
 				transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 			}
@@ -329,7 +329,7 @@
 			.footer-left p {
 				margin: 0;
 				font-family: var(--font-body);
-				font-size: 1.2rem;
+				font-size: 1.4rem;
 				font-weight: 400;
 				color: #ffffff !important;
 			}
@@ -339,15 +339,22 @@
 			.footer-right ul.icons.alt { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
 			.footer-right ul.icons.alt li .icon:before { display: none; }
 			.footer-right ul.icons.alt li a {
-				display: inline-flex; align-items: center; justify-content: center;
-				width: 2.4rem; height: 2.4rem;
-				border: solid 2px rgba(255,255,255,0.7);
-				border-radius: 50%;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 2rem;
+				height: 2rem;
+				border: none;
+				background: none;
+				border-radius: 0;
 				color: #ffffff;
-				transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+				transition: color 0.2s ease-in-out, filter 0.2s ease-in-out;
 			}
-			.footer-right ul.icons.alt li a:hover { color: #171717; border-color: var(--accent); background-color: var(--accent); }
-			.footer-right ul.icons.alt li a svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
+			.footer-right ul.icons.alt li a:hover {
+				color: var(--accent);
+				filter: drop-shadow(0 0 6px rgba(187,136,68,0.65));
+			}
+			.footer-right ul.icons.alt li a svg { width: 1.3rem; height: 1.3rem; fill: currentColor; }
 
 			@media screen and (max-width: 736px) {
 				.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; padding: 1.25rem 1.5rem !important; }

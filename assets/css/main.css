@@ -4190,3 +4190,13 @@ body #wrapper #footer * {
     color:#bb8844;
     font-size:.55em;
 }
+
+/* Fuerza el color del título y de los párrafos */
+#bio-text h1 {
+    color: #ffffff !important;
+}
+
+#bio-text p {
+    color: #ffffff !important;
+    font-family: Arial, sans-serif !important; /* Cambia Arial por la fuente que quieras */
+}

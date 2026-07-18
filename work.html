@@ -1,508 +1,418 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Work | Luis Puchades</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="/assets/css/main.css" />
-		<link rel="icon" type="image/x-icon" href="/favicon-32x32.png" />
-		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+<head>
+	<title>Work | Luis Puchades</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-		<style>
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
 
-			:root {
-				--bg:        #222222;
-				--bg-panel:  #1a1a1a;
-				--accent:    #bb8844;
-				--border:    #eeeeee;
-				--muted:     #8a928a;
-				--font-body: "Merriweather", Georgia, serif;
-				--font-head: "Source Sans Pro", Helvetica, sans-serif;
-			}
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="icon" type="image/x-icon" href="favicon-32x32.png" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-			*, *::before, *::after { box-sizing: border-box; }
+	<style>
 
-			html, body { height: 100%; }
-			body { background-color: var(--bg) !important; }
+		/* ── VARIABLES (idénticas al index) ───────────────────────── */
+		:root {
+			--bg:        #222222;
+			--bg-panel:  #1a1a1a;
+			--accent:    #bb8844;
+			--border:    #eeeeee;
+			--muted:     #8a928a;
+			--font-body: "Cormorant Garamond", Georgia, serif;
+			--font-head: "Source Sans Pro", Helvetica, sans-serif;
+		}
 
-			/* ── MENÚ FLOTANTE (idéntico al resto del sitio) ─────────── */
-			#menu-toggle {
-				position: fixed;
-				top: 1.5rem;
-				right: 1.5rem;
-				z-index: 10000;
-				width: 3rem;
-				height: 3rem;
-				border-radius: 50%;
-				background: rgba(20,20,20,0.55);
-				backdrop-filter: blur(8px);
-				-webkit-backdrop-filter: blur(8px);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				cursor: pointer;
-				padding: 0;
-				transition: border-color 0.2s ease-in-out;
-			}
+		*, *::before, *::after { box-sizing: border-box; }
 
-			#menu-toggle:hover,
-			#menu-toggle[aria-expanded="true"] { border-color: var(--accent); }
+		html, body { height: 100%; }
+		body {
+			background-color: var(--bg) !important;
+			font-family: var(--font-body);
+		}
 
-			#menu-toggle img { width: 1.6rem; height: 1.6rem; border-radius: 50%; display: block; }
+		#main { background-color: var(--bg) !important; }
 
-			#dropdown-menu {
-				position: fixed;
-				top: 4.75rem;
-				right: 1.5rem;
-				z-index: 9999;
-				min-width: 13rem;
-				background: rgba(20,20,20,0.92);
-				backdrop-filter: blur(10px);
-				-webkit-backdrop-filter: blur(10px);
-				border: solid 2px rgba(255,255,255,0.15);
-				padding: 0.5rem;
-				opacity: 0;
-				transform: translateY(-8px);
-				pointer-events: none;
-				transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-			}
+		/* ── NAV — idéntico al index, arriba a la derecha ─────────── */
+		#top-nav {
+			position: fixed;
+			top: 0;
+			right: 0;
+			z-index: 10000;
+			display: flex;
+			align-items: center;
+			gap: 1.75rem;
+			padding: 1.75rem 2.5rem;
+		}
 
-			#dropdown-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+		#top-nav a {
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.7rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: #ffffff;
+			text-decoration: none;
+			border-bottom: none;
+			transition: color 0.2s ease-in-out;
+		}
 
-			.menu-label {
-				display: block;
-				font-family: var(--font-head);
-				font-weight: 900;
-				font-size: 0.6rem;
-				letter-spacing: 0.2em;
-				text-transform: uppercase;
-				color: var(--muted);
-				padding: 0.6rem 1rem 0.3rem;
-			}
+		#top-nav a .glyph { color: var(--accent); margin-right: 0.4rem; }
+		#top-nav a:hover { color: var(--accent); }
+		#top-nav a:hover .glyph { color: var(--accent); }
 
-			#dropdown-menu a {
-				display: block;
-				font-family: var(--font-head);
-				font-weight: 900;
-				font-size: 0.7rem;
-				letter-spacing: 0.1em;
-				text-transform: uppercase;
-				color: #ffffff;
-				text-decoration: none;
-				border-bottom: none;
-				padding: 0.75rem 1rem;
-				transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-			}
+		@media screen and (max-width: 736px) {
+			#top-nav { padding: 1.25rem 1.25rem; gap: 1.1rem; }
+			#top-nav a { font-size: 0.6rem; letter-spacing: 0.12em; }
+		}
 
-			#dropdown-menu a.sub { padding-left: 1.5rem; font-size: 0.65rem; color: rgba(255,255,255,0.75); }
-			#dropdown-menu a:hover { color: var(--accent); background: rgba(255,255,255,0.04); }
-			#dropdown-menu .menu-divider { border-top: solid 1px rgba(255,255,255,0.1); margin: 0.4rem 0.25rem; }
+		/* ── HEADER ─────────────────────────────────────────────── */
+		#work-header {
+			padding: 8rem 3rem 1rem;
+			max-width: 78rem;
+			margin: 0 auto;
+			text-align: center;
+		}
 
-			/* ── HEADER ─────────────────────────────────────────────── */
-			#work-header {
-				padding: 7rem 3rem 2rem;
-				max-width: 72rem;
-				margin: 0 auto;
-			}
+		#work-header .eyebrow {
+			display: block;
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.65rem;
+			letter-spacing: 0.25em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin-bottom: 0.75rem;
+		}
 
-			#work-header .eyebrow {
-				display: block;
-				font-family: var(--font-head);
-				font-weight: 900;
-				font-size: 0.65rem;
-				letter-spacing: 0.25em;
-				text-transform: uppercase;
-				color: var(--accent);
-				margin-bottom: 0.75rem;
-			}
+		#work-header h1 {
+			font-family: var(--font-body);
+			font-weight: 400;
+			font-size: clamp(2.4rem, 6vw, 4rem);
+			line-height: 1.1;
+			letter-spacing: 0.02em;
+			text-transform: uppercase;
+			color: #ffffff;
+			margin: 0;
+		}
 
-			#work-header h1 {
-				font-family: var(--font-head);
-				font-weight: 900;
-				font-size: clamp(2rem, 5vw, 3rem);
-				line-height: 1.1;
-				letter-spacing: 0.03em;
-				text-transform: uppercase;
-				color: #ffffff;
-				margin: 0;
-			}
+		@media screen and (max-width: 736px) {
+			#work-header { padding: 6.5rem 1.5rem 0.5rem; }
+		}
 
-			/* ── FILAS TIPO NETFLIX ────────────────────────────────── */
-			.work-row {
-				max-width: 72rem;
-				margin: 0 auto;
-				padding: 2rem 3rem 3rem;
-			}
+		/* ── FILTROS — pestañas centradas, mismo estilo que el nav ── */
+		#work-filters {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 2.25rem;
+			flex-wrap: wrap;
+			padding: 2.5rem 1.5rem 1rem;
+			max-width: 78rem;
+			margin: 0 auto;
+		}
 
-			.row-title {
-				font-family: var(--font-head);
-				font-weight: 900;
-				font-size: 1.1rem;
-				letter-spacing: 0.05em;
-				text-transform: uppercase;
-				color: #ffffff;
-				margin: 0 0 1.25rem 0;
-			}
+		.filter-tab {
+			background: none;
+			border: none;
+			padding: 0 0 0.6rem;
+			cursor: pointer;
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.7rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: rgba(255,255,255,0.55);
+			border-bottom: solid 2px transparent;
+			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+		}
 
-			.row-carousel-wrap {
-				position: relative;
-			}
+		.filter-tab:hover { color: #ffffff; }
 
-			.row-track {
-				display: flex;
-				gap: 1rem;
-				overflow-x: auto;
-				scroll-snap-type: x mandatory;
-				scroll-behavior: smooth;
-				-webkit-overflow-scrolling: touch;
-				padding-bottom: 0.5rem;
-			}
+		.filter-tab.active {
+			color: var(--accent);
+			border-bottom-color: var(--accent);
+		}
 
-			.row-track::-webkit-scrollbar { display: none; }
-			.row-track { scrollbar-width: none; }
+		@media screen and (max-width: 736px) {
+			#work-filters { gap: 1.25rem; padding: 1.75rem 1.25rem 0.75rem; }
+			.filter-tab { font-size: 0.6rem; letter-spacing: 0.12em; }
+		}
 
-			.row-card {
-				flex: 0 0 clamp(220px, 26vw, 300px);
-				scroll-snap-align: start;
-				position: relative;
-				aspect-ratio: 16 / 10;
-				overflow: hidden;
-				background-size: cover;
-				background-position: center;
-				text-decoration: none;
-				border: none;
-				transition: transform 0.25s ease-in-out;
-			}
+		/* ── GRID DE TRABAJOS — como el index, más grande y completo ── */
+		#work-grid-section {
+			max-width: 82rem;
+			margin: 0 auto;
+			padding: 1.5rem 3rem 6rem;
+		}
 
-			.row-card:hover { transform: scale(1.035); }
+		.work-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 4px;
+		}
 
-			.row-card::before {
-				content: "";
-				position: absolute;
-				inset: 0;
-				background: linear-gradient(180deg, rgba(20,20,20,0) 45%, rgba(20,20,20,0.92) 100%);
-			}
+		.work-grid__item {
+			position: relative;
+			aspect-ratio: 3 / 2;
+			overflow: hidden;
+			background-size: cover;
+			background-position: center;
+			text-decoration: none;
+			border: none;
+			display: block;
+			transition: opacity 0.25s ease-in-out;
+		}
 
-			.row-card__title {
-				position: absolute;
-				left: 0; right: 0; bottom: 0;
-				z-index: 1;
-				padding: 1rem;
-				font-family: var(--font-head);
-				font-weight: 900;
-				font-size: 0.75rem;
-				letter-spacing: 0.05em;
-				text-transform: uppercase;
-				color: #ffffff;
-				border-bottom: none !important;
-			}
+		.work-grid__item.is-hidden {
+			display: none;
+		}
 
-			.row-card__title span {
-				display: block;
-				font-family: var(--font-body);
-				font-weight: 300;
-				font-size: 0.65rem;
-				letter-spacing: 0.02em;
-				text-transform: none;
-				color: var(--accent);
-				margin-top: 0.3rem;
-			}
+		.work-grid__item::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: rgba(10,10,10,0.55);
+			opacity: 0;
+			transition: opacity 0.3s ease-in-out;
+		}
 
-			/* ── FLECHAS (siempre visibles) ────────────────────────── */
-			.row-arrow {
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-				z-index: 10;
-				width: 2.75rem;
-				height: 2.75rem;
-				border-radius: 50%;
-				border: solid 2px rgba(255,255,255,0.55);
-				background: rgba(20,20,20,0.75);
-				backdrop-filter: blur(6px);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				cursor: pointer;
-				opacity: 1;
-				padding: 0;
-				margin: 0;
-				line-height: 1;
-				box-shadow: none;
-				transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-			}
+		.work-grid__item:hover::before { opacity: 1; }
 
-			.row-arrow:hover { border-color: var(--accent); background: rgba(20,20,20,0.92); }
+		.work-grid__title {
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding: 1rem;
+			font-family: var(--font-body);
+			font-weight: 400;
+			font-size: 1.5rem;
+			letter-spacing: 0.03em;
+			text-transform: none;
+			color: #ffffff;
+			opacity: 0;
+			transform: scale(0.96);
+			transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+		}
 
-			.row-arrow svg {
-				width: 1rem; height: 1rem;
-				stroke: #ffffff; fill: none;
-				stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
-				display: block;
-				flex-shrink: 0;
-				pointer-events: none;
-			}
+		.work-grid__item:hover .work-grid__title {
+			opacity: 1;
+			transform: scale(1);
+		}
 
-			.row-arrow.prev { left: -0.25rem; }
-			.row-arrow.next { right: -0.25rem; }
+		.work-grid__title span {
+			display: block;
+			font-family: var(--font-head);
+			font-weight: 700;
+			font-size: 0.7rem;
+			font-style: normal;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin-top: 0.6rem;
+		}
 
-			@media screen and (max-width: 900px) {
-				.row-arrow.prev { left: 0.25rem; }
-				.row-arrow.next { right: 0.25rem; }
-			}
+		@media screen and (max-width: 900px) {
+			.work-grid { grid-template-columns: repeat(2, 1fr); }
+		}
 
-			@media screen and (max-width: 736px) {
-				#work-header { padding: 6rem 1.5rem 1.5rem; }
-				.work-row { padding: 1.5rem 1.5rem 2rem; }
-				.row-card { flex-basis: 72vw; }
-				#menu-toggle { top: 1rem; right: 1rem; }
-				#dropdown-menu { top: 4.25rem; right: 1rem; }
-			}
+		@media screen and (max-width: 736px) {
+			#work-grid-section { padding: 1rem 1.5rem 4rem; }
+		}
 
-			/* ── FOOTER (idéntico al resto del sitio) ──────────────── */
-			#footer {
-				background: var(--bg-panel) !important;
-				border-top: solid 2px var(--border);
-				margin-top: 2rem;
-			}
+		@media screen and (max-width: 480px) {
+			.work-grid { grid-template-columns: 1fr; }
+		}
 
-			.footer-row {
-				max-width: 72rem;
-				margin: 0 auto;
-				padding: 1.5rem 2rem !important;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				gap: 16px;
-				flex-wrap: wrap;
-			}
+		/* ── FOOTER (idéntico al resto del sitio) ─────────────────── */
+		#footer {
+			background: var(--bg-panel) !important;
+			border-top: solid 2px var(--border);
+		}
 
-			.footer-left h3 { font-size: 0.7rem; margin-bottom: 0.4rem; color: #ffffff; }
-			.footer-left p { margin: 0; font-size: 1.05rem; font-weight: 300; color: #ffffff !important; }
-			.footer-left p a { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.35) !important; }
-			.footer-left p a:hover { color: var(--accent) !important; }
+		.footer-row {
+			max-width: 72rem;
+			margin: 0 auto;
+			padding: 1.5rem 2rem !important;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 16px;
+			flex-wrap: wrap;
+		}
 
-			.footer-right ul.icons.alt { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
-			.footer-right ul.icons.alt li .icon:before { display: none; }
-			.footer-right ul.icons.alt li a {
-				display: inline-flex; align-items: center; justify-content: center;
-				width: 2.4rem; height: 2.4rem;
-				border: solid 2px rgba(255,255,255,0.7);
-				border-radius: 50%;
-				color: #ffffff;
-				transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-			}
-			.footer-right ul.icons.alt li a:hover { color: #171717; border-color: var(--accent); background-color: var(--accent); }
-			.footer-right ul.icons.alt li a svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
+		.footer-left h3 {
+			font-family: var(--font-head);
+			font-size: 0.7rem;
+			margin-bottom: 0.4rem;
+			color: #ffffff;
+		}
 
-			@media screen and (max-width: 736px) {
-				.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
-			}
+		.footer-left p {
+			margin: 0;
+			font-family: var(--font-body);
+			font-size: 1.15rem;
+			font-weight: 400;
+			color: #ffffff !important;
+		}
 
-		</style>
-	</head>
+		.footer-left p a { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.35) !important; }
+		.footer-left p a:hover { color: var(--accent) !important; }
 
-	<body class="is-preload">
-		<div id="wrapper" class="fade-in">
+		.footer-right ul.icons.alt {
+			display: flex;
+			gap: 12px;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
 
-			<!-- MENÚ FLOTANTE -->
-			<button id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="dropdown-menu">
-				<img src="/favicon-32x32.png" alt="" />
-			</button>
-			<nav id="dropdown-menu" aria-label="Menú principal">
-				<span class="menu-label">Work</span>
-				<a href="#color-grading" class="sub">Color Grading</a>
-				<a href="#spec-ads" class="sub">Spec Ads</a>
-				<a href="#shortfilms" class="sub">Shortfilms</a>
-				<div class="menu-divider"></div>
-				<a href="/bio.html">Bio</a>
-				<a href="/contact.html">Contact</a>
-			</nav>
+		.footer-right ul.icons.alt li .icon:before { display: none; }
 
-			<!-- HEADER -->
-			<header id="work-header">
-				<span class="eyebrow">Selected Work</span>
-				<h1>Work</h1>
-			</header>
+		.footer-right ul.icons.alt li a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 2.4rem;
+			height: 2.4rem;
+			border: solid 2px rgba(255,255,255,0.7);
+			border-radius: 50%;
+			color: #ffffff;
+			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+		}
 
-			<!-- FILA 1 — COLOR GRADING -->
-			<section class="work-row" id="color-grading">
-				<h2 class="row-title">Color Grading</h2>
-				<div class="row-carousel-wrap">
-					<button class="row-arrow prev" data-row="color-grading" aria-label="Anterior">
-						<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-					</button>
+		.footer-right ul.icons.alt li a:hover {
+			color: #171717;
+			border-color: var(--accent);
+			background-color: var(--accent);
+		}
 
-					<div class="row-track" id="track-color-grading">
-						<a href="/work/color-grading/b-a_01.html" class="row-card" style="background-image:url('/images/capturab-a1_2.1.1.jpg');">
-							<span class="row-card__title">Owner and Pet<span>Color Grading</span></span>
-						</a>
-						<a href="/work/color-grading/b-a_02.html" class="row-card" style="background-image:url('images/capturab-a2_2.2.1.jpg');">
-							<span class="row-card__title">Purple Mountains<span>Color Grading</span></span>
-						</a>
-						<a href="/work/color-grading/b-a_03.html" class="row-card" style="background-image:url('/images/capturab-a3_1.5.1.jpg');">
-							<span class="row-card__title">Forest Couple<span>Color Grading</span></span>
-						</a>
-					</div>
+		.footer-right ul.icons.alt li a svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
 
-					<button class="row-arrow next" data-row="color-grading" aria-label="Siguiente">
-						<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-					</button>
-				</div>
-			</section>
+		@media screen and (max-width: 736px) {
+			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+		}
 
-			<!-- FILA 2 — SPEC ADS -->
-			<section class="work-row" id="spec-ads">
-				<h2 class="row-title">Spec Ads</h2>
-				<div class="row-carousel-wrap">
-					<button class="row-arrow prev" data-row="spec-ads" aria-label="Anterior">
-						<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-					</button>
+	</style>
+</head>
 
-					<div class="row-track" id="track-spec-ads">
-						<a href="/work/spec-ads/spec1adolf.html" class="row-card" style="background-image:url('/images/still1.png');">
-							<span class="row-card__title">Adolfo Dominguez<span>Spec Ad</span></span>
-						</a>
-					</div>
+<body class="is-preload">
+	<div id="wrapper" class="fade-in">
 
-					<button class="row-arrow next" data-row="spec-ads" aria-label="Siguiente">
-						<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-					</button>
-				</div>
-			</section>
+		<!-- ══════════════════════════════════════════════════════
+		     NAV — mismo menú que el index
+		════════════════════════════════════════════════════════ -->
+		<nav id="top-nav" aria-label="Menú principal">
+			<a href="work.html"><span class="glyph">►</span>Work</a>
+			<a href="bio.html"><span class="glyph">·</span>Bio</a>
+			<a href="contact.html"><span class="glyph">◇</span>Contact</a>
+		</nav>
 
-			<!-- FILA 3 — SHORTFILMS -->
-			<section class="work-row" id="shortfilms">
-				<h2 class="row-title">Shortfilms</h2>
-				<div class="row-carousel-wrap">
-					<button class="row-arrow prev" data-row="shortfilms" aria-label="Anterior">
-						<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-					</button>
+		<!-- HEADER -->
+		<header id="work-header">
+			<span class="eyebrow">Selected Work</span>
+			<h1>Work</h1>
+		</header>
 
-					<div class="row-track" id="track-shortfilms">
-						<a href="work/shortfilms/exam-paralysis.html" class="row-card" style="background-image:url('/images/examparalysisportada.jpg');">
-							<span class="row-card__title">Exam Paralysis<span>Shortfilm</span></span>
-						</a>
-					</div>
-
-					<button class="row-arrow next" data-row="shortfilms" aria-label="Siguiente">
-						<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-					</button>
-				</div>
-			</section>
-
-			<footer id="footer">
-				<div class="footer-row">
-					<div class="footer-left">
-						<h3>Contact</h3>
-						<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a></p>
-					</div>
-					<div class="footer-right">
-						<ul class="icons alt">
-							<li>
-								<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" class="icon brands alt fa-linkedin" aria-label="LinkedIn">
-									<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-								</a>
-							</li>
-							<li>
-								<a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" class="icon brands alt fa-vimeo" aria-label="Vimeo">
-									<svg viewBox="0 0 24 24"><path d="M22 7.35c-.1 2.1-1.56 4.98-4.4 8.62C14.28 20.8 11.53 23 9.27 23c-1.4 0-2.58-1.3-3.55-3.9L4 12.4C3.3 9.8 2.55 8.5 1.75 8.5c-.17 0-.77.36-1.8 1.08L0 8.4c1.13-1 2.24-2 3.34-3C4.82 4.1 5.93 3.4 6.66 3.33c1.66-.16 2.68.98 3.06 3.4.4 2.62.68 4.25.85 4.87.47 2.14.99 3.2 1.56 3.2.44 0 1.11-.7 2-2.08.88-1.39 1.36-2.45 1.42-3.18.13-1.2-.34-1.8-1.42-1.8-.5 0-1.03.12-1.57.35C13.6 4.55 15.65 2.7 18.72 2.8c2.24.07 3.3 1.52 3.28 4.55z"/></svg>
-								</a>
-							</li>
-							<li>
-								<a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" class="icon brands alt fa-youtube" aria-label="YouTube">
-									<svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</footer>
+		<!-- FILTROS -->
+		<div id="work-filters" role="tablist" aria-label="Filtrar trabajos">
+			<button class="filter-tab active" data-filter="all">All</button>
+			<button class="filter-tab" data-filter="spec-ads">Spec Ads</button>
+			<button class="filter-tab" data-filter="shortfilms">Shortfilms</button>
+			<button class="filter-tab" data-filter="commercials">Commercials</button>
 		</div>
 
-		<script src="/assets/js/jquery.min.js"></script>
-		<script src="/assets/js/jquery.scrollex.min.js"></script>
-		<script src="/assets/js/jquery.scrolly.min.js"></script>
-		<script src="/assets/js/browser.min.js"></script>
-		<script src="/assets/js/breakpoints.min.js"></script>
-		<script src="/assets/js/util.js"></script>
-		<script src="/assets/js/main.js"></script>
+		<!-- GRID -->
+		<section id="work-grid-section">
+			<div class="work-grid" id="work-grid">
 
-		<script>
-			/* Menú flotante */
-			(function () {
-				var toggle = document.getElementById('menu-toggle');
-				var menu = document.getElementById('dropdown-menu');
-				function closeMenu() { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
-				function openMenu() { menu.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); }
-				toggle.addEventListener('click', function (e) {
-					e.stopPropagation();
-					menu.classList.contains('open') ? closeMenu() : openMenu();
+				<a href="work/spec-ads/spec1adolf.html" class="work-grid__item" data-category="spec-ads" style="background-image:url('images/still1.png');">
+					<span class="work-grid__title">Adolfo Dominguez<span>Spec Ad</span></span>
+				</a>
+
+				<a href="work/shortfilms/exam-paralysis.html" class="work-grid__item" data-category="shortfilms" style="background-image:url('images/examparalysisportada.jpg');">
+					<span class="work-grid__title">Exam Paralysis<span>Shortfilm</span></span>
+				</a>
+
+				<a href="work/commercials/b-a_01.html" class="work-grid__item" data-category="commercials" style="background-image:url('images/capturab-a1_2.1.1.jpg');">
+					<span class="work-grid__title">Owner and Pet<span>Commercial</span></span>
+				</a>
+
+				<a href="work/commercials/b-a_02.html" class="work-grid__item" data-category="commercials" style="background-image:url('images/capturab-a2_2.2.1.jpg');">
+					<span class="work-grid__title">Purple Mountains<span>Commercial</span></span>
+				</a>
+
+				<a href="work/commercials/b-a_03.html" class="work-grid__item" data-category="commercials" style="background-image:url('images/capturab-a3_1.5.1.jpg');">
+					<span class="work-grid__title">Forest Couple<span>Commercial</span></span>
+				</a>
+
+			</div>
+		</section>
+
+		<footer id="footer">
+			<div class="footer-row">
+				<div class="footer-left">
+					<h3>Contact</h3>
+					<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a></p>
+				</div>
+				<div class="footer-right">
+					<ul class="icons alt">
+						<li>
+							<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" class="icon brands alt fa-linkedin" aria-label="LinkedIn">
+								<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+							</a>
+						</li>
+						<li>
+							<a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" class="icon brands alt fa-vimeo" aria-label="Vimeo">
+								<svg viewBox="0 0 24 24"><path d="M22 7.35c-.1 2.1-1.56 4.98-4.4 8.62C14.28 20.8 11.53 23 9.27 23c-1.4 0-2.58-1.3-3.55-3.9L4 12.4C3.3 9.8 2.55 8.5 1.75 8.5c-.17 0-.77.36-1.8 1.08L0 8.4c1.13-1 2.24-2 3.34-3C4.82 4.1 5.93 3.4 6.66 3.33c1.66-.16 2.68.98 3.06 3.4.4 2.62.68 4.25.85 4.87.47 2.14.99 3.2 1.56 3.2.44 0 1.11-.7 2-2.08.88-1.39 1.36-2.45 1.42-3.18.13-1.2-.34-1.8-1.42-1.8-.5 0-1.03.12-1.57.35C13.6 4.55 15.65 2.7 18.72 2.8c2.24.07 3.3 1.52 3.28 4.55z"/></svg>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" class="icon brands alt fa-youtube" aria-label="YouTube">
+								<svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<script>
+		/* Filtro de la cuadrícula de trabajos */
+		(function () {
+			var tabs = document.querySelectorAll('.filter-tab');
+			var items = document.querySelectorAll('.work-grid__item');
+
+			tabs.forEach(function (tab) {
+				tab.addEventListener('click', function () {
+					tabs.forEach(function (t) { t.classList.remove('active'); });
+					tab.classList.add('active');
+
+					var filter = tab.getAttribute('data-filter');
+
+					items.forEach(function (item) {
+						var show = filter === 'all' || item.getAttribute('data-category') === filter;
+						item.classList.toggle('is-hidden', !show);
+					});
 				});
-				document.addEventListener('click', function (e) {
-					if (!menu.contains(e.target) && e.target !== toggle) closeMenu();
-				});
-				document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
-				menu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
-			})();
+			});
+		})();
+	</script>
 
-			/* Carruseles tipo Netflix: 3 filas independientes, autoplay cada 4s */
-			(function () {
-				var AUTOPLAY_MS = 4000;
-
-				var rows = Array.prototype.slice.call(document.querySelectorAll('.work-row')).map(function (section) {
-					var id = section.id;
-					var track = document.getElementById('track-' + id);
-					var cards = Array.prototype.slice.call(track.querySelectorAll('.row-card'));
-					var prevBtn = section.querySelector('.row-arrow.prev');
-					var nextBtn = section.querySelector('.row-arrow.next');
-					return { id: id, track: track, cards: cards, prevBtn: prevBtn, nextBtn: nextBtn, index: 0, timer: null };
-				});
-
-				function cardStep(row) {
-					if (!row.cards.length) return 0;
-					var cardWidth = row.cards[0].getBoundingClientRect().width;
-					var gap = 16; /* 1rem */
-					return cardWidth + gap;
-				}
-
-				function goTo(row, index) {
-					var max = row.cards.length - 1;
-					if (index < 0) index = max;
-					if (index > max) index = 0;
-					row.index = index;
-					row.track.scrollTo({ left: index * cardStep(row), behavior: 'smooth' });
-				}
-
-				function next(row) { goTo(row, row.index + 1); }
-				function prev(row) { goTo(row, row.index - 1); }
-
-				function startAutoplay(row) {
-					stopAutoplay(row);
-					row.timer = window.setInterval(function () { next(row); }, AUTOPLAY_MS);
-				}
-
-				function stopAutoplay(row) {
-					if (row.timer) { window.clearInterval(row.timer); row.timer = null; }
-				}
-
-				rows.forEach(function (row) {
-					row.nextBtn.addEventListener('click', function () { next(row); startAutoplay(row); });
-					row.prevBtn.addEventListener('click', function () { prev(row); startAutoplay(row); });
-
-					/* Pausa al interactuar manualmente con el scroll, y reanuda al salir */
-					row.track.addEventListener('mouseenter', function () { stopAutoplay(row); });
-					row.track.addEventListener('mouseleave', function () { startAutoplay(row); });
-					row.track.addEventListener('touchstart', function () { stopAutoplay(row); }, { passive: true });
-
-					startAutoplay(row);
-				});
-
-				window.addEventListener('resize', function () {
-					rows.forEach(function (row) { goTo(row, row.index); });
-				});
-			})();
-		</script>
-
-	</body>
+</body>
 </html>

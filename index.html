@@ -95,39 +95,83 @@
 			top: 1.75rem;
 			left: 2.5rem;
 			z-index: 10000;
+			display: flex;
+			align-items: baseline;
+			gap: 0.9rem;
 			line-height: 1;
 		}
 
 		.hero-topleft .hero-name {
-			display: block;
 			font-family: var(--font-body);
-			font-weight: 400;
-			font-size: 1.9rem;
-			letter-spacing: 0.03em;
+			font-weight: 700;
+			font-size: 2.15rem;
+			letter-spacing: 0.02em;
 			text-transform: uppercase;
 			color: var(--accent);
 		}
 
 		.hero-topleft .hero-role {
-			display: block;
-			margin-top: 0.35rem;
 			font-family: var(--font-body);
-			font-style: italic;
+			font-style: normal;
 			font-weight: 400;
 			font-size: 1.15rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
 			color: #ffffff;
 		}
 
 		@media screen and (max-width: 736px) {
-			.hero-topleft { top: 1.25rem; left: 1.25rem; }
-			.hero-topleft .hero-name { font-size: 1.4rem; }
-			.hero-topleft .hero-role { font-size: 0.95rem; }
+			.hero-topleft { top: 1.25rem; left: 1.25rem; gap: 0.6rem; }
+			.hero-topleft .hero-name { font-size: 1.55rem; }
+			.hero-topleft .hero-role { font-size: 0.9rem; }
 		}
 
-		/* La flecha se mantiene centrada abajo del hero, tal cual estaba */
+		/* Flecha minimalista, más abajo en el hero */
 		#intro .actions {
-			position: relative;
+			position: absolute;
+			bottom: 2.5rem;
+			left: 50%;
+			transform: translateX(-50%);
 			z-index: 10;
+			margin: 0;
+		}
+
+		#intro .actions li { list-style: none; }
+
+		.hero-scroll-arrow {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 2.4rem;
+			height: 2.4rem;
+			border: none;
+			background: none;
+			color: rgba(255,255,255,0.75);
+			transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+			animation: hero-arrow-bounce 2s ease-in-out infinite;
+		}
+
+		.hero-scroll-arrow:hover {
+			color: var(--accent);
+		}
+
+		.hero-scroll-arrow svg {
+			width: 1.4rem;
+			height: 1.4rem;
+			stroke: currentColor;
+			fill: none;
+			stroke-width: 1.5;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+		}
+
+		@keyframes hero-arrow-bounce {
+			0%, 100% { transform: translateY(0); }
+			50% { transform: translateY(6px); }
+		}
+
+		@media screen and (max-width: 736px) {
+			#intro .actions { bottom: 1.75rem; }
 		}
 
 		/* ── LATEST WORK — cuadrícula clicable debajo del hero ────── */
@@ -209,11 +253,11 @@
 			justify-content: center;
 			text-align: center;
 			padding: 1rem;
-			font-family: var(--font-head);
-			font-weight: 900;
-			font-size: 0.9rem;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
+			font-family: var(--font-body);
+			font-weight: 400;
+			font-size: 1.35rem;
+			letter-spacing: 0.03em;
+			text-transform: none;
 			color: #ffffff;
 			opacity: 0;
 			transform: scale(0.96);
@@ -227,14 +271,14 @@
 
 		.work-grid__title span {
 			display: block;
-			font-family: var(--font-body);
-			font-weight: 400;
-			font-size: 1rem;
-			font-style: italic;
-			letter-spacing: 0.01em;
-			text-transform: none;
+			font-family: var(--font-head);
+			font-weight: 700;
+			font-size: 0.7rem;
+			font-style: normal;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
 			color: var(--accent);
-			margin-top: 0.4rem;
+			margin-top: 0.55rem;
 		}
 
 		@media screen and (max-width: 736px) {
@@ -380,7 +424,9 @@
 
 			<ul class="actions">
 				<li>
-					<a href="#latest-work" class="button icon solid solo fa-arrow-down scrolly"></a>
+					<a href="#latest-work" class="hero-scroll-arrow scrolly" aria-label="Bajar">
+						<svg viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
+					</a>
 				</li>
 			</ul>
 		</div>

@@ -292,44 +292,54 @@
 			.work-grid { grid-template-columns: 1fr; }
 		}
 
-		/* ── CLIENTS — franja de logos abajo del todo, antes del footer ── */
-		#clients {
-			max-width: 78rem;
-			margin: 0 auto;
-			padding: 0 3rem 5rem;
-			text-align: center;
-		}
+		/* ── CLIENTS — franja arriba del footer ────────────────── */
+			#clients {
+				max-width: 100%;
+				margin: 0;
+				padding: 2rem 0 1.5rem;
+				border-top: solid 1px rgba(255,255,255,0.08);
+				overflow: hidden;
+			}
 
-		#clients .section-eyebrow {
-			display: block;
-			margin-bottom: 2rem;
-		}
+			.clients-label {
+				text-align: center;
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.6rem;
+				letter-spacing: 0.3em;
+				text-transform: uppercase;
+				color: var(--muted);
+				margin: 0 0 1.5rem 0;
+			}
 
-		.clients-grid {
-			display: grid;
-			grid-template-columns: repeat(6, 1fr);
-			align-items: center;
-			gap: 2rem;
-		}
+			.clients-marquee {
+				overflow: hidden;
+				-webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+				mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+			}
 
-		.clients-grid img {
-			max-width: 100%;
-			max-height: 3.2rem;
-			width: auto;
-			margin: 0 auto;
-			display: block;
-			filter: grayscale(100%) brightness(1.6) opacity(0.6);
-			transition: filter 0.25s ease-in-out;
-		}
+			.clients-track {
+				display: flex;
+				align-items: center;
+				gap: 3.5rem;
+				width: max-content;
+				animation: clients-scroll 22s linear infinite;
+			}
 
-		.clients-grid img:hover {
-			filter: grayscale(0%) brightness(1) opacity(1);
-		}
+			.clients-track span {
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.85rem;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: rgba(255,255,255,0.4);
+				white-space: nowrap;
+			}
 
-		@media screen and (max-width: 736px) {
-			#clients { padding: 0 1.5rem 4rem; }
-			.clients-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-		}
+			@keyframes clients-scroll {
+				from { transform: translateX(0); }
+				to   { transform: translateX(-50%); }
+			}
 
 		/* ── FOOTER ─────────────────────────────────────────────── */
 			#footer {
@@ -453,21 +463,26 @@
 			</div>
 		</section>
 
-		<!-- ══════════════════════════════════════════════════════
-		     CLIENTS — franja de logos, sustituye las imágenes de
-		     ejemplo (client1.png … client6.png) por los logos reales
-		════════════════════════════════════════════════════════ -->
-		<section id="clients">
-			<span class="section-eyebrow">Clients</span>
-			<div class="clients-grid">
-				<img src="images/client1.png" alt="Cliente 1">
-				<img src="images/client2.png" alt="Cliente 2">
-				<img src="images/client3.png" alt="Cliente 3">
-				<img src="images/client4.png" alt="Cliente 4">
-				<img src="images/client5.png" alt="Cliente 5">
-				<img src="images/client6.png" alt="Cliente 6">
-			</div>
-		</section>
+			<!-- CLIENTS -->
+			<section id="clients">
+				<p class="clients-label">Clients</p>
+				<div class="clients-marquee">
+					<!-- Sustituye estos nombres por tus clientes reales (o logos <img>) -->
+					<div class="clients-track">
+						<span>Client One</span>
+						<span>Client Two</span>
+						<span>Client Three</span>
+						<span>Client Four</span>
+						<span>Client Five</span>
+						<!-- duplicado para el loop continuo -->
+						<span>Client One</span>
+						<span>Client Two</span>
+						<span>Client Three</span>
+						<span>Client Four</span>
+						<span>Client Five</span>
+					</div>
+				</div>
+			</section>
 
 	<footer id="footer">
 				<div class="footer-row">

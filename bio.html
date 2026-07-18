@@ -42,15 +42,15 @@
 				text-decoration: none;
 			}
 
-		.hero-topleft .hero-name {
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 1.4rem;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: #ffffff
-    transition: color 0.2s ease-in-out;
-}
+			.hero-topleft .hero-name {
+				font-family: var(--font-body);
+				font-weight: 400;
+				font-size: 1.4rem;
+				letter-spacing: 0.02em;
+				text-transform: uppercase;
+				color: #ffffff;
+				transition: color 0.2s ease-in-out;
+			}
 
 			.hero-topleft .hero-role {
 				font-family: var(--font-body);
@@ -65,6 +65,45 @@
 			.hero-topleft:hover .hero-name,
 			.hero-topleft:hover .hero-role { color: var(--accent); }
 
+			/* ── NAV — texto directo arriba a la derecha (idéntico al index) ── */
+			#top-nav {
+				position: fixed;
+				top: 0;
+				right: 0;
+				z-index: 10000;
+				display: flex;
+				align-items: center;
+				gap: 1.75rem;
+				padding: 1.75rem 2.5rem;
+			}
+
+			#top-nav a {
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.7rem;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: #ffffff;
+				text-decoration: none;
+				border-bottom: none;
+				transition: color 0.2s ease-in-out;
+			}
+
+			#top-nav a .glyph {
+				color: var(--accent);
+				margin-right: 0.4rem;
+			}
+
+			#top-nav a:hover { color: var(--accent); }
+			#top-nav a:hover .glyph { color: var(--accent); }
+
+			@media screen and (max-width: 736px) {
+				.hero-topleft { top: 1.25rem; left: 1.25rem; gap: 0.6rem; }
+				.hero-topleft .hero-name { font-size: 1.05rem; }
+				.hero-topleft .hero-role { font-size: 0.65rem; }
+				#top-nav { padding: 1.25rem 1.25rem; gap: 1.1rem; }
+				#top-nav a { font-size: 0.6rem; letter-spacing: 0.12em; }
+			}
 		/* ── NAV — texto directo arriba a la derecha ───────────────── */
 		#top-nav {
 			position: fixed;

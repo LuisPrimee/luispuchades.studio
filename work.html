@@ -1,418 +1,494 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-	<title>Work | Luis Puchades</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<head>
+		<title>Work | Luis Puchades</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="icon" type="image/x-icon" href="favicon-32x32.png" />
-	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<link rel="icon" type="image/x-icon" href="/favicon-32x32.png" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
 
-	<style>
+		<style>
 
-		/* ── VARIABLES (idénticas al index) ───────────────────────── */
-		:root {
-			--bg:        #222222;
-			--bg-panel:  #1a1a1a;
-			--accent:    #bb8844;
-			--border:    #eeeeee;
-			--muted:     #8a928a;
-			--font-body: "Cormorant Garamond", Georgia, serif;
-			--font-head: "Source Sans Pro", Helvetica, sans-serif;
-		}
+			:root {
+				--bg:        #222222;
+				--bg-panel:  #1a1a1a;
+				--accent:    #bb8844;
+				--border:    #eeeeee;
+				--muted:     #8a928a;
+				--font-body: "Cormorant Garamond", Georgia, serif;
+				--font-head: "Source Sans Pro", Helvetica, sans-serif;
+			}
 
-		*, *::before, *::after { box-sizing: border-box; }
+			*, *::before, *::after { box-sizing: border-box; }
 
-		html, body { height: 100%; }
-		body {
-			background-color: var(--bg) !important;
-			font-family: var(--font-body);
-		}
+			html, body { height: 100%; }
+			body { background-color: var(--bg) !important; font-family: var(--font-body); }
+			p { font-family: var(--font-body); }
 
-		#main { background-color: var(--bg) !important; }
+			/* ── IDENTIDAD arriba a la izquierda — vuelve al inicio ──── */
+			.hero-topleft {
+				position: fixed;
+				top: 1.75rem;
+				left: 2.5rem;
+				z-index: 10000;
+				display: flex;
+				align-items: baseline;
+				gap: 0.9rem;
+				line-height: 1;
+				text-decoration: none;
+			}
 
-		/* ── NAV — idéntico al index, arriba a la derecha ─────────── */
-		#top-nav {
-			position: fixed;
-			top: 0;
-			right: 0;
-			z-index: 10000;
-			display: flex;
-			align-items: center;
-			gap: 1.75rem;
-			padding: 1.75rem 2.5rem;
-		}
+			.hero-topleft .hero-name {
+				font-family: var(--font-body);
+				font-weight: 400;
+				font-size: 1.4rem;
+				letter-spacing: 0.02em;
+				text-transform: uppercase;
+				color: #ffffff;
+				transition: color 0.2s ease-in-out;
+			}
 
-		#top-nav a {
-			font-family: var(--font-head);
-			font-weight: 900;
-			font-size: 0.7rem;
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
-			color: #ffffff;
-			text-decoration: none;
-			border-bottom: none;
-			transition: color 0.2s ease-in-out;
-		}
+			.hero-topleft .hero-role {
+				font-family: var(--font-body);
+				font-weight: 400;
+				font-size: 0.85rem;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: rgba(255,255,255,0.6);
+				transition: color 0.2s ease-in-out;
+			}
 
-		#top-nav a .glyph { color: var(--accent); margin-right: 0.4rem; }
-		#top-nav a:hover { color: var(--accent); }
-		#top-nav a:hover .glyph { color: var(--accent); }
+			.hero-topleft:hover .hero-name,
+			.hero-topleft:hover .hero-role { color: var(--accent); }
 
-		@media screen and (max-width: 736px) {
-			#top-nav { padding: 1.25rem 1.25rem; gap: 1.1rem; }
-			#top-nav a { font-size: 0.6rem; letter-spacing: 0.12em; }
-		}
+			/* ── NAV — texto directo arriba a la derecha (idéntico al index) ── */
+			#top-nav {
+				position: fixed;
+				top: 0;
+				right: 0;
+				z-index: 10000;
+				display: flex;
+				align-items: center;
+				gap: 1.75rem;
+				padding: 1.75rem 2.5rem;
+			}
 
-		/* ── HEADER ─────────────────────────────────────────────── */
-		#work-header {
-			padding: 8rem 3rem 1rem;
-			max-width: 78rem;
-			margin: 0 auto;
-			text-align: center;
-		}
+			#top-nav a {
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.7rem;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: #ffffff;
+				text-decoration: none;
+				border-bottom: none;
+				transition: color 0.2s ease-in-out;
+			}
 
-		#work-header .eyebrow {
-			display: block;
-			font-family: var(--font-head);
-			font-weight: 900;
-			font-size: 0.65rem;
-			letter-spacing: 0.25em;
-			text-transform: uppercase;
-			color: var(--accent);
-			margin-bottom: 0.75rem;
-		}
+			#top-nav a .glyph {
+				color: var(--accent);
+				margin-right: 0.4rem;
+			}
 
-		#work-header h1 {
-			font-family: var(--font-body);
-			font-weight: 400;
-			font-size: clamp(2.4rem, 6vw, 4rem);
-			line-height: 1.1;
-			letter-spacing: 0.02em;
-			text-transform: uppercase;
-			color: #ffffff;
-			margin: 0;
-		}
+			#top-nav a:hover { color: var(--accent); }
+			#top-nav a:hover .glyph { color: var(--accent); }
 
-		@media screen and (max-width: 736px) {
-			#work-header { padding: 6.5rem 1.5rem 0.5rem; }
-		}
+			@media screen and (max-width: 736px) {
+				.hero-topleft { top: 1.25rem; left: 1.25rem; gap: 0.6rem; }
+				.hero-topleft .hero-name { font-size: 1.05rem; }
+				.hero-topleft .hero-role { font-size: 0.65rem; }
+				#top-nav { padding: 1.25rem 1.25rem; gap: 1.1rem; }
+				#top-nav a { font-size: 0.6rem; letter-spacing: 0.12em; }
+			}
 
-		/* ── FILTROS — pestañas centradas, texto en blanco legible ── */
-		#work-filters {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			gap: 2.25rem;
-			flex-wrap: wrap;
-			padding: 2.5rem 1.5rem 1rem;
-			max-width: 78rem;
-			margin: 0 auto;
-		}
+			/* ── HEADER ─────────────────────────────────────────────── */
+			#work-header {
+				padding: 8rem 3rem 1rem;
+				max-width: 78rem;
+				margin: 0 auto;
+				text-align: center;
+			}
 
-		.filter-tab {
-			background: none;
-			border: none;
-			padding: 0 0 0.6rem;
-			cursor: pointer;
-			font-family: var(--font-head);
-			font-weight: 900;
-			font-size: 0.7rem;
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
-			color: #ffffff;
-			border-bottom: solid 2px transparent;
-			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-		}
+			#work-header h1 {
+				font-family: var(--font-body);
+				font-weight: 400;
+				font-size: clamp(2.4rem, 6vw, 4rem);
+				line-height: 1.1;
+				letter-spacing: 0.02em;
+				text-transform: uppercase;
+				color: #ffffff;
+				margin: 0;
+				background: none;
+				border: none;
+			}
 
-		.filter-tab:hover { color: var(--accent); }
+			@media screen and (max-width: 736px) {
+				#work-header { padding: 6.5rem 1.5rem 0.5rem; }
+			}
 
-		.filter-tab.active {
-			color: var(--accent);
-			border-bottom-color: var(--accent);
-		}
+			/* ── FILTROS — pestañas centradas, texto en blanco legible ── */
+			#work-filters {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 2.25rem;
+				flex-wrap: wrap;
+				padding: 2.5rem 1.5rem 1rem;
+				max-width: 78rem;
+				margin: 0 auto;
+			}
 
-		@media screen and (max-width: 736px) {
-			#work-filters { gap: 1.25rem; padding: 1.75rem 1.25rem 0.75rem; }
-			.filter-tab { font-size: 0.6rem; letter-spacing: 0.12em; }
-		}
+			.filter-tab {
+				background: none;
+				border: none;
+				padding: 0 0 0.6rem;
+				cursor: pointer;
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.7rem;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: #ffffff;
+				border-bottom: solid 2px transparent;
+				transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+			}
 
-		/* ── GRID DE TRABAJOS — como el index, más grande y completo ── */
-		#work-grid-section {
-			max-width: 82rem;
-			margin: 0 auto;
-			padding: 1.5rem 3rem 6rem;
-		}
+			.filter-tab:hover { color: var(--accent); }
 
-		.work-grid {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 4px;
-		}
+			.filter-tab.active {
+				color: var(--accent);
+				border-bottom-color: var(--accent);
+			}
 
-		.work-grid__item {
-			position: relative;
-			aspect-ratio: 3 / 2;
-			overflow: hidden;
-			background-size: cover;
-			background-position: center;
-			text-decoration: none;
-			border: none;
-			display: block;
-			transition: opacity 0.25s ease-in-out;
-		}
+			@media screen and (max-width: 736px) {
+				#work-filters { gap: 1.25rem; padding: 1.75rem 1.25rem 0.75rem; }
+				.filter-tab { font-size: 0.6rem; letter-spacing: 0.12em; }
+			}
 
-		.work-grid__item.is-hidden {
-			display: none;
-		}
+			/* ── GRID DE TRABAJOS ──────────────────────────────────── */
+			#work-grid-section {
+				max-width: 82rem;
+				margin: 0 auto;
+				padding: 1.5rem 3rem 5rem;
+			}
 
-		.work-grid__item::before {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background: rgba(10,10,10,0.55);
-			opacity: 0;
-			transition: opacity 0.3s ease-in-out;
-		}
+			.work-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 4px;
+			}
 
-		.work-grid__item:hover::before { opacity: 1; }
+			.work-grid__item {
+				position: relative;
+				aspect-ratio: 3 / 2;
+				overflow: hidden;
+				background-size: cover;
+				background-position: center;
+				text-decoration: none;
+				border: none;
+				display: block;
+				transition: opacity 0.25s ease-in-out;
+			}
 
-		.work-grid__title {
-			position: absolute;
-			inset: 0;
-			z-index: 1;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			padding: 1rem;
-			font-family: var(--font-body);
-			font-weight: 400;
-			font-size: 1.5rem;
-			letter-spacing: 0.03em;
-			text-transform: none;
-			color: #ffffff;
-			opacity: 0;
-			transform: scale(0.96);
-			transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-		}
+			.work-grid__item.is-hidden { display: none; }
 
-		.work-grid__item:hover .work-grid__title {
-			opacity: 1;
-			transform: scale(1);
-		}
+			.work-grid__item::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: rgba(10,10,10,0.55);
+				opacity: 0;
+				transition: opacity 0.3s ease-in-out;
+			}
 
-		.work-grid__title span {
-			display: block;
-			font-family: var(--font-head);
-			font-weight: 700;
-			font-size: 0.7rem;
-			font-style: normal;
-			letter-spacing: 0.15em;
-			text-transform: uppercase;
-			color: var(--accent);
-			margin-top: 0.6rem;
-		}
+			.work-grid__item:hover::before { opacity: 1; }
 
-		@media screen and (max-width: 900px) {
-			.work-grid { grid-template-columns: repeat(2, 1fr); }
-		}
+			.work-grid__title {
+				position: absolute;
+				inset: 0;
+				z-index: 1;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				padding: 1rem;
+				font-family: var(--font-body);
+				font-weight: 400;
+				font-size: 1.5rem;
+				letter-spacing: 0.03em;
+				text-transform: none;
+				color: #ffffff;
+				opacity: 0;
+				transform: scale(0.96);
+				transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+			}
 
-		@media screen and (max-width: 736px) {
-			#work-grid-section { padding: 1rem 1.5rem 4rem; }
-		}
+			.work-grid__item:hover .work-grid__title {
+				opacity: 1;
+				transform: scale(1);
+			}
 
-		@media screen and (max-width: 480px) {
-			.work-grid { grid-template-columns: 1fr; }
-		}
+			.work-grid__title span {
+				display: block;
+				font-family: var(--font-head);
+				font-weight: 700;
+				font-size: 0.7rem;
+				font-style: normal;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: var(--accent);
+				margin-top: 0.6rem;
+			}
 
-		/* ── FOOTER (idéntico al resto del sitio) ─────────────────── */
-		#footer {
-			background: var(--bg-panel) !important;
-			border-top: solid 2px var(--border);
-		}
+			@media screen and (max-width: 900px) {
+				.work-grid { grid-template-columns: repeat(2, 1fr); }
+			}
 
-		.footer-row {
-			max-width: 72rem;
-			margin: 0 auto;
-			padding: 1.5rem 2rem !important;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			gap: 16px;
-			flex-wrap: wrap;
-		}
+			@media screen and (max-width: 736px) {
+				#work-grid-section { padding: 1rem 1.5rem 3.5rem; }
+			}
 
-		.footer-left h3 {
-			font-family: var(--font-head);
-			font-size: 0.7rem;
-			margin-bottom: 0.4rem;
-			color: #ffffff;
-		}
+			@media screen and (max-width: 480px) {
+				.work-grid { grid-template-columns: 1fr; }
+			}
 
-		.footer-left p {
-			margin: 0;
-			font-family: var(--font-body);
-			font-size: 1.15rem;
-			font-weight: 400;
-			color: #ffffff !important;
-		}
+			/* ── CLIENTS — franja arriba del footer ────────────────── */
+			#clients {
+				max-width: 100%;
+				margin: 0;
+				padding: 2rem 0 1.5rem;
+				border-top: solid 1px rgba(255,255,255,0.08);
+				overflow: hidden;
+			}
 
-		.footer-left p a { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.35) !important; }
-		.footer-left p a:hover { color: var(--accent) !important; }
+			.clients-label {
+				text-align: center;
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.6rem;
+				letter-spacing: 0.3em;
+				text-transform: uppercase;
+				color: var(--muted);
+				margin: 0 0 1.5rem 0;
+			}
 
-		.footer-right ul.icons.alt {
-			display: flex;
-			gap: 12px;
-			list-style: none;
-			margin: 0;
-			padding: 0;
-		}
+			.clients-marquee {
+				overflow: hidden;
+				-webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+				mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+			}
 
-		.footer-right ul.icons.alt li .icon:before { display: none; }
+			.clients-track {
+				display: flex;
+				align-items: center;
+				gap: 3.5rem;
+				width: max-content;
+				animation: clients-scroll 22s linear infinite;
+			}
 
-		.footer-right ul.icons.alt li a {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			width: 2.4rem;
-			height: 2.4rem;
-			border: solid 2px rgba(255,255,255,0.7);
-			border-radius: 50%;
-			color: #ffffff;
-			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-		}
+			.clients-track span {
+				font-family: var(--font-head);
+				font-weight: 900;
+				font-size: 0.85rem;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: rgba(255,255,255,0.4);
+				white-space: nowrap;
+			}
 
-		.footer-right ul.icons.alt li a:hover {
-			color: #171717;
-			border-color: var(--accent);
-			background-color: var(--accent);
-		}
+			@keyframes clients-scroll {
+				from { transform: translateX(0); }
+				to   { transform: translateX(-50%); }
+			}
 
-		.footer-right ul.icons.alt li a svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
+			/* ── FOOTER ─────────────────────────────────────────────── */
+			#footer {
+				background: var(--bg-panel) !important;
+				border-top: none;
+				width: 100%;
+			}
 
-		@media screen and (max-width: 736px) {
-			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
-		}
+			.footer-row {
+				width: 100%;
+				max-width: none;
+				margin: 0;
+				padding: 0.9rem 2.5rem !important;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 16px;
+				flex-wrap: wrap;
+			}
 
-	</style>
-</head>
+			.footer-left p {
+				margin: 0;
+				font-family: var(--font-body);
+				font-size: 1.2rem;
+				font-weight: 400;
+				color: #ffffff !important;
+			}
+			.footer-left p a { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.35) !important; }
+			.footer-left p a:hover { color: var(--accent) !important; }
 
-<body class="is-preload">
-	<div id="wrapper" class="fade-in">
+			.footer-right ul.icons.alt { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+			.footer-right ul.icons.alt li .icon:before { display: none; }
+			.footer-right ul.icons.alt li a {
+				display: inline-flex; align-items: center; justify-content: center;
+				width: 2.4rem; height: 2.4rem;
+				border: solid 2px rgba(255,255,255,0.7);
+				border-radius: 50%;
+				color: #ffffff;
+				transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+			}
+			.footer-right ul.icons.alt li a:hover { color: #171717; border-color: var(--accent); background-color: var(--accent); }
+			.footer-right ul.icons.alt li a svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
 
-		<!-- ══════════════════════════════════════════════════════
-		     NAV — mismo menú que el index
-		════════════════════════════════════════════════════════ -->
-		<nav id="top-nav" aria-label="Menú principal">
-			<a href="work.html"><span class="glyph">►</span>Work</a>
-			<a href="bio.html"><span class="glyph">·</span>Bio</a>
-			<a href="contact.html"><span class="glyph">◇</span>Contact</a>
-		</nav>
+			@media screen and (max-width: 736px) {
+				.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; padding: 1.25rem 1.5rem !important; }
+			}
 
-		<!-- HEADER -->
-		<header id="work-header">
-			<span class="eyebrow">Selected Work</span>
-			<h1>Work</h1>
-		</header>
+		</style>
+	</head>
 
-		<!-- FILTROS -->
-		<div id="work-filters" role="tablist" aria-label="Filtrar trabajos">
-			<button class="filter-tab active" data-filter="all">All</button>
-			<button class="filter-tab" data-filter="spec-ads">Spec Ads</button>
-			<button class="filter-tab" data-filter="shortfilms">Shortfilms</button>
-			<button class="filter-tab" data-filter="commercials">Commercials</button>
+	<body class="is-preload">
+		<div id="wrapper" class="fade-in">
+
+			<!-- IDENTIDAD — vuelve al inicio -->
+			<a href="/index.html" class="hero-topleft">
+				<span class="hero-name">Luis Puchades</span>
+				<span class="hero-role">Colorist</span>
+			</a>
+
+			<!-- NAV -->
+			<nav id="top-nav" aria-label="Menú principal">
+				<a href="/work.html"><span class="glyph">►</span>Work</a>
+				<a href="/bio.html"><span class="glyph">·</span>Bio</a>
+				<a href="/contact.html"><span class="glyph">◇</span>Contact</a>
+			</nav>
+
+			<!-- HEADER -->
+			<header id="work-header">
+				<h1>Work</h1>
+			</header>
+
+			<!-- FILTROS -->
+			<div id="work-filters" role="tablist" aria-label="Filtrar trabajos">
+				<button class="filter-tab active" data-filter="all">All</button>
+				<button class="filter-tab" data-filter="color-grading">Color Grading</button>
+				<button class="filter-tab" data-filter="spec-ads">Spec Ads</button>
+				<button class="filter-tab" data-filter="shortfilms">Shortfilms</button>
+			</div>
+
+			<!-- GRID -->
+			<section id="work-grid-section">
+				<div class="work-grid" id="work-grid">
+
+					<a href="/work/color-grading/b-a_01.html" class="work-grid__item" data-category="color-grading" style="background-image:url('/images/capturab-a1_2.1.1.jpg');">
+						<span class="work-grid__title">Owner and Pet<span>Color Grading</span></span>
+					</a>
+
+					<a href="/work/color-grading/b-a_02.html" class="work-grid__item" data-category="color-grading" style="background-image:url('/images/capturab-a2_2.2.1.jpg');">
+						<span class="work-grid__title">Purple Mountains<span>Color Grading</span></span>
+					</a>
+
+					<a href="/work/color-grading/b-a_03.html" class="work-grid__item" data-category="color-grading" style="background-image:url('/images/capturab-a3_1.5.1.jpg');">
+						<span class="work-grid__title">Forest Couple<span>Color Grading</span></span>
+					</a>
+
+					<a href="/work/spec-ads/spec1adolf.html" class="work-grid__item" data-category="spec-ads" style="background-image:url('/images/still1.png');">
+						<span class="work-grid__title">Adolfo Dominguez<span>Spec Ad</span></span>
+					</a>
+
+					<a href="/work/shortfilms/exam-paralysis.html" class="work-grid__item" data-category="shortfilms" style="background-image:url('/images/examparalysisportada.jpg');">
+						<span class="work-grid__title">Exam Paralysis<span>Shortfilm</span></span>
+					</a>
+
+				</div>
+			</section>
+
+			<!-- CLIENTS -->
+			<section id="clients">
+				<p class="clients-label">Clients</p>
+				<div class="clients-marquee">
+					<!-- Sustituye estos nombres por tus clientes reales (o logos <img>) -->
+					<div class="clients-track">
+						<span>Client One</span>
+						<span>Client Two</span>
+						<span>Client Three</span>
+						<span>Client Four</span>
+						<span>Client Five</span>
+						<!-- duplicado para el loop continuo -->
+						<span>Client One</span>
+						<span>Client Two</span>
+						<span>Client Three</span>
+						<span>Client Four</span>
+						<span>Client Five</span>
+					</div>
+				</div>
+			</section>
+
+			<footer id="footer">
+				<div class="footer-row">
+					<div class="footer-left">
+						<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a></p>
+					</div>
+					<div class="footer-right">
+						<ul class="icons alt">
+							<li>
+								<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" class="icon brands alt fa-linkedin" aria-label="LinkedIn">
+									<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+								</a>
+							</li>
+							<li>
+								<a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" class="icon brands alt fa-vimeo" aria-label="Vimeo">
+									<svg viewBox="0 0 24 24"><path d="M22 7.35c-.1 2.1-1.56 4.98-4.4 8.62C14.28 20.8 11.53 23 9.27 23c-1.4 0-2.58-1.3-3.55-3.9L4 12.4C3.3 9.8 2.55 8.5 1.75 8.5c-.17 0-.77.36-1.8 1.08L0 8.4c1.13-1 2.24-2 3.34-3C4.82 4.1 5.93 3.4 6.66 3.33c1.66-.16 2.68.98 3.06 3.4.4 2.62.68 4.25.85 4.87.47 2.14.99 3.2 1.56 3.2.44 0 1.11-.7 2-2.08.88-1.39 1.36-2.45 1.42-3.18.13-1.2-.34-1.8-1.42-1.8-.5 0-1.03.12-1.57.35C13.6 4.55 15.65 2.7 18.72 2.8c2.24.07 3.3 1.52 3.28 4.55z"/></svg>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" class="icon brands alt fa-youtube" aria-label="YouTube">
+									<svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</footer>
 		</div>
 
-		<!-- GRID -->
-		<section id="work-grid-section">
-			<div class="work-grid" id="work-grid">
+		<script src="/assets/js/jquery.min.js"></script>
+		<script src="/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/assets/js/jquery.scrolly.min.js"></script>
+		<script src="/assets/js/browser.min.js"></script>
+		<script src="/assets/js/breakpoints.min.js"></script>
+		<script src="/assets/js/util.js"></script>
+		<script src="/assets/js/main.js"></script>
 
-				<a href="work/spec-ads/spec1adolf.html" class="work-grid__item" data-category="spec-ads" style="background-image:url('images/still1.png');">
-					<span class="work-grid__title">Adolfo Dominguez<span>Spec Ad</span></span>
-				</a>
+		<script>
+			/* Filtro de la cuadrícula de trabajos */
+			(function () {
+				var tabs = document.querySelectorAll('.filter-tab');
+				var items = document.querySelectorAll('.work-grid__item');
 
-				<a href="work/shortfilms/exam-paralysis.html" class="work-grid__item" data-category="shortfilms" style="background-image:url('images/examparalysisportada.jpg');">
-					<span class="work-grid__title">Exam Paralysis<span>Shortfilm</span></span>
-				</a>
+				tabs.forEach(function (tab) {
+					tab.addEventListener('click', function () {
+						tabs.forEach(function (t) { t.classList.remove('active'); });
+						tab.classList.add('active');
 
-				<a href="work/commercials/b-a_01.html" class="work-grid__item" data-category="commercials" style="background-image:url('images/capturab-a1_2.1.1.jpg');">
-					<span class="work-grid__title">Owner and Pet<span>Commercial</span></span>
-				</a>
+						var filter = tab.getAttribute('data-filter');
 
-				<a href="work/commercials/b-a_02.html" class="work-grid__item" data-category="commercials" style="background-image:url('images/capturab-a2_2.2.1.jpg');">
-					<span class="work-grid__title">Purple Mountains<span>Commercial</span></span>
-				</a>
-
-				<a href="work/commercials/b-a_03.html" class="work-grid__item" data-category="commercials" style="background-image:url('images/capturab-a3_1.5.1.jpg');">
-					<span class="work-grid__title">Forest Couple<span>Commercial</span></span>
-				</a>
-
-			</div>
-		</section>
-
-		<footer id="footer">
-			<div class="footer-row">
-				<div class="footer-left">
-					<h3>Contact</h3>
-					<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a></p>
-				</div>
-				<div class="footer-right">
-					<ul class="icons alt">
-						<li>
-							<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" class="icon brands alt fa-linkedin" aria-label="LinkedIn">
-								<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-							</a>
-						</li>
-						<li>
-							<a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" class="icon brands alt fa-vimeo" aria-label="Vimeo">
-								<svg viewBox="0 0 24 24"><path d="M22 7.35c-.1 2.1-1.56 4.98-4.4 8.62C14.28 20.8 11.53 23 9.27 23c-1.4 0-2.58-1.3-3.55-3.9L4 12.4C3.3 9.8 2.55 8.5 1.75 8.5c-.17 0-.77.36-1.8 1.08L0 8.4c1.13-1 2.24-2 3.34-3C4.82 4.1 5.93 3.4 6.66 3.33c1.66-.16 2.68.98 3.06 3.4.4 2.62.68 4.25.85 4.87.47 2.14.99 3.2 1.56 3.2.44 0 1.11-.7 2-2.08.88-1.39 1.36-2.45 1.42-3.18.13-1.2-.34-1.8-1.42-1.8-.5 0-1.03.12-1.57.35C13.6 4.55 15.65 2.7 18.72 2.8c2.24.07 3.3 1.52 3.28 4.55z"/></svg>
-							</a>
-						</li>
-						<li>
-							<a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" class="icon brands alt fa-youtube" aria-label="YouTube">
-								<svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</footer>
-	</div>
-
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-
-	<script>
-		/* Filtro de la cuadrícula de trabajos */
-		(function () {
-			var tabs = document.querySelectorAll('.filter-tab');
-			var items = document.querySelectorAll('.work-grid__item');
-
-			tabs.forEach(function (tab) {
-				tab.addEventListener('click', function () {
-					tabs.forEach(function (t) { t.classList.remove('active'); });
-					tab.classList.add('active');
-
-					var filter = tab.getAttribute('data-filter');
-
-					items.forEach(function (item) {
-						var show = filter === 'all' || item.getAttribute('data-category') === filter;
-						item.classList.toggle('is-hidden', !show);
+						items.forEach(function (item) {
+							var show = filter === 'all' || item.getAttribute('data-category') === filter;
+							item.classList.toggle('is-hidden', !show);
+						});
 					});
 				});
-			});
-		})();
-	</script>
+			})();
+		</script>
 
-</body>
+	</body>
 </html>

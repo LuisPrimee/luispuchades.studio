@@ -443,7 +443,37 @@
 
 	<div id="split">
 
-	
+		<!-- PANEL IMAGEN + VECTORSCOPIO -->
+		<div id="visual-panel">
+
+			<!-- Vectorscopio: círculo con los 6 puntos de crominancia estándar (R/Mg/B/Cy/G/Yl) -->
+			<svg class="vectorscope" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+				<circle class="ring" cx="110" cy="110" r="100" />
+				<circle class="ring" cx="110" cy="110" r="66" />
+				<circle class="ring" cx="110" cy="110" r="33" />
+				<line class="axis" x1="10" y1="110" x2="210" y2="110" />
+				<line class="axis" x1="110" y1="10" x2="110" y2="210" />
+
+				<!-- R -->
+				<circle class="target" cx="188" cy="70" r="5" fill="#ff4d4d" />
+				<text class="target-label" x="196" y="73">R</text>
+				<!-- Mg -->
+				<circle class="target" cx="168" cy="188" r="5" fill="#ff4dd8" />
+				<text class="target-label" x="176" y="192">MG</text>
+				<!-- B -->
+				<circle class="target" cx="52" cy="188" r="5" fill="#4d6bff" />
+				<text class="target-label" x="30" y="200" text-anchor="end">B</text>
+				<!-- Cy -->
+				<circle class="target" cx="32" cy="70" r="5" fill="#4de0ff" />
+				<text class="target-label" x="8" y="66" text-anchor="end">CY</text>
+				<!-- G -->
+				<circle class="target" cx="52" cy="32" r="5" fill="#4dff88" />
+				<text class="target-label" x="30" y="24" text-anchor="end">G</text>
+				<!-- Yl -->
+				<circle class="target" cx="168" cy="32" r="5" fill="#f5e642" />
+				<text class="target-label" x="176" y="24">YL</text>
+			</svg>
+
 			<span class="visual-eyebrow">Open for projects</span>
 			<h1>Let's grade<br />something.</h1>
 			<p class="subtitle">Spots, short films, and looks you can't quite describe yet — send over the details.</p>

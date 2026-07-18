@@ -145,6 +145,7 @@
 			.filter-tab {
 				background: none;
 				border: none;
+				box-shadow: none;
 				padding: 0 0 0.6rem;
 				cursor: pointer;
 				font-family: var(--font-head);
@@ -152,15 +153,15 @@
 				font-size: 0.7rem;
 				letter-spacing: 0.2em;
 				text-transform: uppercase;
-				color: #ffffff;
+				color: #ffffff !important;
 				border-bottom: solid 2px transparent;
 				transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 			}
 
-			.filter-tab:hover { color: var(--accent); }
+			.filter-tab:hover { color: var(--accent) !important; }
 
 			.filter-tab.active {
-				color: var(--accent);
+				color: var(--accent) !important;
 				border-bottom-color: var(--accent);
 			}
 

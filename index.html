@@ -1,245 +1,193 @@
 <!DOCTYPE HTML>
-
+<html>
 <head>
-    <title> Luis Puchades | Colorist</title>
-    <meta charset="utf-8" />
+	<title>Luis Puchades | Colorist</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="icon" type="image/x-icon" href="favicon-32x32.png" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-<link rel="stylesheet" href="assets/css/main.css" />
-<link rel="icon" type="image/x-icon" href="favicon-32x32.png" />
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-7Y6XCR4B55"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-7Y6XCR4B55');
+	</script>
 
-<noscript>
-    <link rel="stylesheet" href="assets/css/noscript.css" />
-</noscript>
+	<style>
 
-</head>
-		<style>
-
-		/* ── VARIABLES (mismo lenguaje visual que contact.html) ──── */
+		/* ── VARIABLES ──────────────────────────────────────────────
+		   Tipografía: Cormorant Garamond para todo el texto de lectura
+		   (títulos grandes y párrafos, sustituye a Merriweather).
+		   Source Sans Pro se mantiene solo para nav/etiquetas en
+		   mayúsculas, igual que en el resto del sitio.
+		*/
 		:root {
 			--bg:        #222222;
 			--bg-panel:  #1a1a1a;
 			--accent:    #bb8844;
 			--border:    #eeeeee;
 			--muted:     #8a928a;
-			--font-body: "Merriweather", Georgia, serif;
+			--font-body: "Cormorant Garamond", Georgia, serif;
 			--font-head: "Source Sans Pro", Helvetica, sans-serif;
 		}
 
-		/* ── FONDO GENERAL: fuera el blanco, dentro el negro neutro ── */
+		*, *::before, *::after { box-sizing: border-box; }
+
+		body {
+			font-family: var(--font-body);
+		}
+
+		p, .latest-work-header p {
+			font-family: var(--font-body);
+		}
+
+		/* ── FONDO GENERAL ──────────────────────────────────────── */
 		#main {
 			background-color: var(--bg) !important;
 		}
 
-		/* ── MENÚ FLOTANTE (favicon arriba a la derecha) ───────────
-		   No toca #intro ni la flecha .scrolly — vive por encima de
-		   todo, fijo, independiente del scroll.
-		*/
-		#menu-toggle {
+		/* ── NAV — texto directo arriba, sin desplegable ──────────── */
+		#top-nav {
 			position: fixed;
-			top: 1.5rem;
-			right: 1.5rem;
+			top: 0;
+			right: 0;
 			z-index: 10000;
-			width: 3rem;
-			height: 3rem;
-			border-radius: 50%;
-			background: rgba(20,20,20,0.55);
-			backdrop-filter: blur(8px);
-			-webkit-backdrop-filter: blur(8px);
 			display: flex;
 			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			padding: 0;
-			transition: border-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+			gap: 1.75rem;
+			padding: 1.75rem 2.5rem;
 		}
 
-		#menu-toggle:hover,
-		#menu-toggle[aria-expanded="true"] {
-			border-color: var(--accent);
-		}
-
-		#menu-toggle img {
-			width: 1.6rem;
-			height: 1.6rem;
-			border-radius: 50%;
-			display: block;
-		}
-
-		#dropdown-menu {
-			position: fixed;
-			top: 4.75rem;
-			right: 1.5rem;
-			z-index: 9999;
-			min-width: 13rem;
-			background: rgba(20,20,20,0.92);
-			backdrop-filter: blur(10px);
-			-webkit-backdrop-filter: blur(10px);
-			border: solid 2px rgba(255,255,255,0.15);
-			padding: 0.5rem;
-			opacity: 0;
-			transform: translateY(-8px);
-			pointer-events: none;
-			transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-		}
-
-		#dropdown-menu.open {
-			opacity: 1;
-			transform: translateY(0);
-			pointer-events: auto;
-		}
-
-		.menu-label {
-			display: block;
-			font-family: var(--font-head);
-			font-weight: 900;
-			font-size: 0.6rem;
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
-			color: var(--muted);
-			padding: 0.6rem 1rem 0.3rem;
-		}
-
-		#dropdown-menu a {
-			display: block;
+		#top-nav a {
 			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.7rem;
-			letter-spacing: 0.15em;
+			letter-spacing: 0.2em;
 			text-transform: uppercase;
 			color: #ffffff;
 			text-decoration: none;
 			border-bottom: none;
-			padding: 0.85rem 1rem;
-			transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+			transition: color 0.2s ease-in-out;
 		}
 
-		#dropdown-menu a.sub {
-			padding-left: 1.5rem;
-			font-size: 0.65rem;
-			color: rgba(255,255,255,0.75);
-		}
-
-		#dropdown-menu a:hover {
+		#top-nav a .glyph {
 			color: var(--accent);
-			background: rgba(255,255,255,0.04);
+			margin-right: 0.4rem;
 		}
 
-		#dropdown-menu .menu-divider {
-			border-top: solid 1px rgba(255,255,255,0.1);
-			margin: 0.4rem 0.25rem;
+		#top-nav a:hover { color: var(--accent); }
+		#top-nav a:hover .glyph { color: var(--accent); }
+
+		@media screen and (max-width: 736px) {
+			#top-nav { padding: 1.25rem 1.25rem; gap: 1.1rem; }
+			#top-nav a { font-size: 0.6rem; letter-spacing: 0.12em; }
 		}
 
-		/* ── GALERÍA A PANTALLA COMPLETA CON SCROLL-SNAP ───────────
-		   Cada work ocupa un viewport entero; el scroll "engancha"
-		   en cada uno según bajas. No afecta a #intro ni a la flecha.
-		*/
-		html {
-			scroll-snap-type: y proximity;
+		/* ── LATEST WORK — cuadrícula clicable debajo del hero ────── */
+		#latest-work {
+			max-width: 78rem;
+			margin: 0 auto;
+			padding: 5rem 3rem 6rem;
 		}
 
-		#main {
-			padding: 0 !important;
-			border-top: none !important;
-		}
-
-		.work-slide {
-			position: relative;
-			scroll-snap-align: start;
-			min-height: 100vh;
+		.latest-work-header {
 			display: flex;
-			align-items: flex-end;
-			background-size: cover;
-			background-position: center;
-			padding: 4rem;
-			overflow: hidden;
-			border-top: solid 1px rgba(255,255,255,0.06);
+			align-items: baseline;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 1rem;
+			margin-bottom: 2rem;
 		}
 
-		.work-slide::before {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background: linear-gradient(180deg, rgba(20,20,20,0.15) 0%, rgba(20,20,20,0.92) 100%);
-			z-index: 0;
-		}
-
-		.work-slide__content {
-			position: relative;
-			z-index: 1;
-			max-width: 640px;
-		}
-
-		.work-slide__label {
-			display: block;
+		.section-eyebrow {
 			font-family: var(--font-head);
 			font-weight: 900;
-			font-size: 0.65rem;
+			font-size: 0.7rem;
 			letter-spacing: 0.25em;
 			text-transform: uppercase;
 			color: var(--accent);
-			margin-bottom: 1rem;
 		}
 
-		.work-slide__content h2 {
-			font-family: var(--font-head) !important;
-			font-weight: 900 !important;
-			font-size: 2.4rem !important;
-			line-height: 1.1 !important;
-			letter-spacing: 0.03em !important;
-			text-transform: uppercase !important;
-			color: #ffffff !important;
-			margin: 0 0 1rem 0 !important;
-		}
-
-		.work-slide__content h2 a {
-			border-bottom: 0 !important;
-			color: inherit !important;
-		}
-
-		.work-slide__content p {
-			font-family: var(--font-body);
-			font-size: 0.95rem;
-			line-height: 1.9;
-			color: rgba(255,255,255,0.65);
-			text-align: left;
-			max-width: 480px;
-			margin: 0 0 1.75rem 0;
-		}
-
-		.work-slide__cta {
-			display: inline-flex;
-			align-items: center;
-			gap: 0.6rem;
+		.view-all-link {
 			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.65rem;
 			letter-spacing: 0.15em;
 			text-transform: uppercase;
-			color: #171717;
-			background: var(--accent);
-			border: solid 2px var(--accent);
-			padding: 0.8rem 1.8rem;
+			color: rgba(255,255,255,0.7);
 			text-decoration: none;
-			transition: filter 0.2s ease-in-out;
+			border-bottom: none;
+			transition: color 0.2s ease-in-out;
 		}
 
-		.work-slide__cta:hover {
-			filter: brightness(1.15);
-			border-bottom: solid 2px var(--accent) !important;
+		.view-all-link:hover { color: var(--accent); }
+
+		.work-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 1.25rem;
+		}
+
+		.work-grid__item {
+			position: relative;
+			aspect-ratio: 4 / 3;
+			overflow: hidden;
+			background-size: cover;
+			background-position: center;
+			text-decoration: none;
+			border: none;
+			display: block;
+			transition: transform 0.3s ease-in-out;
+		}
+
+		.work-grid__item:hover { transform: scale(1.02); }
+
+		.work-grid__item::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(180deg, rgba(20,20,20,0) 40%, rgba(20,20,20,0.9) 100%);
+			transition: opacity 0.3s ease-in-out;
+		}
+
+		.work-grid__title {
+			position: absolute;
+			left: 0; right: 0; bottom: 0;
+			z-index: 1;
+			padding: 1.5rem;
+			font-family: var(--font-head);
+			font-weight: 900;
+			font-size: 0.9rem;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+			color: #ffffff;
+		}
+
+		.work-grid__title span {
+			display: block;
+			font-family: var(--font-body);
+			font-weight: 400;
+			font-size: 0.95rem;
+			font-style: italic;
+			letter-spacing: 0.01em;
+			text-transform: none;
+			color: var(--accent);
+			margin-top: 0.35rem;
 		}
 
 		@media screen and (max-width: 736px) {
-			.work-slide { padding: 2rem; align-items: flex-end; }
-			.work-slide__content h2 { font-size: 1.8rem !important; }
-			#menu-toggle { top: 1rem; right: 1rem; }
-			#dropdown-menu { top: 4.25rem; right: 1rem; }
+			#latest-work { padding: 3.5rem 1.5rem 4rem; }
+			.work-grid { grid-template-columns: 1fr; }
 		}
 
-		/* ── FOOTER a juego con contact.html ───────────────────────── */
+		/* ── FOOTER (idéntico al resto del sitio, sin sección CLIENTS) ── */
 		#footer {
 			background: var(--bg-panel) !important;
 			border-top: solid 2px var(--border);
@@ -257,6 +205,7 @@
 		}
 
 		.footer-left h3 {
+			font-family: var(--font-head);
 			font-size: 0.7rem;
 			margin-bottom: 0.4rem;
 			color: #ffffff;
@@ -264,8 +213,9 @@
 
 		.footer-left p {
 			margin: 0;
-			font-size: 1.05rem;
-			font-weight: 300;
+			font-family: var(--font-body);
+			font-size: 1.15rem;
+			font-weight: 400;
 			color: #ffffff !important;
 		}
 
@@ -309,6 +259,32 @@
 			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
 		}
 
+		/* ── HERO — estructura intacta, solo se estiliza con la
+		     tipografía nueva; nada de vídeo/overlay/flecha se toca. */
+		#intro h1.hero-title {
+			font-family: var(--font-body);
+			font-weight: 300;
+			font-size: clamp(2.4rem, 7vw, 5.5rem);
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			color: #ffffff;
+			margin: 0 0 1rem 0;
+		}
+
+		#intro h1.hero-title .hero-separator {
+			color: var(--accent);
+			margin: 0 0.5rem;
+			font-weight: 300;
+		}
+
+		#intro p {
+			font-family: var(--font-body);
+			font-style: italic;
+			font-size: 1.15rem;
+			font-weight: 400;
+			color: rgba(255,255,255,0.75);
+		}
+
 	</style>
 </head>
 
@@ -326,77 +302,57 @@
 			<div class="intro-overlay"></div>
 
 			<h1 class="hero-title">
-    <span>LUIS PUCHADES</span>
-    <span class="hero-separator">—</span>
-    <span>COLORIST</span>
-</h1>
-		
+				<span>LUIS PUCHADES</span>
+				<span class="hero-separator">—</span>
+				<span>COLORIST</span>
+			</h1>
+
 			<p>I make sure every color serves your story.</p>
 			<ul class="actions">
 				<li>
-					<a href="#main" class="button icon solid solo fa-arrow-down scrolly"></a>
+					<a href="#latest-work" class="button icon solid solo fa-arrow-down scrolly"></a>
 				</li>
 			</ul>
 		</div>
 
 		<!-- ══════════════════════════════════════════════════════
-		     MENÚ FLOTANTE — sustituye al nav estático
+		     NAV — letras directas arriba, sin desplegable
 		════════════════════════════════════════════════════════ -->
-		<button id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="dropdown-menu">
-			<img src="favicon-32x32.png" alt="" />
-		</button>
-		<nav id="dropdown-menu" aria-label="Menú principal">
-			<span class="menu-label">Work</span>
-			<a href="work.html#color-grading" class="sub">Color Grading</a>
-			<a href="work.html#spec-ads" class="sub">Spec Ads</a>
-			<a href="work.html#shortfilms" class="sub">Shortfilms</a>
-			<div class="menu-divider"></div>
-			<a href="bio.html">Bio</a>
-			<a href="contact.html">Contact</a>
+		<nav id="top-nav" aria-label="Menú principal">
+			<a href="work.html"><span class="glyph">►</span>Work</a>
+			<a href="bio.html"><span class="glyph">·</span>Bio</a>
+			<a href="contact.html"><span class="glyph">◇</span>Contact</a>
 		</nav>
 
 		<!-- ══════════════════════════════════════════════════════
-		     WORK — galería a pantalla completa, una por scroll
+		     LATEST WORK — cuadrícula, pinchas y entras al proyecto
 		════════════════════════════════════════════════════════ -->
-		<div id="main">
+		<section id="latest-work">
+			<div class="latest-work-header">
+				<span class="section-eyebrow">Latest Work</span>
+				<a href="work.html" class="view-all-link">View all work →</a>
+			</div>
 
-			<article class="work-slide" style="background-image:url('images/still1.png');">
-				<div class="work-slide__content">
-					<span class="work-slide__label">Spec Ad</span>
-					<h2><a href="work/spec-ads/spec1adolf.html">Adolfo Dominguez Spec Ad</a></h2>
-					<p>Cinematic color grading applied to a visual piece. Focus on tone, mood and narrative consistency.</p>
-					<a href="work/spec-ads/spec1adolf.html" class="work-slide__cta">View</a>
-				</div>
-			</article>
+			<div class="work-grid">
 
-			<article class="work-slide" style="background-image:url('images/examparalysisportada.jpg');">
-				<div class="work-slide__content">
-					<span class="work-slide__label">Shortfilm</span>
-					<h2><a href="work/shortfilms/exam-paralysis.html">Exam Paralysis</a></h2>
-					<p>As a result of the insomnia caused by the stress of exams, our protagonist will begin to witness the consequences.</p>
-					<a href="work/shortfilms/exam-paralysis.html" class="work-slide__cta">View</a>
-				</div>
-			</article>
+				<a href="work/spec-ads/spec1adolf.html" class="work-grid__item" style="background-image:url('images/still1.png');">
+					<span class="work-grid__title">Adolfo Dominguez<span>Spec Ad</span></span>
+				</a>
 
-			<article class="work-slide" style="background-image:url('images/pic03.jpg');">
-				<div class="work-slide__content">
-					<span class="work-slide__label">Selected Work</span>
-					<h2><a href="#">Coming Soon</a></h2>
-					<p>Commercial visual tone design for brand storytelling.</p>
-					<a href="#" class="work-slide__cta">View</a>
-				</div>
-			</article>
+				<a href="work/shortfilms/exam-paralysis.html" class="work-grid__item" style="background-image:url('images/examparalysisportada.jpg');">
+					<span class="work-grid__title">Exam Paralysis<span>Shortfilm</span></span>
+				</a>
 
-			<article class="work-slide" style="background-image:url('images/pic04.jpg');">
-				<div class="work-slide__content">
-					<span class="work-slide__label">Selected Work</span>
-					<h2><a href="#">Coming Soon</a></h2>
-					<p>Cinematic grading applied to narrative short-form content.</p>
-					<a href="#" class="work-slide__cta">View</a>
-				</div>
-			</article>
+				<a href="work.html#color-grading" class="work-grid__item" style="background-image:url('images/pic03.jpg');">
+					<span class="work-grid__title">Coming Soon<span>Color Grading</span></span>
+				</a>
 
-		</div>
+				<a href="work.html#spec-ads" class="work-grid__item" style="background-image:url('images/pic04.jpg');">
+					<span class="work-grid__title">Coming Soon<span>Spec Ads</span></span>
+				</a>
+
+			</div>
+		</section>
 
 		<footer id="footer">
 			<div class="footer-row">
@@ -435,47 +391,5 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 
-	<!-- Menú flotante: independiente del nav/scroll original -->
-	<script>
-		(function () {
-			var toggle = document.getElementById('menu-toggle');
-			var menu = document.getElementById('dropdown-menu');
-
-			function closeMenu() {
-				menu.classList.remove('open');
-				toggle.setAttribute('aria-expanded', 'false');
-			}
-
-			function openMenu() {
-				menu.classList.add('open');
-				toggle.setAttribute('aria-expanded', 'true');
-			}
-
-			toggle.addEventListener('click', function (e) {
-				e.stopPropagation();
-				if (menu.classList.contains('open')) {
-					closeMenu();
-				} else {
-					openMenu();
-				}
-			});
-
-			document.addEventListener('click', function (e) {
-				if (!menu.contains(e.target) && e.target !== toggle) {
-					closeMenu();
-				}
-			});
-
-			document.addEventListener('keydown', function (e) {
-				if (e.key === 'Escape') closeMenu();
-			});
-
-			menu.querySelectorAll('a').forEach(function (link) {
-				link.addEventListener('click', closeMenu);
-			});
-		})();
-	</script>
-
 </body>
-
 </html>

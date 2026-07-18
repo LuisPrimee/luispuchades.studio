@@ -22,12 +22,7 @@
 
 	<style>
 
-		/* ── VARIABLES ──────────────────────────────────────────────
-		   Tipografía: Cormorant Garamond para todo el texto de lectura
-		   (títulos grandes y párrafos, sustituye a Merriweather).
-		   Source Sans Pro se mantiene solo para nav/etiquetas en
-		   mayúsculas, igual que en el resto del sitio.
-		*/
+		/* ── VARIABLES ────────────────────────────────────────────── */
 		:root {
 			--bg:        #222222;
 			--bg-panel:  #1a1a1a;
@@ -53,7 +48,7 @@
 			background-color: var(--bg) !important;
 		}
 
-		/* ── NAV — texto directo arriba, sin desplegable ──────────── */
+		/* ── NAV — texto directo arriba a la derecha ──────────────── */
 		#top-nav {
 			position: fixed;
 			top: 0;
@@ -88,6 +83,51 @@
 		@media screen and (max-width: 736px) {
 			#top-nav { padding: 1.25rem 1.25rem; gap: 1.1rem; }
 			#top-nav a { font-size: 0.6rem; letter-spacing: 0.12em; }
+		}
+
+		/* ── HERO — texto arriba a la izquierda, sin título grande ── */
+		#intro {
+			position: relative;
+		}
+
+		.hero-topleft {
+			position: fixed;
+			top: 1.75rem;
+			left: 2.5rem;
+			z-index: 10000;
+			line-height: 1;
+		}
+
+		.hero-topleft .hero-name {
+			display: block;
+			font-family: var(--font-body);
+			font-weight: 400;
+			font-size: 1.9rem;
+			letter-spacing: 0.03em;
+			text-transform: uppercase;
+			color: var(--accent);
+		}
+
+		.hero-topleft .hero-role {
+			display: block;
+			margin-top: 0.35rem;
+			font-family: var(--font-body);
+			font-style: italic;
+			font-weight: 400;
+			font-size: 1.15rem;
+			color: #ffffff;
+		}
+
+		@media screen and (max-width: 736px) {
+			.hero-topleft { top: 1.25rem; left: 1.25rem; }
+			.hero-topleft .hero-name { font-size: 1.4rem; }
+			.hero-topleft .hero-role { font-size: 0.95rem; }
+		}
+
+		/* La flecha se mantiene centrada abajo del hero, tal cual estaba */
+		#intro .actions {
+			position: relative;
+			z-index: 10;
 		}
 
 		/* ── LATEST WORK — cuadrícula clicable debajo del hero ────── */
@@ -129,65 +169,123 @@
 
 		.view-all-link:hover { color: var(--accent); }
 
+		/* 3 columnas fijas, banners grandes y casi pegados */
 		.work-grid {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-			gap: 1.25rem;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 3px;
 		}
 
 		.work-grid__item {
 			position: relative;
-			aspect-ratio: 4 / 3;
+			aspect-ratio: 1 / 1;
 			overflow: hidden;
 			background-size: cover;
 			background-position: center;
 			text-decoration: none;
 			border: none;
 			display: block;
-			transition: transform 0.3s ease-in-out;
 		}
-
-		.work-grid__item:hover { transform: scale(1.02); }
 
 		.work-grid__item::before {
 			content: "";
 			position: absolute;
 			inset: 0;
-			background: linear-gradient(180deg, rgba(20,20,20,0) 40%, rgba(20,20,20,0.9) 100%);
+			background: rgba(10,10,10,0.55);
+			opacity: 0;
 			transition: opacity 0.3s ease-in-out;
 		}
 
+		.work-grid__item:hover::before { opacity: 1; }
+
+		/* Título y subtítulo centrados, solo visibles al hover */
 		.work-grid__title {
 			position: absolute;
-			left: 0; right: 0; bottom: 0;
+			inset: 0;
 			z-index: 1;
-			padding: 1.5rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding: 1rem;
 			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.9rem;
-			letter-spacing: 0.05em;
+			letter-spacing: 0.08em;
 			text-transform: uppercase;
 			color: #ffffff;
+			opacity: 0;
+			transform: scale(0.96);
+			transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+		}
+
+		.work-grid__item:hover .work-grid__title {
+			opacity: 1;
+			transform: scale(1);
 		}
 
 		.work-grid__title span {
 			display: block;
 			font-family: var(--font-body);
 			font-weight: 400;
-			font-size: 0.95rem;
+			font-size: 1rem;
 			font-style: italic;
 			letter-spacing: 0.01em;
 			text-transform: none;
 			color: var(--accent);
-			margin-top: 0.35rem;
+			margin-top: 0.4rem;
 		}
 
 		@media screen and (max-width: 736px) {
 			#latest-work { padding: 3.5rem 1.5rem 4rem; }
+			.work-grid { grid-template-columns: repeat(2, 1fr); }
+		}
+
+		@media screen and (max-width: 480px) {
 			.work-grid { grid-template-columns: 1fr; }
 		}
 
-		/* ── FOOTER (idéntico al resto del sitio, sin sección CLIENTS) ── */
+		/* ── CLIENTS — franja de logos abajo del todo, antes del footer ── */
+		#clients {
+			max-width: 78rem;
+			margin: 0 auto;
+			padding: 0 3rem 5rem;
+			text-align: center;
+		}
+
+		#clients .section-eyebrow {
+			display: block;
+			margin-bottom: 2rem;
+		}
+
+		.clients-grid {
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			align-items: center;
+			gap: 2rem;
+		}
+
+		.clients-grid img {
+			max-width: 100%;
+			max-height: 3.2rem;
+			width: auto;
+			margin: 0 auto;
+			display: block;
+			filter: grayscale(100%) brightness(1.6) opacity(0.6);
+			transition: filter 0.25s ease-in-out;
+		}
+
+		.clients-grid img:hover {
+			filter: grayscale(0%) brightness(1) opacity(1);
+		}
+
+		@media screen and (max-width: 736px) {
+			#clients { padding: 0 1.5rem 4rem; }
+			.clients-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+		}
+
+		/* ── FOOTER ─────────────────────────────────────────────── */
 		#footer {
 			background: var(--bg-panel) !important;
 			border-top: solid 2px var(--border);
@@ -259,41 +357,20 @@
 			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
 		}
 
-		/* ── HERO — estructura intacta, solo se estiliza con la
-		     tipografía nueva; nada de vídeo/overlay/flecha se toca. */
-		#intro h1.hero-title {
-			font-family: var(--font-body);
-			font-weight: 300;
-			font-size: clamp(2.4rem, 7vw, 5.5rem);
-			letter-spacing: 0.04em;
-			text-transform: uppercase;
-			color: #ffffff;
-			margin: 0 0 1rem 0;
-		}
-
-		#intro h1.hero-title .hero-separator {
-			color: var(--accent);
-			margin: 0 0.5rem;
-			font-weight: 300;
-		}
-
-		#intro p {
-			font-family: var(--font-body);
-			font-style: italic;
-			font-size: 1.15rem;
-			font-weight: 400;
-			color: rgba(255,255,255,0.75);
-		}
-
 	</style>
 </head>
 
 <body class="is-preload">
 	<div id="wrapper" class="fade-in">
 
+		<!-- Texto arriba a la izquierda: nombre + rol -->
+		<div class="hero-topleft">
+			<span class="hero-name">Luis Puchades</span>
+			<span class="hero-role">Colorist</span>
+		</div>
+
 		<!-- ══════════════════════════════════════════════════════
-		     HERO — NO TOCAR: vídeo, overlay, título y flecha
-		     tal cual estaban.
+		     HERO — vídeo, overlay y flecha; sin título grande ni frase
 		════════════════════════════════════════════════════════ -->
 		<div id="intro">
 			<video autoplay muted loop playsinline id="bg-video">
@@ -301,13 +378,6 @@
 			</video>
 			<div class="intro-overlay"></div>
 
-			<h1 class="hero-title">
-				<span>LUIS PUCHADES</span>
-				<span class="hero-separator">—</span>
-				<span>COLORIST</span>
-			</h1>
-
-			<p>I make sure every color serves your story.</p>
 			<ul class="actions">
 				<li>
 					<a href="#latest-work" class="button icon solid solo fa-arrow-down scrolly"></a>
@@ -316,7 +386,7 @@
 		</div>
 
 		<!-- ══════════════════════════════════════════════════════
-		     NAV — letras directas arriba, sin desplegable
+		     NAV — arriba a la derecha
 		════════════════════════════════════════════════════════ -->
 		<nav id="top-nav" aria-label="Menú principal">
 			<a href="work.html"><span class="glyph">►</span>Work</a>
@@ -325,7 +395,7 @@
 		</nav>
 
 		<!-- ══════════════════════════════════════════════════════
-		     LATEST WORK — cuadrícula, pinchas y entras al proyecto
+		     LATEST WORK — cuadrícula, título solo al hover
 		════════════════════════════════════════════════════════ -->
 		<section id="latest-work">
 			<div class="latest-work-header">
@@ -351,6 +421,22 @@
 					<span class="work-grid__title">Coming Soon<span>Spec Ads</span></span>
 				</a>
 
+			</div>
+		</section>
+
+		<!-- ══════════════════════════════════════════════════════
+		     CLIENTS — franja de logos, sustituye las imágenes de
+		     ejemplo (client1.png … client6.png) por los logos reales
+		════════════════════════════════════════════════════════ -->
+		<section id="clients">
+			<span class="section-eyebrow">Clients</span>
+			<div class="clients-grid">
+				<img src="images/client1.png" alt="Cliente 1">
+				<img src="images/client2.png" alt="Cliente 2">
+				<img src="images/client3.png" alt="Cliente 3">
+				<img src="images/client4.png" alt="Cliente 4">
+				<img src="images/client5.png" alt="Cliente 5">
+				<img src="images/client6.png" alt="Cliente 6">
 			</div>
 		</section>
 

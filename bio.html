@@ -12,110 +12,94 @@
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	<style>
 
-	
-			:root {
-				--bg:        #222222;
-				--bg-panel:  #1a1a1a;
-				--accent:    #bb8844;
-				--border:    #eeeeee;
-				--muted:     #8a928a;
-			--font-body: "Cormorant Garamond", "Inter", sans-serif;
-				--font-head: "Source Sans Pro", Helvetica, sans-serif;
-				  --bio-image: url("assets/images/foto-biosincolor.png"); /* ← AÑADE ESTO */
-			}
+		:root {
+			--bg:        #222222;
+			--bg-panel:  #1a1a1a;
+			--accent:    #bb8844;
+			--border:    #eeeeee;
+			--muted:     #8a928a;
+			--font-body: "Cormorant Garamond", Georgia, serif;
+			--font-head: "Source Sans Pro", Helvetica, sans-serif;
 
-			*, *::before, *::after { box-sizing: border-box; }
+			/*
+				── CÓMO PONER TU FOTO ──
+				1) Copia tu imagen a images/bio-photo.jpg
+				2) Cambia la línea de abajo por:
+				   --bio-image: url("images/bio-photo.jpg");
+			*/
+			--bio-image: url("images/foto-biosincolor.png");
+		}
 
-		html, body {
-    height: 100%;
-}
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-    display: flex;
-    flex-direction: column;
-}
+		html, body { height: 100%; }
 
-#bio-split {
-    flex: 1;
-}
-			body { background-color: var(--bg) !important; font-family: var(--font-body); }
-			p { font-family: var(--font-body); }
+		body {
+			background-color: var(--bg);
+			font-family: var(--font-body);
+			font-weight: 300;
+			font-size: 1rem;
+			line-height: 2.1;
+			color: var(--muted);
+		}
 
-			/* ── IDENTIDAD arriba a la izquierda — vuelve al inicio ──── */
-			.hero-topleft {
-				position: fixed;
-				top: 1.75rem;
-				left: 2.5rem;
-				z-index: 10000;
-				display: flex;
-				align-items: baseline;
-				gap: 0.9rem;
-				line-height: 1;
-				text-decoration: none;
-			}
+		html { font-size: 17pt; }
+		@media screen and (max-width: 1680px) { html { font-size: 13pt; } }
+		@media screen and (max-width: 1280px) { html { font-size: 12pt; } }
+		@media screen and (max-width:  360px) { html { font-size: 11pt; } }
 
-			.hero-topleft .hero-name {
-				font-family: var(--font-body);
-				font-weight: 400;
-				font-size: 1.4rem;
-				letter-spacing: 0.02em;
-				text-transform: uppercase;
-				color: #ffffff;
-				transition: color 0.2s ease-in-out;
-			}
+		h1, h2 {
+			font-family: var(--font-head);
+			font-weight: 900;
+			letter-spacing: 0.075em;
+			text-transform: uppercase;
+			color: #ffffff;
+		}
 
-			.hero-topleft .hero-role {
-				font-family: var(--font-body);
-				font-weight: 400;
-				font-size: 0.85rem;
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				color: rgba(255,255,255,0.6);
-				transition: color 0.2s ease-in-out;
-			}
+		a {
+			color: var(--accent);
+			text-decoration: none;
+			border-bottom: dotted 1px rgba(187,136,68,0.4);
+			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+		}
+		a:hover { border-bottom-color: transparent; }
 
-			.hero-topleft:hover .hero-name,
-			.hero-topleft:hover .hero-role { color: var(--accent); }
+		/* ── IDENTIDAD arriba a la izquierda — vuelve al inicio ──── */
+		.hero-topleft {
+			position: fixed;
+			top: 1.75rem;
+			left: 2.5rem;
+			z-index: 10000;
+			display: flex;
+			align-items: baseline;
+			gap: 0.9rem;
+			line-height: 1;
+			text-decoration: none;
+		}
 
-			/* ── NAV — texto directo arriba a la derecha (idéntico al index) ── */
-			#top-nav {
-				position: fixed;
-				top: 0;
-				right: 0;
-				z-index: 10000;
-				display: flex;
-				align-items: center;
-				gap: 1.75rem;
-				padding: 1.75rem 2.5rem;
-			}
+		.hero-topleft .hero-name {
+			font-family: var(--font-body);
+			font-weight: 400;
+			font-size: 1.4rem;
+			letter-spacing: 0.02em;
+			text-transform: uppercase;
+			color: #ffffff;
+			transition: color 0.2s ease-in-out;
+		}
 
-			#top-nav a {
-				font-family: var(--font-head);
-				font-weight: 900;
-				font-size: 0.7rem;
-				letter-spacing: 0.2em;
-				text-transform: uppercase;
-				color: #ffffff;
-				text-decoration: none;
-				border-bottom: none;
-				transition: color 0.2s ease-in-out;
-			}
+		.hero-topleft .hero-role {
+			font-family: var(--font-body);
+			font-weight: 400;
+			font-size: 0.85rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: rgba(255,255,255,0.6);
+			transition: color 0.2s ease-in-out;
+		}
 
-			#top-nav a .glyph {
-				color: var(--accent);
-				margin-right: 0.4rem;
-			}
+		.hero-topleft:hover .hero-name,
+		.hero-topleft:hover .hero-role { color: var(--accent); }
 
-			#top-nav a:hover { color: var(--accent); }
-			#top-nav a:hover .glyph { color: var(--accent); }
-
-			@media screen and (max-width: 736px) {
-				.hero-topleft { top: 1.25rem; left: 1.25rem; gap: 0.6rem; }
-				.hero-topleft .hero-name { font-size: 1.05rem; }
-				.hero-topleft .hero-role { font-size: 0.65rem; }
-				#top-nav { padding: 1.25rem 1.25rem; gap: 1.1rem; }
-				#top-nav a { font-size: 0.6rem; letter-spacing: 0.12em; }
-			}
 		/* ── NAV — texto directo arriba a la derecha ───────────────── */
 		#top-nav {
 			position: fixed;
@@ -156,7 +140,7 @@ body {
 		#bio-split {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			min-height: calc(100vh - 80px);
+			min-height: 100vh;
 		}
 
 		#bio-text {
@@ -170,7 +154,7 @@ body {
 
 		.bio-eyebrow {
 			display: block;
-			font-family: var(--font-body);
+			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.65rem;
 			letter-spacing: 0.2em;
@@ -180,16 +164,15 @@ body {
 		}
 
 		#bio-text h1 {
-		   font-family: "Lora", serif; /* ← tu nueva fuente */
 			font-size: 2.4rem;
+			 font-family: "Lora", serif;
 			line-height: 1.1;
-			color: var(--muted);
-			margin-bottom: 1.8rem;
+			margin-bottom: 1.5rem;
 		}
 
 		#bio-text p {
-			font-family: "Lora", serif; /* ← tu nueva fuente */
-			font-size: 1.25rem;
+			font-size: 0.95rem;
+			 font-family: "Lora", serif;
 			line-height: 1.9;
 			color: var(--muted);
 			text-align: left;
@@ -208,7 +191,7 @@ body {
 
 		.bio-meta div span {
 			display: block;
-			font-family: var(--font-body);
+			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.55rem;
 			letter-spacing: 0.2em;
@@ -224,17 +207,15 @@ body {
 		}
 
 		/* ── IMAGEN ─────────────────────────────────────────────────── */
-	#bio-image {
-    position: relative;
-    min-height: 320px;
-}
-
-#bio-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
+		#bio-image {
+			position: relative;
+			background-image:
+				linear-gradient(180deg, rgba(20,20,20,0.05) 0%, rgba(20,20,20,0.35) 100%),
+				var(--bio-image);
+			background-size: cover;
+			background-position: center;
+			min-height: 320px;
+		}
 
 		@media screen and (max-width: 900px) {
 			#bio-split { grid-template-columns: 1fr; }
@@ -243,58 +224,59 @@ body {
 			#bio-text h1 { font-size: 2rem; }
 		}
 
-				/* ── FOOTER ─────────────────────────────────────────────── */
-			#footer {
-				background: var(--bg-panel) !important;
-				border-top: none;
-				width: 100%;
-			}
+		/* ── FOOTER (idéntico a work.html) ─────────────────────────── */
+		#footer {
+			background: var(--bg-panel) !important;
+			border-top: none;
+			width: 100%;
+		}
 
-			.footer-row {
-				width: 100%;
-				max-width: none;
-				margin: 0;
-				padding: 0.9rem 2.5rem !important;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				gap: 16px;
-				flex-wrap: wrap;
-			}
+		.footer-row {
+			width: 100%;
+			max-width: none;
+			margin: 0;
+			padding: 0.9rem 2.5rem !important;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 16px;
+			flex-wrap: wrap;
+		}
 
-			.footer-left p {
-				margin: 0;
-				font-family: var(--font-body);
-				font-size: 1.4rem;
-				font-weight: 400;
-				color: #ffffff !important;
-			}
-			.footer-left p a { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.35) !important; }
-			.footer-left p a:hover { color: var(--accent) !important; }
+		.footer-left p {
+			margin: 0;
+			font-family: var(--font-body);
+			font-size: 1.4rem;
+			font-weight: 400;
+			color: #ffffff !important;
+		}
+		.footer-left p a { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.35) !important; }
+		.footer-left p a:hover { color: var(--accent) !important; }
 
-			.footer-right ul.icons.alt { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
-			.footer-right ul.icons.alt li .icon:before { display: none; }
-			.footer-right ul.icons.alt li a {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				width: 2rem;
-				height: 2rem;
-				border: none;
-				background: none;
-				border-radius: 0;
-				color: #ffffff;
-				transition: color 0.2s ease-in-out, filter 0.2s ease-in-out;
-			}
-			.footer-right ul.icons.alt li a:hover {
-				color: var(--accent);
-				filter: drop-shadow(0 0 6px rgba(187,136,68,0.65));
-			}
-			.footer-right ul.icons.alt li a svg { width: 1.3rem; height: 1.3rem; fill: currentColor; }
+		.footer-right ul.icons.alt { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+		.footer-right ul.icons.alt li .icon:before { display: none; }
+		.footer-right ul.icons.alt li a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 2rem;
+			height: 2rem;
+			border: none;
+			background: none;
+			border-radius: 0;
+			color: #ffffff;
+			transition: color 0.2s ease-in-out, filter 0.2s ease-in-out;
+		}
+		.footer-right ul.icons.alt li a:hover {
+			color: var(--accent);
+			filter: drop-shadow(0 0 6px rgba(187,136,68,0.65));
+		}
+		.footer-right ul.icons.alt li a svg { width: 1.3rem; height: 1.3rem; fill: currentColor; }
 
-			@media screen and (max-width: 736px) {
-				.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; padding: 1.25rem 1.5rem !important; }
-			}
+		@media screen and (max-width: 736px) {
+			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; padding: 1.25rem 1.5rem !important; }
+			.bio-meta { flex-direction: column; gap: 1.25rem; }
+		}
 
 	</style>
 </head>
@@ -317,8 +299,8 @@ body {
 
 		<div id="bio-text">
 			<div id="bio-text-inner">
-				<span class="bio-eyebrow"></span>
-				<h1></h1>
+				<span class="bio-eyebrow">Bio</span>
+				<h1>Luis Puchades</h1>
 				<p>I'm a colorist and filmmaker focused on narrative and commercial work — grading built to serve the story, not to sit on top of it.</p>
 				<p>My background is in production and cinematography, which shapes how I approach color: always in service of tone, pacing and mood, scene by scene.</p>
 				<p>Based between projects, available for freelance work — spots, short films, and anything with a story worth telling in color.</p>
@@ -330,48 +312,47 @@ body {
 						<p>Spain</p>
 					</div>
 					<div>
-						<span>Specialization</span>
-						<p>Commercial Color Grading</p>
+						<span>Tools</span>
+						<p>DaVinci Resolve</p>
 					</div>
 					<div>
-						<span>Software</span>
-						<p>DaVinci Resolve 20</p>
+						<span>Available for</span>
+						<p>Freelance</p>
 					</div>
 				</div>
 			</div>
 		</div>
 
-	<div id="bio-image">
-    <img src="assets/images/foto-biosincolor.png" alt="Luis Puchades">
-</div>
+		<div id="bio-image"></div>
 
-	
-			<footer id="footer">
-				<div class="footer-row">
-					<div class="footer-left">
-						<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a></p>
-					</div>
-					<div class="footer-right">
-						<ul class="icons alt">
-							<li>
-								<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" class="icon brands alt fa-linkedin" aria-label="LinkedIn">
-									<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-								</a>
-							</li>
-							<li>
-								<a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" class="icon brands alt fa-vimeo" aria-label="Vimeo">
-									<svg viewBox="0 0 24 24"><path d="M22 7.35c-.1 2.1-1.56 4.98-4.4 8.62C14.28 20.8 11.53 23 9.27 23c-1.4 0-2.58-1.3-3.55-3.9L4 12.4C3.3 9.8 2.55 8.5 1.75 8.5c-.17 0-.77.36-1.8 1.08L0 8.4c1.13-1 2.24-2 3.34-3C4.82 4.1 5.93 3.4 6.66 3.33c1.66-.16 2.68.98 3.06 3.4.4 2.62.68 4.25.85 4.87.47 2.14.99 3.2 1.56 3.2.44 0 1.11-.7 2-2.08.88-1.39 1.36-2.45 1.42-3.18.13-1.2-.34-1.8-1.42-1.8-.5 0-1.03.12-1.57.35C13.6 4.55 15.65 2.7 18.72 2.8c2.24.07 3.3 1.52 3.28 4.55z"/></svg>
-								</a>
-							</li>
-							<li>
-								<a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" class="icon brands alt fa-youtube" aria-label="YouTube">
-									<svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</footer>
+	</div>
+
+	<footer id="footer">
+		<div class="footer-row">
+			<div class="footer-left">
+				<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a></p>
+			</div>
+			<div class="footer-right">
+				<ul class="icons alt">
+					<li>
+						<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" class="icon brands alt fa-linkedin" aria-label="LinkedIn">
+							<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="https://vimeo.com/user234213642" target="_blank" rel="noopener" class="icon brands alt fa-vimeo" aria-label="Vimeo">
+							<svg viewBox="0 0 24 24"><path d="M22 7.35c-.1 2.1-1.56 4.98-4.4 8.62C14.28 20.8 11.53 23 9.27 23c-1.4 0-2.58-1.3-3.55-3.9L4 12.4C3.3 9.8 2.55 8.5 1.75 8.5c-.17 0-.77.36-1.8 1.08L0 8.4c1.13-1 2.24-2 3.34-3C4.82 4.1 5.93 3.4 6.66 3.33c1.66-.16 2.68.98 3.06 3.4.4 2.62.68 4.25.85 4.87.47 2.14.99 3.2 1.56 3.2.44 0 1.11-.7 2-2.08.88-1.39 1.36-2.45 1.42-3.18.13-1.2-.34-1.8-1.42-1.8-.5 0-1.03.12-1.57.35C13.6 4.55 15.65 2.7 18.72 2.8c2.24.07 3.3 1.52 3.28 4.55z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.youtube.com/channel/UCR4lEZUgE2m-3378TOK-r_w" target="_blank" rel="noopener" class="icon brands alt fa-youtube" aria-label="YouTube">
+							<svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</footer>
 
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.scrollex.min.js"></script>

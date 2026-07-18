@@ -99,15 +99,17 @@
 			align-items: baseline;
 			gap: 0.9rem;
 			line-height: 1;
+			isolation: isolate;
+			mix-blend-mode: difference;
 		}
 
 		.hero-topleft .hero-name {
 			font-family: var(--font-body);
-			font-weight: 700;
+			font-weight: 400;
 			font-size: 2.15rem;
 			letter-spacing: 0.02em;
 			text-transform: uppercase;
-			color: var(--accent);
+			color: #ffffff;
 		}
 
 		.hero-topleft .hero-role {
@@ -126,10 +128,10 @@
 			.hero-topleft .hero-role { font-size: 0.9rem; }
 		}
 
-		/* Flecha minimalista, más abajo en el hero */
+		/* Flecha minimalista, centrada y más abajo en el hero */
 		#intro .actions {
 			position: absolute;
-			bottom: 2.5rem;
+			bottom: 1.25rem;
 			left: 50%;
 			transform: translateX(-50%);
 			z-index: 10;
@@ -171,7 +173,7 @@
 		}
 
 		@media screen and (max-width: 736px) {
-			#intro .actions { bottom: 1.75rem; }
+			#intro .actions { bottom: 0.9rem; }
 		}
 
 		/* ── LATEST WORK — cuadrícula clicable debajo del hero ────── */

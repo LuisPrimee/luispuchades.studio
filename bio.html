@@ -26,7 +26,18 @@
 
 			*, *::before, *::after { box-sizing: border-box; }
 
-			html, body { height: 100%; }
+		html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#bio-split {
+    flex: 1;
+}
 			body { background-color: var(--bg) !important; font-family: var(--font-body); }
 			p { font-family: var(--font-body); }
 

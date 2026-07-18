@@ -12,93 +12,58 @@
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	<style>
 
-		:root {
-			--bg:        #222222;
-			--bg-panel:  #1a1a1a;
-			--accent:    #bb8844;
-			--border:    #eeeeee;
-			--muted:     #8a928a;
-			--font-body: "Cormorant Garamond", Georgia, serif;
-			--font-head: "Source Sans Pro", Helvetica, sans-serif;
+	
+			:root {
+				--bg:        #222222;
+				--bg-panel:  #1a1a1a;
+				--accent:    #bb8844;
+				--border:    #eeeeee;
+				--muted:     #8a928a;
+				--font-body: "Cormorant Garamond", Georgia, serif;
+				--font-head: "Source Sans Pro", Helvetica, sans-serif;
+			}
 
-			/*
-				── CÓMO PONER TU FOTO ──
-				1) Copia tu imagen a images/bio-photo.jpg
-				2) Cambia la línea de abajo por:
-				   --bio-image: url("images/bio-photo.jpg");
-			*/
-			--bio-image: url("images/foto-biosincolor.png");
-		}
+			*, *::before, *::after { box-sizing: border-box; }
 
-		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+			html, body { height: 100%; }
+			body { background-color: var(--bg) !important; font-family: var(--font-body); }
+			p { font-family: var(--font-body); }
 
-		html, body { height: 100%; }
+			/* ── IDENTIDAD arriba a la izquierda — vuelve al inicio ──── */
+			.hero-topleft {
+				position: fixed;
+				top: 1.75rem;
+				left: 2.5rem;
+				z-index: 10000;
+				display: flex;
+				align-items: baseline;
+				gap: 0.9rem;
+				line-height: 1;
+				text-decoration: none;
+			}
 
-		body {
-			background-color: var(--bg);
-			font-family: var(--font-body);
-			font-weight: 300;
-			font-size: 1rem;
-			line-height: 2.1;
-			color: var(--muted);
-		}
+			.hero-topleft .hero-name {
+				font-family: var(--font-body);
+				font-weight: 400;
+				font-size: 1.4rem;
+				letter-spacing: 0.02em;
+				text-transform: uppercase;
+				color: #ffffff;
+				transition: color 0.2s ease-in-out;
+			}
 
-		html { font-size: 17pt; }
-		@media screen and (max-width: 1680px) { html { font-size: 13pt; } }
-		@media screen and (max-width: 1280px) { html { font-size: 12pt; } }
-		@media screen and (max-width:  360px) { html { font-size: 11pt; } }
+			.hero-topleft .hero-role {
+				font-family: var(--font-body);
+				font-weight: 400;
+				font-size: 0.85rem;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: rgba(255,255,255,0.6);
+				transition: color 0.2s ease-in-out;
+			}
 
-		h1, h2 {
-			font-family: var(--font-head);
-			font-weight: 900;
-			letter-spacing: 0.075em;
-			text-transform: uppercase;
-			color: #ffffff;
-		}
-
-		a {
-			color: var(--accent);
-			text-decoration: none;
-			border-bottom: dotted 1px rgba(187,136,68,0.4);
-			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-		}
-		a:hover { border-bottom-color: transparent; }
-
-		/* ── IDENTIDAD arriba a la izquierda — vuelve al inicio ──── */
-		.hero-topleft {
-			position: fixed;
-			top: 1.75rem;
-			left: 2.5rem;
-			z-index: 10000;
-			display: flex;
-			align-items: baseline;
-			gap: 0.9rem;
-			line-height: 1;
-			text-decoration: none;
-		}
-
-		.hero-topleft .hero-name {
-			font-family: var(--font-head);
-			font-weight: 400;
-			font-size: 1.4rem;
-			letter-spacing: 0.02em;
-			text-transform: uppercase;
-			color: #ffffff;
-			transition: color 0.2s ease-in-out;
-		}
-
-		.hero-topleft .hero-role {
-			font-family: var(--font-head);
-			font-weight: 400;
-			font-size: 0.85rem;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			color: rgba(255,255,255,0.6);
-			transition: color 0.2s ease-in-out;
-		}
-
-		.hero-topleft:hover .hero-name,
-		.hero-topleft:hover .hero-role { color: var(--accent); }
+			.hero-topleft:hover .hero-name,
+			.hero-topleft:hover .hero-role { color: var(--accent); }
 
 		/* ── NAV — texto directo arriba a la derecha ───────────────── */
 		#top-nav {

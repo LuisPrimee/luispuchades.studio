@@ -402,6 +402,27 @@
 			.footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; padding: 1.5rem 1.75rem; }
 			.footer-left p { font-size: 0.95rem; }
 		}
+		/* ── BOTÓN "HIRE ME" DE CONTRA ──────────────────────────────
+		   Widget de terceros (iframe): no podemos tocar sus colores
+		   internos con CSS, pero sí reducirlo con transform: scale()
+		   y usar su tema oscuro (data-theme="dark") para que no
+		   desentone con el resto de la web.
+		*/
+		.contra-embed-wrap {
+			transform: scale(0.72);
+			transform-origin: center right;
+			line-height: 0;
+		}
+
+		@media screen and (max-width: 736px) {
+			.contra-embed-wrap { transform: scale(0.62); }
+		}
+
+		@media screen and (max-width: 736px) {
+			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; padding: 1.25rem 1.5rem !important; }
+			.footer-right { width: 100%; justify-content: space-between; }
+		}
+
 
 	</style>
 </head>
@@ -485,6 +506,9 @@
 				<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a> &nbsp;·&nbsp;
 			</div>
 			<ul class="footer-icons">
+						<div class="contra-embed-wrap">
+						<div class="contra-hire-me-button" data-analyticsUserId="b9a682ad-0371-4776-b1c2-3c5a151c9375" data-theme="light" data-username="luis_puchades_bmv7gvit"></div>
+					</div>
 				<li>
 					<a href="https://www.linkedin.com/in/luis-puchades-sanchez/" target="_blank" rel="noopener" aria-label="LinkedIn">
 						<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>

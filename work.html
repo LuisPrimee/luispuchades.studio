@@ -360,6 +360,28 @@
 				.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; padding: 1.25rem 1.5rem !important; }
 			}
 
+			/* ── BOTÓN "HIRE ME" DE CONTRA ──────────────────────────────
+		   Widget de terceros (iframe): no podemos tocar sus colores
+		   internos con CSS, pero sí reducirlo con transform: scale()
+		   y usar su tema oscuro (data-theme="dark") para que no
+		   desentone con el resto de la web.
+		*/
+		.contra-embed-wrap {
+			transform: scale(0.72);
+			transform-origin: center right;
+			line-height: 0;
+		}
+
+		@media screen and (max-width: 736px) {
+			.contra-embed-wrap { transform: scale(0.62); }
+		}
+
+		@media screen and (max-width: 736px) {
+			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; padding: 1.25rem 1.5rem !important; }
+			.footer-right { width: 100%; justify-content: space-between; }
+		}
+
+
 		</style>
 	</head>
 

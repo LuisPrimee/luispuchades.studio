@@ -4,6 +4,9 @@
 	<title>Adolfo Dominguez Spec Ad | Luis Puchades</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+
 	<link rel="stylesheet" href="/assets/css/main.css" />
 	<link rel="icon" type="image/png" href="/favicon-32x32.png" />
 	<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
@@ -15,7 +18,7 @@
 			--accent:    #bb8844;
 			--border:    #eeeeee;
 			--muted:     #8a928a;
-			--font-body: "Merriweather", Georgia, serif;
+			--font-body: "Cormorant Garamond", Georgia, serif;
 			--font-head: "Source Sans Pro", Helvetica, sans-serif;
 		}
 
@@ -26,109 +29,87 @@
 			background-color: var(--bg);
 			font-family: var(--font-body);
 			font-weight: 300;
-			color: #cccccc;
+			color: var(--muted);
 		}
 
-		/* ── MENÚ FLOTANTE (idéntico al resto del sitio) ──────────── */
-		#menu-toggle {
+		a {
+			color: var(--accent);
+			text-decoration: none;
+			border-bottom: dotted 1px rgba(187,136,68,0.4);
+			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+		}
+		a:hover { border-bottom-color: transparent; }
+
+		/* ── IDENTIDAD arriba a la izquierda — vuelve al inicio ──── */
+		.hero-topleft {
 			position: fixed;
-			top: 1.5rem;
-			right: 1.5rem;
+			top: 1.75rem;
+			left: 2.5rem;
 			z-index: 10000;
-			width: 3rem;
-			height: 3rem;
-			border-radius: 50%;
-			background: rgba(20,20,20,0.55);
-			backdrop-filter: blur(8px);
-			-webkit-backdrop-filter: blur(8px);
+			display: flex;
+			align-items: baseline;
+			gap: 0.9rem;
+			line-height: 1;
+			text-decoration: none;
+		}
+
+		.hero-topleft .hero-name {
+			font-family: var(--font-body);
+			font-weight: 400;
+			font-size: 1.4rem;
+			letter-spacing: 0.02em;
+			text-transform: uppercase;
+			color: #ffffff;
+			transition: color 0.2s ease-in-out;
+		}
+
+		.hero-topleft .hero-role {
+			font-family: var(--font-body);
+			font-weight: 400;
+			font-size: 0.85rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: rgba(255,255,255,0.6);
+			transition: color 0.2s ease-in-out;
+		}
+
+		.hero-topleft:hover .hero-name,
+		.hero-topleft:hover .hero-role { color: var(--accent); }
+
+		/* ── NAV — texto directo arriba a la derecha ───────────────── */
+		#top-nav {
+			position: fixed;
+			top: 0;
+			right: 0;
+			z-index: 10000;
 			display: flex;
 			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			padding: 0;
-			transition: border-color 0.2s ease-in-out;
+			gap: 1.75rem;
+			padding: 1.75rem 2.5rem;
 		}
 
-		#menu-toggle:hover,
-		#menu-toggle[aria-expanded="true"] { border-color: var(--accent); }
-
-		#menu-toggle img { width: 1.6rem; height: 1.6rem; border-radius: 50%; display: block; }
-
-		#dropdown-menu {
-			position: fixed;
-			top: 4.75rem;
-			right: 1.5rem;
-			z-index: 9999;
-			min-width: 13rem;
-			background: rgba(20,20,20,0.92);
-			backdrop-filter: blur(10px);
-			-webkit-backdrop-filter: blur(10px);
-			border: solid 2px rgba(255,255,255,0.15);
-			padding: 0.5rem;
-			opacity: 0;
-			transform: translateY(-8px);
-			pointer-events: none;
-			transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-		}
-
-		#dropdown-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
-
-		.menu-label {
-			display: block;
-			font-family: var(--font-head);
-			font-weight: 900;
-			font-size: 0.6rem;
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
-			color: var(--muted);
-			padding: 0.6rem 1rem 0.3rem;
-		}
-
-		#dropdown-menu a {
-			display: block;
+		#top-nav a {
 			font-family: var(--font-head);
 			font-weight: 900;
 			font-size: 0.7rem;
-			letter-spacing: 0.1em;
+			letter-spacing: 0.2em;
 			text-transform: uppercase;
 			color: #ffffff;
 			text-decoration: none;
 			border-bottom: none;
-			padding: 0.75rem 1rem;
-			transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+			transition: color 0.2s ease-in-out;
 		}
 
-		#dropdown-menu a.sub { padding-left: 1.5rem; font-size: 0.65rem; color: rgba(255,255,255,0.75); }
-		#dropdown-menu a:hover { color: var(--accent); background: rgba(255,255,255,0.04); }
-		#dropdown-menu .menu-divider { border-top: solid 1px rgba(255,255,255,0.1); margin: 0.4rem 0.25rem; }
+		#top-nav a .glyph { color: var(--accent); margin-right: 0.4rem; }
+		#top-nav a:hover { color: var(--accent); }
+		#top-nav a:hover .glyph { color: var(--accent); }
 
-		/* ── BACK (arriba a la izquierda, discreto) ──────────────── */
-		.nav-back {
-			position: fixed;
-			top: 1.9rem;
-			left: 1.5rem;
-			z-index: 10000;
-			display: inline-flex;
-			align-items: center;
-			gap: 0.5rem;
-			color: rgba(255,255,255,0.7);
-			text-decoration: none;
-			font-family: var(--font-head);
-			font-weight: 900;
-			font-size: 0.7rem;
-			letter-spacing: 0.15em;
-			text-transform: uppercase;
-			border-bottom: none;
-			transition: color 0.2s ease;
-		}
-
-		.nav-back:hover { color: var(--accent); border-bottom: none; }
-
-		.nav-back svg {
-			width: 14px; height: 14px;
-			stroke: currentColor; fill: none;
-			stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
-			flex-shrink: 0;
+		@media screen and (max-width: 736px) {
+			.hero-topleft { top: 1.25rem; left: 1.25rem; gap: 0.6rem; }
+			.hero-topleft .hero-name { font-size: 1.05rem; }
+			.hero-topleft .hero-role { font-size: 0.65rem; }
+			#top-nav { padding: 1.25rem 1.25rem; gap: 1.1rem; }
+			#top-nav a { font-size: 0.6rem; letter-spacing: 0.12em; }
 		}
 
 		/* ── HERO ───────────────────────────────────── */
@@ -168,7 +149,7 @@
 		#hero .description {
 			font-size: 1rem;
 			line-height: 2;
-			color: #8a9099;
+			color: var(--muted);
 			max-width: 600px;
 			margin: 0 auto;
 			text-align: center;
@@ -232,7 +213,7 @@
 		.content-block p {
 			font-size: 0.95rem;
 			line-height: 2.2;
-			color: #8a9099;
+			color: var(--muted);
 			text-align: left;
 			margin-bottom: 1.2rem;
 		}
@@ -263,7 +244,7 @@
 
 		.meta-item p {
 			font-size: 0.85rem;
-			color: #aaaaaa;
+			color: var(--muted);
 			line-height: 1.6;
 			margin: 0;
 		}
@@ -305,13 +286,15 @@
 		/* ── FOOTER (idéntico al resto del sitio) ──────────────────── */
 		#footer {
 			background: var(--bg-panel) !important;
-			border-top: solid 2px var(--border);
+			border-top: none;
+			width: 100%;
 		}
 
 		.footer-row {
-			max-width: 72rem;
-			margin: 0 auto;
-			padding: 1.5rem 2rem !important;
+			width: 100%;
+			max-width: none;
+			margin: 0;
+			padding: 0.9rem 2.5rem !important;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -319,23 +302,35 @@
 			flex-wrap: wrap;
 		}
 
-		.footer-left h3 { font-size: 0.7rem; margin-bottom: 0.4rem; color: #ffffff; }
-		.footer-left p { margin: 0; font-size: 1.05rem; font-weight: 300; color: #ffffff !important; }
+		.footer-left p {
+			margin: 0;
+			font-family: var(--font-body);
+			font-size: 1.4rem;
+			font-weight: 400;
+			color: #ffffff !important;
+		}
 		.footer-left p a { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.35) !important; }
 		.footer-left p a:hover { color: var(--accent) !important; }
 
 		.footer-right ul.icons.alt { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
 		.footer-right ul.icons.alt li .icon:before { display: none; }
 		.footer-right ul.icons.alt li a {
-			display: inline-flex; align-items: center; justify-content: center;
-			width: 2.4rem; height: 2.4rem;
-			border: solid 2px rgba(255,255,255,0.7);
-			border-radius: 50%;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 2rem;
+			height: 2rem;
+			border: none;
+			background: none;
+			border-radius: 0;
 			color: #ffffff;
-			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+			transition: color 0.2s ease-in-out, filter 0.2s ease-in-out;
 		}
-		.footer-right ul.icons.alt li a:hover { color: #171717; border-color: var(--accent); background-color: var(--accent); }
-		.footer-right ul.icons.alt li a svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
+		.footer-right ul.icons.alt li a:hover {
+			color: var(--accent);
+			filter: drop-shadow(0 0 6px rgba(187,136,68,0.65));
+		}
+		.footer-right ul.icons.alt li a svg { width: 1.3rem; height: 1.3rem; fill: currentColor; }
 
 		/* ── ANIMATIONS ─────────────────────────────── */
 		@keyframes fadeUp {
@@ -350,11 +345,7 @@
 			#content-section { padding: 0 1.5rem 4rem; }
 			#bottom-back { padding: 0 1.5rem 4rem; }
 			.meta-grid { grid-template-columns: 1fr 1fr; }
-			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
-			#menu-toggle { top: 1rem; right: 1rem; }
-			#dropdown-menu { top: 4.25rem; right: 1rem; }
-			.nav-back { top: 1.35rem; }
-			.nav-back span { display: none; }
+			.footer-row { flex-direction: column; align-items: flex-start; gap: 14px; padding: 1.25rem 1.5rem !important; }
 		}
 
 		@media screen and (max-width: 480px) {
@@ -365,23 +356,17 @@
 </head>
 <body>
 
-	<!-- BACK -->
-	<a href="/index.html" class="nav-back">
-		<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-		<span>Back to work</span>
+	<!-- IDENTIDAD — vuelve al inicio -->
+	<a href="/index.html" class="hero-topleft">
+		<span class="hero-name">Luis Puchades</span>
+		<span class="hero-role">Colorist</span>
 	</a>
 
-	<!-- MENÚ FLOTANTE -->
-	<button id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="dropdown-menu">
-		<img src="/favicon-32x32.png" alt="" />
-	</button>
-	<nav id="dropdown-menu" aria-label="Menú principal">
-		<span class="menu-label">Work</span>
-		<a href="/work.html#color-grading" class="sub">Color Grading</a>
-		<a href="/work.html#spec-ads" class="sub">Spec Ads</a>
-		<a href="/work.html#shortfilms" class="sub">Shortfilms</a>
-		<div class="menu-divider"></div>
-		<a href="/contact.html">Contact</a>
+	<!-- NAV -->
+	<nav id="top-nav" aria-label="Menú principal">
+		<a href="/work.html"><span class="glyph">►</span>Work</a>
+		<a href="/bio.html"><span class="glyph">·</span>Bio</a>
+		<a href="/contact.html"><span class="glyph">◇</span>Contact</a>
 	</nav>
 
 	<!-- HERO -->
@@ -450,7 +435,6 @@
 	<footer id="footer">
 		<div class="footer-row">
 			<div class="footer-left">
-				<h3>Contact</h3>
 				<p><a href="mailto:puchadesluis@gmail.com">puchadesluis@gmail.com</a></p>
 			</div>
 			<div class="footer-right">
@@ -482,24 +466,6 @@
 	<script src="/assets/js/breakpoints.min.js"></script>
 	<script src="/assets/js/util.js"></script>
 	<script src="/assets/js/main.js"></script>
-
-	<script>
-		(function () {
-			var toggle = document.getElementById('menu-toggle');
-			var menu = document.getElementById('dropdown-menu');
-			function closeMenu() { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
-			function openMenu() { menu.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); }
-			toggle.addEventListener('click', function (e) {
-				e.stopPropagation();
-				menu.classList.contains('open') ? closeMenu() : openMenu();
-			});
-			document.addEventListener('click', function (e) {
-				if (!menu.contains(e.target) && e.target !== toggle) closeMenu();
-			});
-			document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
-			menu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
-		})();
-	</script>
 
 </body>
 </html>

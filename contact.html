@@ -318,6 +318,16 @@
 			line-height: 1.7;
 		}
 
+		/* Honeypot: oculto visualmente, pero presente en el DOM para que
+		   los bots lo rellenen. Un humano nunca lo ve ni lo toca. */
+		.form-honey {
+			position: absolute !important;
+			left: -9999px !important;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+		}
+
 		.btn-submit {
 			display: inline-flex;
 			align-items: center;
@@ -509,8 +519,14 @@
 
 				<form action="https://formsubmit.co/puchadesluis@gmail.com" method="POST">
 
+					<!-- Ajustes de FormSubmit -->
 					<input type="hidden" name="_next" value="https://luispuchades.studio/thanks.html">
-					<input type="hidden" name="_captcha" value="false">
+					<input type="hidden" name="_captcha" value="true">
+					<input type="hidden" name="_template" value="table">
+					<input type="hidden" name="_subject" value="Nuevo mensaje desde luispuchades.studio">
+
+					<!-- Honeypot anti-spam: campo oculto que solo rellenan los bots -->
+					<input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off">
 
 					<div class="form-row">
 						<div class="form-group">

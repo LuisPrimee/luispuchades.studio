@@ -128,58 +128,57 @@
 			.hero-topleft .hero-role { font-size: 0.65rem; }
 		}
 
-		/* Flecha minimalista, centrada y más abajo en el hero */
-		#intro .actions {
-			position: absolute;
-			bottom: -15rem;
-			left: 50%;
-			transform: translateX(-50%);
-			z-index: 10;
-			margin: 0;
-		}
+		/* Flecha minimalista, centrada en la parte baja del hero */
+#intro .actions {
+	position: absolute !important;
+	left: 0;
+	right: 0;
+	bottom: 2rem;
+	width: 100%;
+	margin: 0 !important;
+	padding: 0 !important;
+	display: flex;
+	justify-content: center;
+	transform: none !important;
+	z-index: 10;
+}
 
-		#intro .actions ul {
-			padding-left: 0;
-			margin-left: 0;
-		}
+#intro .actions li {
+	list-style: none;
+	padding: 0 !important;
+}
 
-		#intro .actions li { list-style: none; }
+.hero-scroll-arrow {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.4rem;
+	height: 2.4rem;
+	border: none;
+	background: none;
+	color: rgba(255,255,255,0.75);
+	transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+	animation: hero-arrow-bounce 2s ease-in-out infinite;
+}
 
-		.hero-scroll-arrow {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 2.4rem;
-			height: 2.4rem;
-			border: none;
-			background: none;
-			color: rgba(255,255,255,0.75);
-			transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-			animation: hero-arrow-bounce 2s ease-in-out infinite;
-		}
+.hero-scroll-arrow:hover {
+	color: var(--accent);
+}
 
-		.hero-scroll-arrow:hover {
-			color: var(--accent);
-		}
+.hero-scroll-arrow svg {
+	width: 1.4rem;
+	height: 1.4rem;
+	stroke: currentColor;
+	fill: none;
+	stroke-width: 1.5;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
 
-		.hero-scroll-arrow svg {
-			width: 1.4rem;
-			height: 1.4rem;
-			stroke: currentColor;
-			fill: none;
-			stroke-width: 1.5;
-			stroke-linecap: round;
-			stroke-linejoin: round;
-		}
-
-		@keyframes hero-arrow-bounce {
-			0%, 100% { transform: translateY(0); }
-			50% { transform: translateY(6px); }
-		}
-
-		@media screen and (max-width: 736px) {
-			#intro .actions { bottom: 0.4rem; }
-		}
+@keyframes hero-arrow-bounce {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(6px); }
+}
 
 		/* ── LATEST WORK — cuadrícula clicable debajo del hero ────── */
 		#latest-work {
